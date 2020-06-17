@@ -13,7 +13,7 @@ namespace fandom.WebAPI.Database
         [Required, MaxLength(75)]
         public string Name { get; set; }
 
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
 
         public int LocationTypeId { get; set; }
         public LocationType LocationType { get; set; }

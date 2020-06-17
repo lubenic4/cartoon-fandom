@@ -13,7 +13,7 @@ namespace fandom.WebAPI.Database
         [Required, MaxLength(20)]
         public string Title { get; set; }
 
-        public byte[] Thumbnail { get; set; }
+        //public byte[] Thumbnail { get; set; }
 
         [Required]
         public int NoOfSeason { get; set; }

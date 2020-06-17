@@ -13,7 +13,7 @@ namespace fandom.WebAPI.Database
         [Required, MaxLength(20)]
         public string Title { get; set; }
 
-        public byte[] Icon { get; set; }
+        //public byte[] Icon { get; set; }
 
         public ICollection<Post> Posts { get; set; }
     }

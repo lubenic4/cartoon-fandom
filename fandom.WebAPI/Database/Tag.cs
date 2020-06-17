@@ -11,7 +11,7 @@ namespace fandom.WebAPI.Database
 
         public string Title { get; set; }
 
-        public byte[] Icon { get; set; }
+        //public byte[] Icon { get; set; }
 
         public ICollection<PostTag> PostsTags { get; set; }
 

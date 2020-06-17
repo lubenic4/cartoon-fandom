@@ -15,7 +15,7 @@ namespace fandom.WebAPI.Database
 
         public string Username { get; set; }
 
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
 
         public string Email { get; set; }
 

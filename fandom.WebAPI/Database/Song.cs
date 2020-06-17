@@ -13,7 +13,7 @@ namespace fandom.WebAPI.Database
 
         public string Performer { get; set; }
 
-        public byte[] ImageCover { get; set; }
+        //public byte[] ImageCover { get; set; }
 
         public ICollection<EpisodeSong> EpisodesSongs { get; set; }
 
