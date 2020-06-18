@@ -49,13 +49,15 @@ namespace fandom.WebAPI.Services
         {
             var query = _ctx.Characters.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(request.FirstName))
+            if (!string.IsNullOrWhiteSpace(request?.FirstName))
                 query = query.Where(x => x.FirstName.StartsWith(request.FirstName));
 
-            if (!string.IsNullOrWhiteSpace(request.LastName))
+            if (!string.IsNullOrWhiteSpace(request?.LastName))
                 query = query.Where(x => x.LastName.StartsWith(request.LastName));
 
-            return _mapper.Map<List<MCharacter>>(query.ToList());
+            var list = query.ToList();
+
+            return _mapper.Map<List<MCharacter>>(list);
         }
     }
 }

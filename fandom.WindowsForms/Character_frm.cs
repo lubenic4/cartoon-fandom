@@ -1,4 +1,5 @@
 ﻿using fandom.Model;
+using fandom.Model.Requests.Character;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,10 +21,15 @@ namespace fandom.WindowsForms
             InitializeComponent();
         }
 
-        private async void Character_frm_Load(object sender, EventArgs e)
+
+        private async void button1_Click(object sender, EventArgs e)
         {
-            var result = await _apiService.Get<List<MCharacter>>();
+            var request = new CharacterSearchByName { FirstName = textBox1.Text };
+
+            var result = await _apiService.Get<List<MCharacter>>(request);
+
             dataGridView1.DataSource = result;
+
         }
     }
 }

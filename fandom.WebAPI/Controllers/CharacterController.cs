@@ -32,6 +32,6 @@ namespace fandom.WebAPI.Controllers
         public ActionResult<MCharacter> InsertCharacter(CharacterInsert request) => _service.Insert(request);
 
         [HttpGet]
-        public ActionResult<List<MCharacter>> GetByName([FromQuery]CharacterSearchByName request) => _service.SearchByName(request);
+        public ActionResult<List<MCharacter>> Get([FromQuery]CharacterSearchByName request) => _service.SearchByName(request);
     }
 }
