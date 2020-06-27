@@ -16,5 +16,17 @@ namespace fandom.WindowsForms.Forms
         {
             InitializeComponent();
         }
+
+        private static EpisodeForm seasonInstance;
+
+        public static EpisodeForm GetForm
+        {
+            get
+            {
+                if (seasonInstance == null || seasonInstance.IsDisposed)
+                    seasonInstance = new EpisodeForm();
+                return seasonInstance;
+            }
+        }
     }
 }

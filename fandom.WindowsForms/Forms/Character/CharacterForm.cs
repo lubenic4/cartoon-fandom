@@ -16,5 +16,17 @@ namespace fandom.WindowsForms.Forms
         {
             InitializeComponent();
         }
+
+        private static CharacterForm characterInstance;
+
+        public static CharacterForm GetForm
+        {
+            get
+            {
+                if (characterInstance == null || characterInstance.IsDisposed)
+                    characterInstance = new CharacterForm();
+                return characterInstance;
+            }
+        }
     }
 }

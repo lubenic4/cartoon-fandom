@@ -16,5 +16,17 @@ namespace fandom.WindowsForms.Forms
         {
             InitializeComponent();
         }
+
+        private static UserForm userInstance;
+
+        public static UserForm GetForm
+        {
+            get
+            {
+                if (userInstance == null || userInstance.IsDisposed)
+                    userInstance = new UserForm();
+                return userInstance;
+            }
+        }
     }
 }

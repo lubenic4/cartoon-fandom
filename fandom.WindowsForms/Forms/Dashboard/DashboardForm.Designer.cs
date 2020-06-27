@@ -1,6 +1,6 @@
-﻿namespace fandom.WindowsForms.Forms
+﻿namespace fandom.WindowsForms.Forms.Dashboard
 {
-    partial class EpisodeForm
+    partial class DashboardForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // DashboardForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "EpisodeForm";
+            this.BackColor = System.Drawing.Color.HotPink;
+            this.ClientSize = new System.Drawing.Size(1394, 706);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "DashboardForm";
+            this.Text = "DashboardForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.ResumeLayout(false);
+
         }
 
         #endregion
