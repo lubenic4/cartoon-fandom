@@ -34,8 +34,8 @@
             this.userLabel = new System.Windows.Forms.Label();
             this.episodeLabel = new System.Windows.Forms.Label();
             this.sidebarPanel = new System.Windows.Forms.Panel();
-            this.seasonLabel = new System.Windows.Forms.Label();
             this.dashboardLabel = new System.Windows.Forms.Label();
+            this.seasonLabel = new System.Windows.Forms.Label();
             this.formPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.sidebarPanel.SuspendLayout();
@@ -104,19 +104,6 @@
             this.sidebarPanel.Size = new System.Drawing.Size(274, 753);
             this.sidebarPanel.TabIndex = 10;
             // 
-            // seasonLabel
-            // 
-            this.seasonLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.seasonLabel.AutoSize = true;
-            this.seasonLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seasonLabel.Location = new System.Drawing.Point(86, 170);
-            this.seasonLabel.Name = "seasonLabel";
-            this.seasonLabel.Size = new System.Drawing.Size(93, 29);
-            this.seasonLabel.TabIndex = 5;
-            this.seasonLabel.Text = "Seasons";
-            this.seasonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.seasonLabel.Click += new System.EventHandler(this.seasonLabel_Click);
-            // 
             // dashboardLabel
             // 
             this.dashboardLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -130,20 +117,33 @@
             this.dashboardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.dashboardLabel.Click += new System.EventHandler(this.dashboardLabel_Click);
             // 
+            // seasonLabel
+            // 
+            this.seasonLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.seasonLabel.AutoSize = true;
+            this.seasonLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seasonLabel.Location = new System.Drawing.Point(86, 170);
+            this.seasonLabel.Name = "seasonLabel";
+            this.seasonLabel.Size = new System.Drawing.Size(93, 29);
+            this.seasonLabel.TabIndex = 5;
+            this.seasonLabel.Text = "Seasons";
+            this.seasonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.seasonLabel.Click += new System.EventHandler(this.seasonLabel_Click);
+            // 
             // formPanel
             // 
             this.formPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.formPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formPanel.Location = new System.Drawing.Point(274, 0);
             this.formPanel.Name = "formPanel";
-            this.formPanel.Size = new System.Drawing.Size(1138, 753);
+            this.formPanel.Size = new System.Drawing.Size(1116, 753);
             this.formPanel.TabIndex = 11;
             // 
             // HomeMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1412, 753);
+            this.ClientSize = new System.Drawing.Size(1390, 753);
             this.Controls.Add(this.formPanel);
             this.Controls.Add(this.sidebarPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

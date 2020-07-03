@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using fandom.Model;
+using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WebAPI.Database;
 using System;
@@ -19,6 +20,8 @@ namespace fandom.WebAPI.Mappers
 
             CreateMap<Character, MCharacter>();
             CreateMap<CharacterInsert, Character>();
+
+            CreateMap<Season, MSeason>();
 
 
 

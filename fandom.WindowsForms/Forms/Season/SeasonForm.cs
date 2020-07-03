@@ -1,4 +1,6 @@
-﻿using System;
+﻿using fandom.Model.Models;
+using fandom.WindowsForms.Forms.Season;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace fandom.WindowsForms.Forms
 {
     public partial class SeasonForm : Form
     {
+        private readonly APIService _apiService = new APIService("Season");
+
         public SeasonForm()
         {
             InitializeComponent();
@@ -27,6 +31,27 @@ namespace fandom.WindowsForms.Forms
                     seasonInstance = new SeasonForm();
                 return seasonInstance;
             }
+        }
+
+        private async void SeasonForm_Load(object sender, EventArgs e)
+        {
+            var result = await _apiService.GetAll<List<MSeason>>();
+            foreach(var it in result)
+            {
+                ListViewItem item = new ListViewItem(it.Id.ToString());
+                item.SubItems.Add(it.OrdinalNumber.ToString());
+                item.SubItems.Add(it.PremiereDate.ToString());
+                item.SubItems.Add(it.NoOfEpisodes.ToString());
+
+                this.listView1.Items.Add(item);
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var form = new AddSeason();
+            form.Show();
         }
     }
 }
