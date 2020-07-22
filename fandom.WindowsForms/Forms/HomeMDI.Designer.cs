@@ -37,6 +37,8 @@
             this.dashboardLabel = new System.Windows.Forms.Label();
             this.seasonLabel = new System.Windows.Forms.Label();
             this.formPanel = new System.Windows.Forms.Panel();
+            this.postLabel = new System.Windows.Forms.Label();
+            this.otherLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.sidebarPanel.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +60,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.characterLabel.AutoSize = true;
             this.characterLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.characterLabel.Location = new System.Drawing.Point(77, 380);
+            this.characterLabel.Location = new System.Drawing.Point(77, 310);
             this.characterLabel.Name = "characterLabel";
             this.characterLabel.Size = new System.Drawing.Size(119, 29);
             this.characterLabel.TabIndex = 3;
@@ -70,7 +72,7 @@
             // 
             this.userLabel.AutoSize = true;
             this.userLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userLabel.Location = new System.Drawing.Point(101, 310);
+            this.userLabel.Location = new System.Drawing.Point(100, 450);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(67, 29);
             this.userLabel.TabIndex = 4;
@@ -92,6 +94,8 @@
             // 
             // sidebarPanel
             // 
+            this.sidebarPanel.Controls.Add(this.otherLabel);
+            this.sidebarPanel.Controls.Add(this.postLabel);
             this.sidebarPanel.Controls.Add(this.dashboardLabel);
             this.sidebarPanel.Controls.Add(this.seasonLabel);
             this.sidebarPanel.Controls.Add(this.logo);
@@ -139,6 +143,31 @@
             this.formPanel.Size = new System.Drawing.Size(1116, 753);
             this.formPanel.TabIndex = 11;
             // 
+            // postLabel
+            // 
+            this.postLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.postLabel.AutoSize = true;
+            this.postLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postLabel.Location = new System.Drawing.Point(100, 380);
+            this.postLabel.Name = "postLabel";
+            this.postLabel.Size = new System.Drawing.Size(65, 29);
+            this.postLabel.TabIndex = 7;
+            this.postLabel.Text = "Posts";
+            this.postLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // otherLabel
+            // 
+            this.otherLabel.AutoSize = true;
+            this.otherLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherLabel.Location = new System.Drawing.Point(100, 520);
+            this.otherLabel.Name = "otherLabel";
+            this.otherLabel.Size = new System.Drawing.Size(70, 29);
+            this.otherLabel.TabIndex = 8;
+            this.otherLabel.Text = "Other";
+            this.otherLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // HomeMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -171,6 +200,8 @@
         private System.Windows.Forms.Label seasonLabel;
         private System.Windows.Forms.Label dashboardLabel;
         private System.Windows.Forms.Panel formPanel;
+        private System.Windows.Forms.Label otherLabel;
+        private System.Windows.Forms.Label postLabel;
     }
 }
 

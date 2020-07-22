@@ -35,8 +35,20 @@ namespace fandom.WindowsForms.Forms
 
         private async void SeasonForm_Load(object sender, EventArgs e)
         {
+
+           await LoadSeasons();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var form = new AddSeason();
+            form.Show();
+        }
+
+        public async Task LoadSeasons()
+        {
             var result = await _apiService.GetAll<List<MSeason>>();
-            foreach(var it in result)
+            foreach (var it in result)
             {
                 ListViewItem item = new ListViewItem(it.Id.ToString());
                 item.SubItems.Add(it.OrdinalNumber.ToString());
@@ -45,13 +57,15 @@ namespace fandom.WindowsForms.Forms
 
                 this.listView1.Items.Add(item);
             }
-            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            var form = new AddSeason();
+            var id = this.listView1.SelectedItems[0].Text;
+
+            var form = new DetailsSeason(id);
             form.Show();
+            
         }
     }
 }

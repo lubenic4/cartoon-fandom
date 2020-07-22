@@ -33,11 +33,11 @@ namespace fandom.WindowsForms.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -82,36 +82,39 @@ namespace fandom.WindowsForms.Forms
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
-            // label2
+            // columnHeader4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(405, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(210, 29);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "List of seasons";
+            this.columnHeader4.Width = 0;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Ordinal number";
+            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader1.Width = 270;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Premiere date";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 270;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Number of episodes";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 270;
             // 
-            // columnHeader4
+            // label2
             // 
-            this.columnHeader4.DisplayIndex = 3;
-            this.columnHeader4.Width = 0;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(412, 114);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(252, 29);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "LIST OF SEASONS";
             // 
             // SeasonForm
             // 

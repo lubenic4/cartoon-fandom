@@ -9,18 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fandom.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SeasonController : ControllerBase
+
+    public class SeasonController : BaseController<MSeason, object>
     {
-        private readonly ISeasonService _service;
-
-        public SeasonController(ISeasonService service)
+        public SeasonController(IService<MSeason, object> service) : base(service)
         {
-            _service = service;
         }
-
-        [HttpGet]
-        public ActionResult<List<MSeason>> GetAll() => _service.Get();
     }
 }
