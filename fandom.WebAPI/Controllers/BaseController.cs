@@ -13,9 +13,9 @@ namespace fandom.WebAPI.Controllers
     [ApiController]
     public class BaseController<TModel, TSearch> : ControllerBase
     {
-        private readonly IService<TModel, TSearch> _service;
+        private readonly IBaseService<TModel, TSearch> _service;
 
-        public BaseController(IService<TModel, TSearch> service)
+        public BaseController(IBaseService<TModel, TSearch> service)
         {
             _service = service;
         }

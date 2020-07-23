@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fandom.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,29 @@ namespace fandom.WindowsForms.Forms.Season
 {
     public partial class DetailsSeason : Form
     {
-        public string sId { get;  }
+        public int sId { get;  }
+        private readonly APIService _apiService = new APIService("Season");
 
-        public DetailsSeason(string id)
+
+        public DetailsSeason(int id)
         {
             sId = id;
             InitializeComponent();
         }
 
-        private void DetailsSeason_Load(object sender, EventArgs e)
+        private async void DetailsSeason_Load(object sender, EventArgs e)
         {
-            this.sName.Text = sId;
+            var result = await _apiService.GetById<MSeason>(sId);
+            BindData(result);
+        }
+
+        private void BindData(MSeason season)
+        {
+
+            this.sOrdinalNumber.Text = $"SEASON {season.OrdinalNumber}";
+            this.sPremiereDate.Text = $"Premiere date {season.PremiereDate.ToString("dd-MM-yy")}";
+            this.sSummary.Text = season.Summary;
+            this.sNoOfEpisodes.Text = $"({season.NoOfEpisodes} episodes)";
         }
     }
 }

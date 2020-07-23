@@ -12,7 +12,7 @@ namespace fandom.WebAPI.Controllers
 
     public class SeasonController : BaseController<MSeason, object>
     {
-        public SeasonController(IService<MSeason, object> service) : base(service)
+        public SeasonController(IBaseService<MSeason, object> service) : base(service)
         {
         }
     }

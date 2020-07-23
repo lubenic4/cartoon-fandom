@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace fandom.WindowsForms.Forms
 {
@@ -16,12 +17,14 @@ namespace fandom.WindowsForms.Forms
     {
         private readonly APIService _apiService = new APIService("Season");
 
+        private static SeasonForm seasonInstance;
+
+
         public SeasonForm()
         {
             InitializeComponent();
         }
 
-        private static SeasonForm seasonInstance;
 
         public static SeasonForm GetForm
         {
@@ -35,7 +38,6 @@ namespace fandom.WindowsForms.Forms
 
         private async void SeasonForm_Load(object sender, EventArgs e)
         {
-
            await LoadSeasons();
         }
 
@@ -45,9 +47,21 @@ namespace fandom.WindowsForms.Forms
             form.Show();
         }
 
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            var idStr = listView1.SelectedItems[0].Text;
+            var id = Int32.Parse(idStr);
+            
+
+            var form = new DetailsSeason(id);
+            form.Show();
+
+        }
+
         public async Task LoadSeasons()
         {
             var result = await _apiService.GetAll<List<MSeason>>();
+
             foreach (var it in result)
             {
                 ListViewItem item = new ListViewItem(it.Id.ToString());
@@ -57,15 +71,6 @@ namespace fandom.WindowsForms.Forms
 
                 this.listView1.Items.Add(item);
             }
-        }
-
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            var id = this.listView1.SelectedItems[0].Text;
-
-            var form = new DetailsSeason(id);
-            form.Show();
-            
-        }
+        } 
     }
 }

@@ -33,5 +33,10 @@ namespace fandom.WindowsForms
             return await url.GetJsonAsync<T>();
         }
 
+        public async Task<T> GetById<T>(object id)
+        {
+            var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+            return await url.GetJsonAsync<T>();
+        }
     }
 }

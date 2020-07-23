@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace fandom.WebAPI.Services
 {
-    public class BaseService<TModel, TSearch, TDatabase> : IService<TModel, TSearch> where TDatabase: class
+    public class BaseService<TModel, TSearch, TDatabase> : IBaseService<TModel, TSearch> where TDatabase: class
     {
         private readonly AppCtx _ctx;
         private readonly IMapper _mapper;
