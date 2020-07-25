@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using fandom.WebAPI.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,14 @@ namespace fandom.WebAPI.Services
             _mapper = mapper;
         }
 
-        public List<TModel> Get(TSearch search)
+        public virtual List<TModel> Get(TSearch search)
         {
             var list = _ctx.Set<TDatabase>().ToList();
 
             return _mapper.Map<List<TModel>>(list);
         }
 
-        public TModel GetById(int id)
+        public virtual TModel GetById(int id)
         {
             var result = _ctx.Set<TDatabase>().Find(id);
             return _mapper.Map<TModel>(result);

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fandom.WebAPI.Database;
 
 namespace fandom.WebAPI.Migrations
 {
     [DbContext(typeof(AppCtx))]
-    partial class AppCtxModelSnapshot : ModelSnapshot
+    [Migration("20200725145412_episode_update_final")]
+    partial class episode_update_final
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

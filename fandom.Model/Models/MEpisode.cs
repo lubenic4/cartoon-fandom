@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace fandom.WebAPI.Database
+namespace fandom.Model.Models
 {
-    public class Episode
+   public class MEpisode
     {
         public int Id { get; set; }
 
@@ -31,13 +29,7 @@ namespace fandom.WebAPI.Database
         public bool IsAssignedToSeason { get; set; }
 
         public int SeasonId { get; set; }
-        public Season Season { get; set; }
-
-        public ICollection<UserEpisode> UsersEpisodes { get; set; }
-        public ICollection<EpisodeSong> EpisodesSongs { get; set; }
-        public ICollection<EpisodeLocation> EpisodesLocations { get; set; }
-        public ICollection<EpisodeCharacter> EpisodesCharacters { get; set; }
-
+        public MSeason Season { get; set; }
 
     }
 }

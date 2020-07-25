@@ -13,7 +13,7 @@ namespace fandom.WindowsForms.Forms.Season
 {
     public partial class DetailsSeason : Form
     {
-        public int sId { get;  }
+        private readonly int sId;
         private readonly APIService _apiService = new APIService("Season");
 
 
