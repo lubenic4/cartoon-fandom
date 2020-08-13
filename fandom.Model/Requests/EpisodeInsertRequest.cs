@@ -13,6 +13,8 @@ namespace fandom.Model.Requests
 
         public string Summary { get; set; }
 
+        public DateTime AirDate { get; set; }
+
         public MMediaFile MediaFile { get; set; }
 
 

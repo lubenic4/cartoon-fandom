@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeMDI));
             this.logo = new System.Windows.Forms.PictureBox();
             this.characterLabel = new System.Windows.Forms.Label();
-            this.userLabel = new System.Windows.Forms.Label();
             this.episodeLabel = new System.Windows.Forms.Label();
             this.sidebarPanel = new System.Windows.Forms.Panel();
             this.otherLabel = new System.Windows.Forms.Label();
-            this.postLabel = new System.Windows.Forms.Label();
             this.dashboardLabel = new System.Windows.Forms.Label();
             this.seasonLabel = new System.Windows.Forms.Label();
             this.formPanel = new System.Windows.Forms.Panel();
@@ -47,7 +45,7 @@
             // 
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
             this.logo.Location = new System.Drawing.Point(10, 13);
-            this.logo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(184, 41);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -60,37 +58,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.characterLabel.AutoSize = true;
-            this.characterLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.characterLabel.Location = new System.Drawing.Point(58, 252);
+            this.characterLabel.Font = new System.Drawing.Font("Verdana", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.characterLabel.Location = new System.Drawing.Point(7, 210);
             this.characterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.characterLabel.Name = "characterLabel";
-            this.characterLabel.Size = new System.Drawing.Size(95, 23);
+            this.characterLabel.Size = new System.Drawing.Size(105, 18);
             this.characterLabel.TabIndex = 3;
             this.characterLabel.Text = "Characters";
             this.characterLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.characterLabel.Click += new System.EventHandler(this.characterLabel_Click);
             // 
-            // userLabel
-            // 
-            this.userLabel.AutoSize = true;
-            this.userLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userLabel.Location = new System.Drawing.Point(75, 366);
-            this.userLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.userLabel.Name = "userLabel";
-            this.userLabel.Size = new System.Drawing.Size(52, 23);
-            this.userLabel.TabIndex = 4;
-            this.userLabel.Text = "Users";
-            this.userLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.userLabel.Click += new System.EventHandler(this.userLabel_Click);
-            // 
             // episodeLabel
             // 
             this.episodeLabel.AutoSize = true;
-            this.episodeLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.episodeLabel.Location = new System.Drawing.Point(64, 195);
+            this.episodeLabel.Font = new System.Drawing.Font("Verdana", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.episodeLabel.Location = new System.Drawing.Point(7, 170);
             this.episodeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.episodeLabel.Name = "episodeLabel";
-            this.episodeLabel.Size = new System.Drawing.Size(77, 23);
+            this.episodeLabel.Size = new System.Drawing.Size(85, 18);
             this.episodeLabel.TabIndex = 1;
             this.episodeLabel.Text = "Episodes";
             this.episodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -99,16 +84,14 @@
             // sidebarPanel
             // 
             this.sidebarPanel.Controls.Add(this.otherLabel);
-            this.sidebarPanel.Controls.Add(this.postLabel);
             this.sidebarPanel.Controls.Add(this.dashboardLabel);
             this.sidebarPanel.Controls.Add(this.seasonLabel);
             this.sidebarPanel.Controls.Add(this.logo);
-            this.sidebarPanel.Controls.Add(this.userLabel);
             this.sidebarPanel.Controls.Add(this.episodeLabel);
             this.sidebarPanel.Controls.Add(this.characterLabel);
             this.sidebarPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebarPanel.Location = new System.Drawing.Point(0, 0);
-            this.sidebarPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sidebarPanel.Margin = new System.Windows.Forms.Padding(2);
             this.sidebarPanel.Name = "sidebarPanel";
             this.sidebarPanel.Size = new System.Drawing.Size(206, 612);
             this.sidebarPanel.TabIndex = 10;
@@ -116,39 +99,24 @@
             // otherLabel
             // 
             this.otherLabel.AutoSize = true;
-            this.otherLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherLabel.Location = new System.Drawing.Point(75, 422);
+            this.otherLabel.Font = new System.Drawing.Font("Verdana", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherLabel.Location = new System.Drawing.Point(7, 250);
             this.otherLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.otherLabel.Name = "otherLabel";
-            this.otherLabel.Size = new System.Drawing.Size(56, 23);
+            this.otherLabel.Size = new System.Drawing.Size(59, 18);
             this.otherLabel.TabIndex = 8;
             this.otherLabel.Text = "Other";
             this.otherLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // postLabel
-            // 
-            this.postLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.postLabel.AutoSize = true;
-            this.postLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.postLabel.Location = new System.Drawing.Point(75, 309);
-            this.postLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.postLabel.Name = "postLabel";
-            this.postLabel.Size = new System.Drawing.Size(51, 23);
-            this.postLabel.TabIndex = 7;
-            this.postLabel.Text = "Posts";
-            this.postLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dashboardLabel
             // 
             this.dashboardLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dashboardLabel.AutoSize = true;
-            this.dashboardLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardLabel.Location = new System.Drawing.Point(53, 81);
+            this.dashboardLabel.Font = new System.Drawing.Font("Verdana", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardLabel.Location = new System.Drawing.Point(7, 90);
             this.dashboardLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dashboardLabel.Name = "dashboardLabel";
-            this.dashboardLabel.Size = new System.Drawing.Size(96, 23);
+            this.dashboardLabel.Size = new System.Drawing.Size(104, 18);
             this.dashboardLabel.TabIndex = 6;
             this.dashboardLabel.Text = "Dashboard";
             this.dashboardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,11 +126,11 @@
             // 
             this.seasonLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.seasonLabel.AutoSize = true;
-            this.seasonLabel.Font = new System.Drawing.Font("Calibri", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.seasonLabel.Location = new System.Drawing.Point(64, 138);
+            this.seasonLabel.Font = new System.Drawing.Font("Verdana", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.seasonLabel.Location = new System.Drawing.Point(7, 130);
             this.seasonLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.seasonLabel.Name = "seasonLabel";
-            this.seasonLabel.Size = new System.Drawing.Size(72, 23);
+            this.seasonLabel.Size = new System.Drawing.Size(81, 18);
             this.seasonLabel.TabIndex = 5;
             this.seasonLabel.Text = "Seasons";
             this.seasonLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,7 +141,7 @@
             this.formPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.formPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formPanel.Location = new System.Drawing.Point(206, 0);
-            this.formPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.formPanel.Margin = new System.Windows.Forms.Padding(2);
             this.formPanel.Name = "formPanel";
             this.formPanel.Size = new System.Drawing.Size(754, 612);
             this.formPanel.TabIndex = 11;
@@ -203,14 +171,12 @@
 
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Label characterLabel;
-        private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.Label episodeLabel;
         private System.Windows.Forms.Panel sidebarPanel;
         private System.Windows.Forms.Label seasonLabel;
         private System.Windows.Forms.Label dashboardLabel;
         private System.Windows.Forms.Panel formPanel;
         private System.Windows.Forms.Label otherLabel;
-        private System.Windows.Forms.Label postLabel;
     }
 }
 

@@ -75,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 85);
+            this.label3.Location = new System.Drawing.Point(13, 373);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 13);
@@ -85,26 +85,26 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 107);
+            this.label4.Location = new System.Drawing.Point(13, 401);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(318, 288);
+            this.label4.Size = new System.Drawing.Size(536, 102);
             this.label4.TabIndex = 5;
             this.label4.Text = "Some random text summary that has no purpose";
             // 
             // axWindowsMediaPlayer1
             // 
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(337, 85);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(16, 71);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(451, 353);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(533, 290);
             this.axWindowsMediaPlayer1.TabIndex = 6;
             // 
             // DetailsEpisode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(567, 551);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

@@ -48,7 +48,7 @@ namespace fandom.WebAPI
             services.AddScoped<ICharacterService, CharacterService>();
 
             services.AddScoped<IEpisodeService, EpisodeService>();
-            services.AddScoped<IBaseService<MSeason, object>, SeasonService>();
+            services.AddScoped<ISeasonService, SeasonService>();
 
 
 

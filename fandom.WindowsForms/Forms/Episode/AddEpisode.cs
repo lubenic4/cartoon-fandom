@@ -44,11 +44,6 @@ namespace fandom.WindowsForms.Forms.Episode
 
                     _request.MediaFile.Thumbnail = imageByte;
                     
-
-
-
-
-
                     Image image = Image.FromFile(ofd.FileName);
                     pictureBox1.Image = image;
                 }
@@ -75,6 +70,7 @@ namespace fandom.WindowsForms.Forms.Episode
         {
             _request.Title = textBox1.Text;
             _request.Summary = textBox2.Text;
+            _request.AirDate = dateTimePicker1.Value;
 
            await _episodeApiService.Insert<MEpisode>(_request);
         }

@@ -22,7 +22,7 @@ namespace fandom.WebAPI.Mappers
             CreateMap<Character, MCharacter>();
             CreateMap<CharacterInsert, Character>();
 
-            CreateMap<Episode, MEpisode>();
+            CreateMap<Episode, MEpisode>().ReverseMap();
 
             CreateMap<Season, MSeason>();
 
