@@ -14,7 +14,7 @@ namespace fandom.Model.Models
 
         public int? SeasonEpisodeNumber { get; set; }
 
-        public DateTime? AirDate { get; set; }
+        public DateTime AirDate { get; set; }
 
         public string Summary { get; set; }
 

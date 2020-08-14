@@ -48,6 +48,10 @@ namespace fandom.WebAPI.Services
 
             };
 
+            for(int i = 0; i <= episodes.Count()-1; i++)
+            {
+                episodes[i].SeasonEpisodeNumber = i + 1;
+            }
 
 
             ctx.Seasons.Add(season);

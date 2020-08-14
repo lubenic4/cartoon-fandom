@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsEpisode));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.sPremiereDate = new System.Windows.Forms.Label();
+            this.eSeasonNumber = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -53,23 +53,23 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(175, 17);
+            this.label2.Location = new System.Drawing.Point(400, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "(Overall episode : 00)";
             // 
-            // sPremiereDate
+            // eSeasonNumber
             // 
-            this.sPremiereDate.AutoSize = true;
-            this.sPremiereDate.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sPremiereDate.Location = new System.Drawing.Point(13, 38);
-            this.sPremiereDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.sPremiereDate.Name = "sPremiereDate";
-            this.sPremiereDate.Size = new System.Drawing.Size(55, 13);
-            this.sPremiereDate.TabIndex = 3;
-            this.sPremiereDate.Text = "S00E00";
+            this.eSeasonNumber.AutoSize = true;
+            this.eSeasonNumber.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eSeasonNumber.Location = new System.Drawing.Point(13, 38);
+            this.eSeasonNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.eSeasonNumber.Name = "eSeasonNumber";
+            this.eSeasonNumber.Size = new System.Drawing.Size(55, 13);
+            this.eSeasonNumber.TabIndex = 3;
+            this.eSeasonNumber.Text = "S00E00";
             // 
             // label3
             // 
@@ -108,7 +108,7 @@
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.sPremiereDate);
+            this.Controls.Add(this.eSeasonNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "DetailsEpisode";
@@ -124,7 +124,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label sPremiereDate;
+        private System.Windows.Forms.Label eSeasonNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;

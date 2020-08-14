@@ -55,7 +55,7 @@ namespace fandom.WebAPI.Services
 
         public MEpisode GetById(int episodeId)
         {
-            var result = ctx.Episodes.Include(x => x.MediaFile).Where(x => x.Id == episodeId).FirstOrDefault();
+            var result = ctx.Episodes.Include(x => x.MediaFile).Include(x => x.Season).Where(x => x.Id == episodeId).FirstOrDefault();
             return _mapper.Map<MEpisode>(result);
         }
 

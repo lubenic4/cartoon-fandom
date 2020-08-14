@@ -77,7 +77,7 @@ namespace fandom.WindowsForms.Forms
                 ListViewItem item = new ListViewItem(it.Id.ToString());
                 item.SubItems.Add(it.Title);
                 item.SubItems.Add(it.OverallNumberOfEpisode.ToString());
-                item.SubItems.Add(it.AirDate?.ToString("dd-MM-yyyy"));
+                item.SubItems.Add(it.AirDate.ToString("dd-MM-yyyy"));
                 item.SubItems.Add(it.Season != null ? $"Season {it.Season.OrdinalNumber}" : "None");
 
                 this.listView1.Items.Add(item);

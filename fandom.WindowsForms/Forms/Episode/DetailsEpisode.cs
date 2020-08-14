@@ -31,13 +31,19 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private void BindData(MEpisode episode)
         {
-            label1.Text = episode.Title;
+            label1.Text = $"{episode.Title}";
             label2.Text = $"(Overall episode:{episode.OverallNumberOfEpisode})";
+            label3.Text = $"Air date {episode.AirDate:dd-MM-yyyy}";
             label4.Text = episode.Summary;
             if (episode.MediaFile != null)
             {
                 axWindowsMediaPlayer1.URL = episode.MediaFile.Path;
                 axWindowsMediaPlayer1.Ctlcontrols.play();
+            }
+
+            if(episode.Season != null)
+            {
+                eSeasonNumber.Text = $"S{episode.Season.OrdinalNumber}E{episode.SeasonEpisodeNumber}";
             }
         }
     }
