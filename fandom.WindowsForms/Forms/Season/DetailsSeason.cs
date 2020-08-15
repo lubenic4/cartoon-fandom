@@ -35,12 +35,23 @@ namespace fandom.WindowsForms.Forms.Season
 
         private void BindData(MSeason season,List<MEpisode> episodes)
         {
+            
 
             this.sOrdinalNumber.Text = $"SEASON {season.OrdinalNumber}";
             this.sPremiereDate.Text = $"Premiere date {season.PremiereDate.ToString("dd-MM-yy")}";
             this.sSummary.Text = season.Summary;
             this.sNoOfEpisodes.Text = $"({season.NoOfEpisodes} episodes)";
-            this.dataGridView1.DataSource = episodes;
+
+            foreach(var item in episodes)
+            {
+                ListViewItem lItem = new ListViewItem(item.Id.ToString());
+                lItem.SubItems.Add(item.Title);
+                lItem.SubItems.Add(item.AirDate.ToString("dd-MM-yyyy"));
+                lItem.SubItems.Add(item.SeasonEpisodeNumber.ToString());
+                lItem.SubItems.Add(item.OverallNumberOfEpisode.ToString());
+
+                this.listView1.Items.Add(lItem);
+            }
             
         }
     }

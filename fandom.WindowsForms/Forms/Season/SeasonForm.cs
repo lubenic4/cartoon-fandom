@@ -74,7 +74,7 @@ namespace fandom.WindowsForms.Forms
             {
                 ListViewItem item = new ListViewItem(it.Id.ToString());
                 item.SubItems.Add(it.OrdinalNumber.ToString());
-                item.SubItems.Add(it.PremiereDate.ToString());
+                item.SubItems.Add(it.PremiereDate.ToString("dd-MM-yyyy"));
                 item.SubItems.Add(it.NoOfEpisodes.ToString());
 
                 this.listView1.Items.Add(item);

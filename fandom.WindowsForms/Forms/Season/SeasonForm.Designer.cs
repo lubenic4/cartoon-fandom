@@ -77,11 +77,11 @@ namespace fandom.WindowsForms.Forms
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(116, 141);
+            this.listView1.Location = new System.Drawing.Point(11, 124);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(518, 300);
+            this.listView1.Size = new System.Drawing.Size(732, 300);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -95,25 +95,25 @@ namespace fandom.WindowsForms.Forms
             // 
             this.columnHeader1.Text = "Ordinal number";
             this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader1.Width = 170;
+            this.columnHeader1.Width = 235;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Premiere date";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 170;
+            this.columnHeader2.Width = 235;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Number of episodes";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 170;
+            this.columnHeader3.Width = 235;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(272, 99);
+            this.label2.Location = new System.Drawing.Point(274, 84);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(203, 23);
