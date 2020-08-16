@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fandom.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,9 @@ namespace fandom.Model
         public DateTime BirthDate { get; set; }
 
         public string Occupation { get; set; }
+
+        public MMediaFile MediaFile { get; set; }
+
 
     }
 }

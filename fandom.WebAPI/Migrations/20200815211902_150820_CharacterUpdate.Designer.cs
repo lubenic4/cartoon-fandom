@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fandom.WebAPI.Database;
 
 namespace fandom.WebAPI.Migrations
 {
     [DbContext(typeof(AppCtx))]
-    partial class AppCtxModelSnapshot : ModelSnapshot
+    [Migration("20200815211902_150820_CharacterUpdate")]
+    partial class _150820_CharacterUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,27 +109,6 @@ namespace fandom.WebAPI.Migrations
                     b.HasIndex("FamilyId");
 
                     b.ToTable("Characters");
-                });
-
-            modelBuilder.Entity("fandom.WebAPI.Database.CharacterMediaFile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("Thumbnail")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId")
-                        .IsUnique();
-
-                    b.ToTable("CharacterMediaFile");
                 });
 
             modelBuilder.Entity("fandom.WebAPI.Database.Content", b =>
@@ -319,7 +300,10 @@ namespace fandom.WebAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EpisodeId")
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EpisodeId")
                         .HasColumnType("int");
 
                     b.Property<string>("FileName")
@@ -333,9 +317,11 @@ namespace fandom.WebAPI.Migrations
 
                     b.HasKey("MediaFileId");
 
+                    b.HasIndex("CharacterId")
+                        .IsUnique();
+
                     b.HasIndex("EpisodeId")
-                        .IsUnique()
-                        .HasFilter("[EpisodeId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("MediaFile");
                 });
@@ -565,15 +551,6 @@ namespace fandom.WebAPI.Migrations
                         .HasForeignKey("FamilyId");
                 });
 
-            modelBuilder.Entity("fandom.WebAPI.Database.CharacterMediaFile", b =>
-                {
-                    b.HasOne("fandom.WebAPI.Database.Character", "Character")
-                        .WithOne("CharacterMediaFile")
-                        .HasForeignKey("fandom.WebAPI.Database.CharacterMediaFile", "CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("fandom.WebAPI.Database.Content", b =>
                 {
                     b.HasOne("fandom.WebAPI.Database.Character", "Character")
@@ -650,9 +627,17 @@ namespace fandom.WebAPI.Migrations
 
             modelBuilder.Entity("fandom.WebAPI.Database.MediaFile", b =>
                 {
+                    b.HasOne("fandom.WebAPI.Database.Character", "Character")
+                        .WithOne("MediaFile")
+                        .HasForeignKey("fandom.WebAPI.Database.MediaFile", "CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("fandom.WebAPI.Database.Episode", "Episode")
                         .WithOne("MediaFile")
-                        .HasForeignKey("fandom.WebAPI.Database.MediaFile", "EpisodeId");
+                        .HasForeignKey("fandom.WebAPI.Database.MediaFile", "EpisodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("fandom.WebAPI.Database.Post", b =>

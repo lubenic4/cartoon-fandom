@@ -13,7 +13,7 @@ namespace fandom.WebAPI.Database
         public string Path { get; set; }
         public byte[] Thumbnail { get; set; }
 
-        public int EpisodeId { get; set; }
+        public int? EpisodeId { get; set; }
         public Episode Episode { get; set; }
     }
 }

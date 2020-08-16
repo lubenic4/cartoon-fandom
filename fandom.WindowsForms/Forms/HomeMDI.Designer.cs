@@ -103,10 +103,11 @@
             this.otherLabel.Location = new System.Drawing.Point(7, 250);
             this.otherLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.otherLabel.Name = "otherLabel";
-            this.otherLabel.Size = new System.Drawing.Size(59, 18);
+            this.otherLabel.Size = new System.Drawing.Size(58, 18);
             this.otherLabel.TabIndex = 8;
-            this.otherLabel.Text = "Other";
+            this.otherLabel.Text = "Users";
             this.otherLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.otherLabel.Click += new System.EventHandler(this.otherLabel_Click);
             // 
             // dashboardLabel
             // 

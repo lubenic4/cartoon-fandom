@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200816150040_160820_CharacterMedia.cs" />
+    <Compile Remove="Migrations\20200816150040_160820_CharacterMedia.Designer.cs" />
+    <Compile Remove="Migrations\20200816150639_160820_CharacterMedia2.cs" />
+    <Compile Remove="Migrations\20200816150639_160820_CharacterMedia2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />

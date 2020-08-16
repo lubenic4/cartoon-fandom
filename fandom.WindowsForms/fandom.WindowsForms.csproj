@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIService.cs" />
+    <Compile Include="Custom controls\CharacterFamilyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom controls\CharacterFamilyControl.Designer.cs">
+      <DependentUpon>CharacterFamilyControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Character\CharacterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Custom controls\CharacterFamilyControl.resx">
+      <DependentUpon>CharacterFamilyControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\CharacterForm.resx">
       <DependentUpon>CharacterForm.cs</DependentUpon>
     </EmbeddedResource>

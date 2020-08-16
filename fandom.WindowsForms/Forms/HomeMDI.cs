@@ -157,5 +157,10 @@ namespace fandom.WindowsForms.Forms
             form.Show();
             form.BringToFront();
         }
+
+        private void otherLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

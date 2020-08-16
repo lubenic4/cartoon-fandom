@@ -24,7 +24,10 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<EpisodeCharacter>().HasKey(k => new { k.EpisodeId, k.CharacterId });
             modelBuilder.Entity<UserSeason>().HasKey(k => new { k.UserId, k.SeasonId });
 
-        }
+
+
+
+        }   
 
 
         public DbSet<Actor> Actors { get; set; }

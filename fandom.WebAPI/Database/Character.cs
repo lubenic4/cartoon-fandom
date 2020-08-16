@@ -15,8 +15,6 @@ namespace fandom.WebAPI.Database
 
         public string LastName { get; set; }
 
-        //public byte[] Image { get; set; }
-
         public string Biography { get; set; }
 
         public int Age { get; set; }
@@ -25,6 +23,8 @@ namespace fandom.WebAPI.Database
         public DateTime BirthDate { get; set; }
 
         public string Occupation { get; set; }
+
+        public CharacterMediaFile CharacterMediaFile { get; set; }
 
         public int? FamilyId { get; set; }
         public Family Family { get; set; }

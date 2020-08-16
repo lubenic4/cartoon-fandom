@@ -1,4 +1,6 @@
-﻿using System;
+﻿using fandom.Model;
+using fandom.WindowsForms.Custom_controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +21,8 @@ namespace fandom.WindowsForms.Forms
 
         private static CharacterForm characterInstance;
 
+        private readonly APIService _characterApiService = new APIService("Character");
+
         public static CharacterForm GetForm
         {
             get
@@ -27,6 +31,21 @@ namespace fandom.WindowsForms.Forms
                     characterInstance = new CharacterForm();
                 return characterInstance;
             }
+        }
+
+        private async void CharacterForm_Load(object sender, EventArgs e)
+        {
+            var data = await _characterApiService.GetAll<List<MCharacter>>();
+
+            foreach(var item in data)
+            {
+                var character = new CharacterFamilyControl
+                {
+                    Id = item.Id.ToString()
+                };
+                
+            }
+
         }
     }
 }

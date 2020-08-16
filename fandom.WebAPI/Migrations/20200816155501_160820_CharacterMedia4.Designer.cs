@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fandom.WebAPI.Database;
 
 namespace fandom.WebAPI.Migrations
 {
     [DbContext(typeof(AppCtx))]
-    partial class AppCtxModelSnapshot : ModelSnapshot
+    [Migration("20200816155501_160820_CharacterMedia4")]
+    partial class _160820_CharacterMedia4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +121,9 @@ namespace fandom.WebAPI.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CharacterId1")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("varbinary(max)");
 
@@ -126,6 +131,8 @@ namespace fandom.WebAPI.Migrations
 
                     b.HasIndex("CharacterId")
                         .IsUnique();
+
+                    b.HasIndex("CharacterId1");
 
                     b.ToTable("CharacterMediaFile");
                 });
@@ -322,6 +329,9 @@ namespace fandom.WebAPI.Migrations
                     b.Property<int?>("EpisodeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EpisodeId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
@@ -336,6 +346,8 @@ namespace fandom.WebAPI.Migrations
                     b.HasIndex("EpisodeId")
                         .IsUnique()
                         .HasFilter("[EpisodeId] IS NOT NULL");
+
+                    b.HasIndex("EpisodeId1");
 
                     b.ToTable("MediaFile");
                 });
@@ -567,11 +579,15 @@ namespace fandom.WebAPI.Migrations
 
             modelBuilder.Entity("fandom.WebAPI.Database.CharacterMediaFile", b =>
                 {
-                    b.HasOne("fandom.WebAPI.Database.Character", "Character")
+                    b.HasOne("fandom.WebAPI.Database.Character", null)
                         .WithOne("CharacterMediaFile")
                         .HasForeignKey("fandom.WebAPI.Database.CharacterMediaFile", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("fandom.WebAPI.Database.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId1");
                 });
 
             modelBuilder.Entity("fandom.WebAPI.Database.Content", b =>
@@ -650,9 +666,13 @@ namespace fandom.WebAPI.Migrations
 
             modelBuilder.Entity("fandom.WebAPI.Database.MediaFile", b =>
                 {
-                    b.HasOne("fandom.WebAPI.Database.Episode", "Episode")
+                    b.HasOne("fandom.WebAPI.Database.Episode", null)
                         .WithOne("MediaFile")
                         .HasForeignKey("fandom.WebAPI.Database.MediaFile", "EpisodeId");
+
+                    b.HasOne("fandom.WebAPI.Database.Episode", "Episode")
+                        .WithMany()
+                        .HasForeignKey("EpisodeId1");
                 });
 
             modelBuilder.Entity("fandom.WebAPI.Database.Post", b =>
