@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using fandom.WindowsForms.Forms.Character;
+using fandom.WindowsForms.Forms.Family;
 
 namespace fandom.WindowsForms.Custom_controls
 {
@@ -20,7 +22,16 @@ namespace fandom.WindowsForms.Custom_controls
         #region Properties
         private string _Id;
         private string _CharacterLabel;
+        private bool _isCharacter;
         private Image _Icon;
+
+
+        [Category("Custom Properties")]
+        public bool isCharacter
+        {
+            get { return _isCharacter; }
+            set { _isCharacter = value; }
+        }
 
         [Category("Custom Properties")]
         public string CharacterLabel 
@@ -43,5 +54,20 @@ namespace fandom.WindowsForms.Custom_controls
             set { _Id = value; }
         }
         #endregion
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (isCharacter)
+            {
+                var form = new DetailsCharacter();
+                form.Show();
+            }
+            else
+            {
+                var form = new DetailsFamily();
+                form.Show();
+            }
+
+        }
     }
 }

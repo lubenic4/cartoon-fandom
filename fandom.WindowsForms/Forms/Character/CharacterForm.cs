@@ -48,7 +48,8 @@ namespace fandom.WindowsForms.Forms
                 {
                     Id = item.Id.ToString(),
                     Icon = ImageWorker.ConvertFromByteArray(item.CharacterMediaFile.Thumbnail),
-                    CharacterLabel = $"{item.FirstName} {item.LastName}"
+                    CharacterLabel = $"{item.FirstName} {item.LastName}",
+                    isCharacter = true
                 };
 
                 this.flowLayoutPanel1.Controls.Add(character);
@@ -82,7 +83,8 @@ namespace fandom.WindowsForms.Forms
                 {
                     Id = item.Id.ToString(),
                     Icon = ImageWorker.ConvertFromByteArray(item.Thumbnail),
-                    CharacterLabel = $"{item.Name}"
+                    CharacterLabel = $"{item.Name}",
+                    isCharacter = false
                 };
 
                 this.flowLayoutPanel1.Controls.Add(family);
@@ -102,7 +104,8 @@ namespace fandom.WindowsForms.Forms
                 {
                     Id = item.Id.ToString(),
                     Icon = ImageWorker.ConvertFromByteArray(item.CharacterMediaFile.Thumbnail),
-                    CharacterLabel = $"{item.FirstName} {item.LastName}"
+                    CharacterLabel = $"{item.FirstName} {item.LastName}",
+                    isCharacter = true
                 };
 
                 this.flowLayoutPanel1.Controls.Add(character);

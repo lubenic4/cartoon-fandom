@@ -75,6 +75,12 @@
     <Compile Include="Forms\Character\CreateCharacter.Designer.cs">
       <DependentUpon>CreateCharacter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Character\DetailsCharacter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Character\DetailsCharacter.Designer.cs">
+      <DependentUpon>DetailsCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dashboard\DashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     </Compile>
     <Compile Include="Forms\Family\AddFamily.Designer.cs">
       <DependentUpon>AddFamily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Family\DetailsFamily.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Family\DetailsFamily.Designer.cs">
+      <DependentUpon>DetailsFamily.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\HomeMDI.cs">
       <SubType>Form</SubType>
