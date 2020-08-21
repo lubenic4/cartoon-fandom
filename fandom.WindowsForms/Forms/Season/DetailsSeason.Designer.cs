@@ -45,10 +45,9 @@
             // 
             this.sOrdinalNumber.AutoSize = true;
             this.sOrdinalNumber.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold);
-            this.sOrdinalNumber.Location = new System.Drawing.Point(9, 7);
-            this.sOrdinalNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sOrdinalNumber.Location = new System.Drawing.Point(12, 9);
             this.sOrdinalNumber.Name = "sOrdinalNumber";
-            this.sOrdinalNumber.Size = new System.Drawing.Size(154, 26);
+            this.sOrdinalNumber.Size = new System.Drawing.Size(194, 34);
             this.sOrdinalNumber.TabIndex = 0;
             this.sOrdinalNumber.Text = "SEASON 11";
             // 
@@ -56,10 +55,9 @@
             // 
             this.sNoOfEpisodes.AutoSize = true;
             this.sNoOfEpisodes.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
-            this.sNoOfEpisodes.Location = new System.Drawing.Point(160, 14);
-            this.sNoOfEpisodes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sNoOfEpisodes.Location = new System.Drawing.Point(213, 17);
             this.sNoOfEpisodes.Name = "sNoOfEpisodes";
-            this.sNoOfEpisodes.Size = new System.Drawing.Size(97, 13);
+            this.sNoOfEpisodes.Size = new System.Drawing.Size(117, 17);
             this.sNoOfEpisodes.TabIndex = 1;
             this.sNoOfEpisodes.Text = "(01 episodes)";
             // 
@@ -67,10 +65,9 @@
             // 
             this.sPremiereDate.AutoSize = true;
             this.sPremiereDate.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sPremiereDate.Location = new System.Drawing.Point(11, 35);
-            this.sPremiereDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sPremiereDate.Location = new System.Drawing.Point(15, 43);
             this.sPremiereDate.Name = "sPremiereDate";
-            this.sPremiereDate.Size = new System.Drawing.Size(180, 13);
+            this.sPremiereDate.Size = new System.Drawing.Size(215, 17);
             this.sPremiereDate.TabIndex = 2;
             this.sPremiereDate.Text = "Premiere date 01-01-2000";
             // 
@@ -78,10 +75,9 @@
             // 
             this.sSummary.AutoSize = true;
             this.sSummary.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sSummary.Location = new System.Drawing.Point(11, 87);
-            this.sSummary.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sSummary.Location = new System.Drawing.Point(15, 107);
             this.sSummary.Name = "sSummary";
-            this.sSummary.Size = new System.Drawing.Size(41, 13);
+            this.sSummary.Size = new System.Drawing.Size(48, 17);
             this.sSummary.TabIndex = 3;
             this.sSummary.Text = "label1";
             // 
@@ -89,10 +85,9 @@
             // 
             this.summaryLabel.AutoSize = true;
             this.summaryLabel.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
-            this.summaryLabel.Location = new System.Drawing.Point(11, 65);
-            this.summaryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.summaryLabel.Location = new System.Drawing.Point(15, 80);
             this.summaryLabel.Name = "summaryLabel";
-            this.summaryLabel.Size = new System.Drawing.Size(69, 13);
+            this.summaryLabel.Size = new System.Drawing.Size(81, 17);
             this.summaryLabel.TabIndex = 4;
             this.summaryLabel.Text = "Summary";
             // 
@@ -104,13 +99,17 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 119);
+            this.listView1.Location = new System.Drawing.Point(16, 146);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(526, 235);
+            this.listView1.Size = new System.Drawing.Size(700, 288);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -143,16 +142,16 @@
             // 
             // DetailsSeason
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 366);
+            this.ClientSize = new System.Drawing.Size(732, 450);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.summaryLabel);
             this.Controls.Add(this.sSummary);
             this.Controls.Add(this.sPremiereDate);
             this.Controls.Add(this.sNoOfEpisodes);
             this.Controls.Add(this.sOrdinalNumber);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "DetailsSeason";
             this.Text = "DetailsSeason";
             this.Load += new System.EventHandler(this.DetailsSeason_Load);

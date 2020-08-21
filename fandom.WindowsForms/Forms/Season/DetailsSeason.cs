@@ -1,5 +1,6 @@
 ﻿using fandom.Model.Models;
 using fandom.Model.Requests;
+using fandom.WindowsForms.Forms.Episode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,6 +53,17 @@ namespace fandom.WindowsForms.Forms.Season
 
                 this.listView1.Items.Add(lItem);
             }
+            
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            
+                var idStr = listView1.SelectedItems[0].Text;
+                var id = Int32.Parse(idStr);
+
+                var form = new DetailsEpisode(id);
+                form.Show();
             
         }
     }
