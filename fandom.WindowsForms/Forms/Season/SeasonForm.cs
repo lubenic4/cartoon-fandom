@@ -68,7 +68,8 @@ namespace fandom.WindowsForms.Forms
 
         public async Task LoadSeasons()
         {
-            var result = await _apiService.GetAll<List<MSeason>>();
+            this.listView1.Items.Clear();
+            var result = await _apiService.Get<List<MSeason>>(null);
 
             foreach (var it in result)
             {
@@ -79,6 +80,7 @@ namespace fandom.WindowsForms.Forms
 
                 this.listView1.Items.Add(item);
             }
-        } 
+        }
+
     }
 }

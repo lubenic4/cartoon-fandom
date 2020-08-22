@@ -154,6 +154,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "DetailsSeason";
             this.Text = "DetailsSeason";
+            this.Activated += new System.EventHandler(this.DetailsSeason_Activated);
             this.Load += new System.EventHandler(this.DetailsSeason_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

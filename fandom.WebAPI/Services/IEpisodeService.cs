@@ -14,5 +14,7 @@ namespace fandom.WebAPI.Services
         MEpisode GetById(int episodeId);
 
         MEpisode Insert(EpisodeInsertRequest request);
+
+        MEpisode Delete(int request);
     }
 }

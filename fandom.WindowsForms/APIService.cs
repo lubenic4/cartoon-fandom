@@ -27,12 +27,6 @@ namespace fandom.WindowsForms
             return await url.GetJsonAsync<T>();
         }
 
-        public async Task<T> GetAll<T>()
-        {
-            var url = $"{Properties.Settings.Default.API}/{_route}";
-
-            return await url.GetJsonAsync<T>();
-        }
 
         public async Task<T> GetById<T>(object id)
         {
@@ -45,6 +39,12 @@ namespace fandom.WindowsForms
             var url = $"{Properties.Settings.Default.API}/{_route}";
 
             return await url.PostJsonAsync(request).ReceiveJson<T>();
+        }
+
+        public async Task<T> Delete<T>(object id)
+        {
+            var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+            return await url.DeleteAsync().ReceiveJson<T>();
         }
     }
 }

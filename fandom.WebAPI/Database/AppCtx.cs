@@ -12,8 +12,8 @@ namespace fandom.WebAPI.Database
     {
 
         public AppCtx(DbContextOptions<AppCtx> options) : base(options) {
-        
-            
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,13 +28,15 @@ namespace fandom.WebAPI.Database
 
 
 
-        }   
+        }
 
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<EpisodeCharacter> EpisodeCharacters { get; set; }
+        public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<CharacterMediaFile> CharacterMediaFiles {get; set; }
         public DbSet<Family> Families { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostTag> PostTags { get; set; }

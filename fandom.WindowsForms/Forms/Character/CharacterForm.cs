@@ -40,7 +40,7 @@ namespace fandom.WindowsForms.Forms
 
         private async void CharacterForm_Load(object sender, EventArgs e)
         {
-            var data = await _characterApiService.GetAll<List<MCharacter>>();
+            var data = await _characterApiService.Get<List<MCharacter>>(null);
 
             foreach(var item in data)
             {
@@ -75,7 +75,7 @@ namespace fandom.WindowsForms.Forms
         private async void button4_Click(object sender, EventArgs e)
         {
             this.flowLayoutPanel1.Controls.Clear();
-            var data = await _familyApiService.GetAll<List<MFamily>>();
+            var data = await _familyApiService.Get<List<MFamily>>(null);
 
             foreach (var item in data)
             {
@@ -96,7 +96,7 @@ namespace fandom.WindowsForms.Forms
         {
             this.flowLayoutPanel1.Controls.Clear();
 
-            var data = await _characterApiService.GetAll<List<MCharacter>>();
+            var data = await _characterApiService.Get<List<MCharacter>>(null);
 
             foreach (var item in data)
             {

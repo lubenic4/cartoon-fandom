@@ -3,6 +3,7 @@ using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WebAPI.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +21,29 @@ namespace fandom.WebAPI.Services
         {
             ctx = context;
             _mapper = mapper;
+        }
+
+        public MEpisode Delete(int id)
+        {
+            var result = ctx.Episodes.Include(x => x.MediaFile).Include(x => x.Season).Where(x => x.Id == id).FirstOrDefault();
+
+            if(result.Season != null)
+            {
+                result.Season.Episodes.Remove(result);
+
+                if (--result.Season.NoOfEpisodes == 0)
+                {
+                    ctx.Seasons.Remove(result.Season);
+                }
+
+            }
+
+            ctx.Episodes.Remove(result);
+            ctx.MediaFiles.Remove(result.MediaFile);
+
+            ctx.SaveChanges();
+
+            return _mapper.Map<MEpisode>(result);
         }
 
         public List<MEpisode> Get(EpisodesSeasonRequest request)

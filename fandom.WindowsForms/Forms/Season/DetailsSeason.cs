@@ -19,8 +19,6 @@ namespace fandom.WindowsForms.Forms.Season
         private readonly APIService _apiService = new APIService("Season");
         private readonly APIService _episodeApiService = new APIService("Episode");
 
-
-
         public DetailsSeason(int id)
         {
             sId = id;
@@ -31,17 +29,20 @@ namespace fandom.WindowsForms.Forms.Season
         {
             var result = await _apiService.GetById<MSeason>(sId);
             var episodesResult = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { SeasonId = sId });
-            BindData(result,episodesResult);
+            BindData(episodesResult,result);
         }
 
-        private void BindData(MSeason season,List<MEpisode> episodes)
+        private void BindData(List<MEpisode> episodes, MSeason season = null)
         {
-            
+            this.listView1.Items.Clear();
 
-            this.sOrdinalNumber.Text = $"SEASON {season.OrdinalNumber}";
-            this.sPremiereDate.Text = $"Premiere date {season.PremiereDate.ToString("dd-MM-yy")}";
-            this.sSummary.Text = season.Summary;
-            this.sNoOfEpisodes.Text = $"({season.NoOfEpisodes} episodes)";
+            if (season != null)
+            {
+                this.sOrdinalNumber.Text = $"SEASON {season.OrdinalNumber}";
+                this.sPremiereDate.Text = $"Premiere date {season.PremiereDate.ToString("dd-MM-yy")}";
+                this.sSummary.Text = season.Summary;
+                this.sNoOfEpisodes.Text = $"({season.NoOfEpisodes} episodes)";
+            }
 
             foreach(var item in episodes)
             {
@@ -65,6 +66,12 @@ namespace fandom.WindowsForms.Forms.Season
                 var form = new DetailsEpisode(id);
                 form.Show();
             
+        }
+
+        private async void DetailsSeason_Activated(object sender, EventArgs e)
+        {
+            var episodesResult = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { SeasonId = sId });
+            BindData(episodesResult);
         }
     }
 }

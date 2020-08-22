@@ -38,7 +38,7 @@ namespace fandom.WindowsForms.Forms
         private async void EpisodeForm_Load(object sender, EventArgs e)
         {
 
-            var result = await _apiService.GetAll<List<MEpisode>>();
+            var result = await _apiService.Get<List<MEpisode>>(null);
 
             AddItems(result);
 
@@ -58,7 +58,7 @@ namespace fandom.WindowsForms.Forms
         {
             this.listView1.Items.Clear();
 
-            var result = await _apiService.GetAll<List<MEpisode>>();
+            var result = await _apiService.Get<List<MEpisode>>(null);
 
             AddItems(result);
         }

@@ -68,7 +68,7 @@ namespace fandom.WindowsForms.Forms.Character
 
         private async void CreateCharacter_Load(object sender, EventArgs e)
         {
-            var data = await _familyApiService.GetAll<List<MFamily>>();
+            var data = await _familyApiService.Get<List<MFamily>>(null);
             this.comboBox1.ValueMember = "Id";
             this.comboBox1.DisplayMember = "Name";
             this.comboBox1.DataSource = data;

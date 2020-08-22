@@ -1,4 +1,5 @@
 ﻿using fandom.Model.Models;
+using fandom.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,13 @@ namespace fandom.WindowsForms.Forms.Episode
             {
                 eSeasonNumber.Text = $"S{episode.Season.OrdinalNumber}E{episode.SeasonEpisodeNumber}";
             }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+             var episodeInfo = await _episodeService.Delete<MEpisode>(_eId);
+            MessageBox.Show($"Episode {episodeInfo.Title} is removed");
         }
     }
 }

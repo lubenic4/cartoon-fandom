@@ -38,6 +38,12 @@ namespace fandom.WebAPI.Controllers
             return _service.Insert(request);
         }
 
+        [HttpDelete("{id}")]
+        public MEpisode Delete(int id)
+        {
+            return _service.Delete(id);
+        }
+
 
     }
 }
