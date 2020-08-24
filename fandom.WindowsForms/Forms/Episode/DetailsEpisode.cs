@@ -58,8 +58,11 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private async void button1_Click(object sender, EventArgs e)
         {
+           
             this.Close();
              var episodeInfo = await _episodeService.Delete<MEpisode>(_eId);
+            var seasonForm = SeasonForm.GetForm;
+            await seasonForm.LoadSeasons();
             MessageBox.Show($"Episode {episodeInfo.Title} is removed");
         }
     }

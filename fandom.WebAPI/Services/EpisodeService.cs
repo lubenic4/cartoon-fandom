@@ -97,8 +97,6 @@ namespace fandom.WebAPI.Services
             
             ctx.Episodes.Add(ep);
 
-
-
             ctx.SaveChanges();
 
             foreach (var c in request.MainCharacters)

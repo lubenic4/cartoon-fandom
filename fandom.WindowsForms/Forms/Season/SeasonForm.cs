@@ -37,7 +37,10 @@ namespace fandom.WindowsForms.Forms
             }
         }
 
-
+        public ListView seasonListView
+        {
+            get { return this.listView1; }
+        }
 
         private async void SeasonForm_Load(object sender, EventArgs e)
         {
@@ -59,11 +62,6 @@ namespace fandom.WindowsForms.Forms
             var form = new DetailsSeason(id);
             form.Show();
 
-        }
-
-        public ListView seasonListView
-        {
-            get { return this.listView1; }
         }
 
         public async Task LoadSeasons()
