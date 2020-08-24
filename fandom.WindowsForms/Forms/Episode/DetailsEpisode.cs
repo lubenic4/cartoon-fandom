@@ -32,6 +32,14 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private void BindData(MEpisode episode)
         {
+            foreach (var item in episode.Characters)
+            {
+                ListViewItem itemm = new ListViewItem(item.Id.ToString());
+                itemm.SubItems.Add($"{item.FirstName} {item.LastName}");
+
+                this.listView1.Items.Add(itemm);
+            }
+
             label1.Text = $"{episode.Title}";
             label2.Text = $"(Overall episode:{episode.OverallNumberOfEpisode})";
             label3.Text = $"Air date {episode.AirDate:dd-MM-yyyy}";

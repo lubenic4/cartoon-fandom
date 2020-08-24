@@ -14,7 +14,7 @@ namespace fandom.WindowsForms
             _route = route;
         }
 
-        public async Task<T> Get<T>(object search)
+        public async Task<T> Get<T>(object search = null)
         {
             var url = $"{Properties.Settings.Default.API}/{_route}";
 

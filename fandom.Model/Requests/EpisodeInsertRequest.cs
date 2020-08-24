@@ -17,6 +17,8 @@ namespace fandom.Model.Requests
 
         public MMediaFile MediaFile { get; set; }
 
+        public List<MCharacter> MainCharacters { get; set; }
+
 
 
     }

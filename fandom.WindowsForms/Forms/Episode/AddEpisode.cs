@@ -1,4 +1,5 @@
-﻿using fandom.Model.Models;
+﻿using fandom.Model;
+using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WindowsForms.Utils;
 using System;
@@ -18,6 +19,7 @@ namespace fandom.WindowsForms.Forms.Episode
     {
 
         private readonly APIService _episodeApiService = new APIService("Episode");
+        private readonly APIService _characterApiService = new APIService("Character");
 
         private EpisodeInsertRequest _request = new EpisodeInsertRequest {
             Title = "",
@@ -29,6 +31,20 @@ namespace fandom.WindowsForms.Forms.Episode
         public AddEpisode()
         {
             InitializeComponent();
+        }
+
+        private async Task InitializeCharacters()
+        {
+            var characters = await _characterApiService.Get<List<MCharacter>>();
+
+            foreach (var item in characters)
+            {
+                ListViewItem itemm = new ListViewItem(item.Id.ToString());
+                itemm.SubItems.Add($"{item.FirstName} {item.LastName}");
+
+                this.listView1.Items.Add(itemm);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,11 +84,30 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private async void button3_Click(object sender, EventArgs e)
         {
+            var selectedCharacters = this.listView1.SelectedItems;
+            var characters = new List<MCharacter>();
+
+            foreach (ListViewItem item in selectedCharacters)
+            {
+                int id = Int32.Parse(item.Text);
+                var character = await _characterApiService.GetById<MCharacter>(id);
+                characters.Add(character);
+
+            }
+
+            _request.MainCharacters = characters;
             _request.Title = textBox1.Text;
             _request.Summary = textBox2.Text;
             _request.AirDate = dateTimePicker1.Value;
 
            await _episodeApiService.Insert<MEpisode>(_request);
         }
+
+        private async void AddEpisode_Load(object sender, EventArgs e)
+        {
+          await  InitializeCharacters();
+        }
+
+       
     }
 }

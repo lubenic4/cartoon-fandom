@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using fandom.Model;
 using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WebAPI.Database;
@@ -79,15 +80,33 @@ namespace fandom.WebAPI.Services
 
         public MEpisode GetById(int episodeId)
         {
-            var result = ctx.Episodes.Include(x => x.MediaFile).Include(x => x.Season).Where(x => x.Id == episodeId).FirstOrDefault();
-            return _mapper.Map<MEpisode>(result);
+            var result = ctx.Episodes.Include(x => x.MediaFile).Include(x => x.Season).Include(x => x.EpisodesCharacters).Where(x => x.Id == episodeId).FirstOrDefault();
+
+            var episode = _mapper.Map<MEpisode>(result);
+            var characters = ctx.EpisodeCharacters.Where(x => x.EpisodeId == episodeId).Select(x => x.Character).ToList();
+            episode.Characters = _mapper.Map<List<MCharacter>>(characters);
+
+
+            return episode;
         }
 
         public MEpisode Insert(EpisodeInsertRequest request)
         {
             request.OverallNumberOfEpisode = ctx.Episodes.Count() + 1;
             var ep = _mapper.Map<Episode>(request);
+            
             ctx.Episodes.Add(ep);
+
+
+
+            ctx.SaveChanges();
+
+            foreach (var c in request.MainCharacters)
+            {
+                var mc = new EpisodeCharacter { CharacterId = c.Id, EpisodeId = ep.Id };
+                ctx.EpisodeCharacters.Add(mc);
+            }
+
             ctx.SaveChanges();
 
             return _mapper.Map<MEpisode>(ep);

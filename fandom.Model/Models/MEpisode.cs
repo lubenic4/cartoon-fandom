@@ -27,5 +27,8 @@ namespace fandom.Model.Models
         public int SeasonId { get; set; }
         public MSeason Season { get; set; }
 
+        public List<MCharacter> Characters { get; set; }
+
+
     }
 }

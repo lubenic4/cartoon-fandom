@@ -15,6 +15,5 @@ namespace fandom.WebAPI.Database
 
         public Character Character { get; set; }
 
-        public bool IsMainCharacter { get; set; }
     }
 }

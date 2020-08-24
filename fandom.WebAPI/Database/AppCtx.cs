@@ -22,11 +22,18 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<UserEpisode>().HasKey(k => new { k.UserId, k.EpisodeId });
             modelBuilder.Entity<UserCharacter>().HasKey(k => new { k.UserId, k.CharacterId });
             modelBuilder.Entity<PostTag>().HasKey(k => new { k.PostId, k.TagId });
-            modelBuilder.Entity<EpisodeCharacter>().HasKey(k => new { k.EpisodeId, k.CharacterId });
             modelBuilder.Entity<UserSeason>().HasKey(k => new { k.UserId, k.SeasonId });
 
-
-
+            modelBuilder.Entity<EpisodeCharacter>()
+                    .HasKey(ec => new { ec.EpisodeId, ec.CharacterId });
+            modelBuilder.Entity<EpisodeCharacter>()
+                .HasOne(ec => ec.Episode)
+                .WithMany(e => e.EpisodesCharacters)
+                .HasForeignKey(ec => ec.EpisodeId);
+            modelBuilder.Entity<EpisodeCharacter>()
+                .HasOne(ec => ec.Character)
+                .WithMany(c => c.EpisodesCharacters)
+                .HasForeignKey(ec => ec.CharacterId);
 
         }
 
