@@ -27,9 +27,9 @@ namespace fandom.WindowsForms.Forms.Season
 
         private async void DetailsSeason_Load(object sender, EventArgs e)
         {
-            var result = await _apiService.GetById<MSeason>(sId);
+            var seasonById = await _apiService.GetById<MSeason>(sId);
             var episodesResult = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { SeasonId = sId });
-            BindData(episodesResult,result);
+            BindData(episodesResult,seasonById);
         }
 
         private void BindData(List<MEpisode> episodes, MSeason season = null)
@@ -54,18 +54,15 @@ namespace fandom.WindowsForms.Forms.Season
 
                 this.listView1.Items.Add(lItem);
             }
-            
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            
                 var idStr = listView1.SelectedItems[0].Text;
                 var id = Int32.Parse(idStr);
 
                 var form = new DetailsEpisode(id);
                 form.Show();
-            
         }
 
         private async void DetailsSeason_Activated(object sender, EventArgs e)

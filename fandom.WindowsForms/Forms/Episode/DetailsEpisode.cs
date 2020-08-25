@@ -56,7 +56,7 @@ namespace fandom.WindowsForms.Forms.Episode
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void deleteButton_Click(object sender, EventArgs e)
         {
            
             this.Close();
@@ -65,5 +65,6 @@ namespace fandom.WindowsForms.Forms.Episode
             await seasonForm.LoadSeasons();
             MessageBox.Show($"Episode {episodeInfo.Title} is removed");
         }
+
     }
 }

@@ -26,7 +26,6 @@ namespace fandom.WindowsForms.Forms
             InitializeComponent();
         }
 
-
         public static SeasonForm GetForm
         {
             get
@@ -58,7 +57,6 @@ namespace fandom.WindowsForms.Forms
             var idStr = listView1.SelectedItems[0].Text;
             var id = Int32.Parse(idStr);
             
-
             var form = new DetailsSeason(id);
             form.Show();
 
@@ -67,9 +65,16 @@ namespace fandom.WindowsForms.Forms
         public async Task LoadSeasons()
         {
             this.listView1.Items.Clear();
-            var result = await _apiService.Get<List<MSeason>>(null);
 
-            foreach (var it in result)
+            var result = await _apiService.Get<List<MSeason>>();
+
+            PopulateSeasonListView(result);
+            
+        }
+
+        private void PopulateSeasonListView(List<MSeason> seasons)
+        {
+            foreach (var it in seasons)
             {
                 ListViewItem item = new ListViewItem(it.Id.ToString());
                 item.SubItems.Add(it.OrdinalNumber.ToString());
@@ -79,6 +84,5 @@ namespace fandom.WindowsForms.Forms
                 this.listView1.Items.Add(item);
             }
         }
-
     }
 }

@@ -30,16 +30,7 @@ namespace fandom.WindowsForms.Forms.Family
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using(OpenFileDialog ofd = new OpenFileDialog() { Multiselect = false })
-            {
-                if(ofd.ShowDialog() == DialogResult.OK)
-                {
-                    FileInfo fi = new FileInfo(ofd.FileName);
-                    var imagebytes = File.ReadAllBytes(fi.FullName);
-                    _request.Thumbnail = imagebytes;
-                    this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(imagebytes);
-                }
-            }
+            UploadFamilyThumbnail();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -47,6 +38,20 @@ namespace fandom.WindowsForms.Forms.Family
             _request.Name = this.textBox1.Text;
 
             await _familyApiService.Insert<MFamily>(_request);
+        }
+
+        private void UploadFamilyThumbnail()
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Multiselect = false })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    FileInfo fi = new FileInfo(ofd.FileName);
+                    var imagebytes = File.ReadAllBytes(fi.FullName);
+                    _request.Thumbnail = imagebytes;
+                    this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(imagebytes);
+                }
+            }
         }
     }
 }

@@ -56,6 +56,7 @@ namespace fandom.WebAPI.Services
                 var query = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).Where(x => x.SeasonId == request.SeasonId).ToList();
                 result = query;
             }
+
             else if(request.isAssigned != null)
             {
                 if (request.isAssigned == true)
@@ -69,10 +70,18 @@ namespace fandom.WebAPI.Services
                     result = query3;
                 }
             }
+
+            else if(request.EpisodesIds != null)
+            {
+                
+                var query4 = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).Where(x => request.EpisodesIds.Contains(x.Id)).ToList();
+                result = query4;
+            }
+
             else
             {
-                var query4 = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).ToList();
-                result = query4;
+                var query5 = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).ToList();
+                result = query5;
             }
 
             return _mapper.Map<List<MEpisode>>(result);

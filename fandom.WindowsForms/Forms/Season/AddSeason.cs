@@ -32,9 +32,19 @@ namespace fandom.WindowsForms.Forms.Season
 
         private async void AddSeason_Load(object sender, EventArgs e)
         {
-            //this.dataGridView1.DataSource = result;
+            await LoadUnassignedEpisodes();
+        }
+
+        private async Task LoadUnassignedEpisodes()
+        {
             var result = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { isAssigned = false });
-            foreach (var it in result)
+            PopulateListView(result);
+           
+        }
+
+        private void PopulateListView(List<MEpisode> episodes)
+        {
+            foreach (var it in episodes)
             {
                 ListViewItem item = new ListViewItem(it.Id.ToString());
                 item.SubItems.Add(it.Title);
@@ -43,32 +53,52 @@ namespace fandom.WindowsForms.Forms.Season
 
                 this.listView1.Items.Add(item);
             }
-
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
             var items = this.listView1.CheckedItems;
-            var episodes = new List<MEpisode>();
-            foreach(ListViewItem item in items)
+
+            if (items.Count != 0)
+            {
+               await InsertSeason(items);
+
+               await RefreshSeasonList();
+
+                HandleActiveForm();
+            }
+            else MessageBox.Show("Select episodes");
+        }
+
+        private async Task InsertSeason(ListView.CheckedListViewItemCollection checkedEpisodes)
+        {
+            var episodesRequest = new EpisodesSeasonRequest { EpisodesIds = new List<int>() };
+            foreach (ListViewItem item in checkedEpisodes)
             {
                 int id = Int32.Parse(item.Text);
-                var episode = await _episodeApiService.GetById<MEpisode>(id);
-                episodes.Add(episode);
-
+                episodesRequest.EpisodesIds.Add(id);
             }
+
+            var episodes = await _episodeApiService.Get<List<MEpisode>>(episodesRequest);
 
             _request.Episodes = episodes;
 
             await _seasonApiService.Insert<MSeason>(_request);
-
-            var sListView = sForm.seasonListView;
-
-            sListView.Items.Clear();
-           await sForm.LoadSeasons();
-
-            MessageBox.Show("OK");
-
         }
+
+        private async Task RefreshSeasonList()
+        {
+            var seasonListView = sForm.seasonListView;
+            seasonListView.Items.Clear();
+            await sForm.LoadSeasons();
+        }
+
+        private void HandleActiveForm()
+        {
+            AddSeason.ActiveForm.Close();
+            MessageBox.Show("OK");
+        }
+
+
     }
 }
