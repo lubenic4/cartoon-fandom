@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using fandom.Model;
+using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WebAPI.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +24,14 @@ namespace fandom.WebAPI.Services
 
         public List<MUser> Get() {
 
-            var list = _ctx.Users.ToList();
+            var list = _ctx.Users.Select(x => new MUser {
+                Id = x.Id,
+                Email = x.Email,
+                Username = x.Username,
+                Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
+            }).ToList();
 
-            return _mapper.Map<List<MUser>>(list);
+            return list;
         }
 
         public MUser InsertUser(UserInsertRequest request)
@@ -32,6 +39,14 @@ namespace fandom.WebAPI.Services
             var user = _mapper.Map<User>(request);
 
             _ctx.Users.Add(user);
+
+            _ctx.SaveChanges();
+
+            foreach(var items in request.RolesId)
+            {
+                var userRole = new UserRole { RoleId = items, UserId = user.Id };
+                _ctx.UserRoles.Add(userRole);
+            }
 
             _ctx.SaveChanges();
 

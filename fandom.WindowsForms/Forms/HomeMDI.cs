@@ -160,7 +160,12 @@ namespace fandom.WindowsForms.Forms
 
         private void otherLabel_Click(object sender, EventArgs e)
         {
+            var form = UserForm.GetForm;
+            form.TopLevel = false;
 
+            this.formPanel.Controls.Add(form);
+            form.Show();
+            form.BringToFront();
         }
     }
 }

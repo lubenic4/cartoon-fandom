@@ -50,6 +50,8 @@ namespace fandom.WebAPI
             services.AddScoped<IEpisodeService, EpisodeService>();
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<IFamilyService, FamilyService>();
+            services.AddScoped<IRoleService, RoleService>();
+
 
 
 

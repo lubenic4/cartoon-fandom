@@ -34,6 +34,8 @@ namespace fandom.WebAPI.Mappers
             CreateMap<Family, MFamily>().ReverseMap();
             CreateMap<FamilyInsertRequest, Family>();
 
+            CreateMap<Role, MRole>();
+
                 
 
 

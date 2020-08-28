@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fandom.Model.Models;
+using System;
 using System.Collections.Generic;
 
 namespace fandom.Model
@@ -7,15 +8,11 @@ namespace fandom.Model
     {
         public int Id { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public string Username { get; set; }
 
         public string Email { get; set; }
 
-        public string PhoneNumber { get; set; }
+        public List<MRole> Roles { get; set; }
 
     }
 }
