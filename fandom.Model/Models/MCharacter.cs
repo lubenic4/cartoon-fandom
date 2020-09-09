@@ -21,6 +21,5 @@ namespace fandom.Model
 
         public MCharacterMediaFile CharacterMediaFile { get; set; }
 
-
     }
 }

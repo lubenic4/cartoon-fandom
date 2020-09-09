@@ -22,8 +22,11 @@ namespace fandom.WebAPI.Database
         public ICollection<Post> Posts { get; set; }
 
         public ICollection<UserRole> UsersRoles { get; set; }
+
         public ICollection<UserEpisode> UsersEpisodes { get; set; }
+
         public ICollection<UserCharacter> UsersCharacters { get; set; }
+
         public ICollection<UserSeason> UserSeasons { get; set; }
 
     }

@@ -1,13 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels" xmlns:converters="clr-namespace:fandom.MobileApp.Converters"
              x:Class="fandom.MobileApp.Views.CharacterDetailPage">
- 
+
+    <ContentPage.BindingContext>
+        <viewModels:CharacterDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image WidthRequest="160" HeightRequest="40" Source="Assets/southparklogo.png"  HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Test"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical">
+            <StackLayout Padding="10,10,10,10" HorizontalOptions="Center" Orientation="Horizontal">
+                <Label FontAttributes="Bold"  Text="{Binding Character.FirstName}" />
+                <Label FontAttributes="Bold" Text="{Binding Character.LastName}"/>
+                <Button Text="{Binding ButtonPreferenceText}" Command="{Binding UpdateUserPreference}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

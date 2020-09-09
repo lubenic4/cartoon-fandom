@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace fandom.MobileApp
 {
@@ -55,6 +56,29 @@ namespace fandom.MobileApp
         {
             var url = $"{_apiUrl}/{_route}/{id}";
             return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
+        }
+
+        public async Task<T> Update<T>(int id, object request)
+        {
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+
+                return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "Ok");
+                return default(T);
+            }
         }
     }
 }

@@ -73,11 +73,22 @@ namespace fandom.WebAPI.Services
             return null;
         }
 
-        public List<MUser> Get() {
-
+        public List<MUser> Get() 
+        {
             var list = _ctx.Users.Select(x => new MUser {
                 Id = x.Id,
                 Email = x.Email,
+                FavouriteCharacters = x.UsersCharacters.Where(y => y.UserId == x.Id).Select(y =>
+                 new MCharacter
+                 {
+                     Id = y.CharacterId,
+                     Biography = y.Character.Biography,
+                     BirthDate = y.Character.BirthDate,
+                     FirstName = y.Character.FirstName,
+                     LastName = y.Character.LastName,
+                     CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
+                     Occupation = y.Character.Occupation
+                 }).ToList(),
                 Username = x.Username,
                 Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
             }).ToList();
@@ -105,6 +116,93 @@ namespace fandom.WebAPI.Services
             _ctx.SaveChanges();
 
             return _mapper.Map<MUser>(user);
+        }
+
+        public MUser GetById(int id)
+        {
+            var user = _ctx.Users.Where(x => x.Id == id).Select(x => new MUser
+            {
+                Id = x.Id,
+                Email = x.Email,
+                Username = x.Username,
+                FavouriteCharacters = x.UsersCharacters.Where(y => y.UserId == x.Id).Select(y =>
+                  new MCharacter
+                  {
+                      Id = y.CharacterId,
+                      Biography = y.Character.Biography,
+                      BirthDate = y.Character.BirthDate,
+                      FirstName = y.Character.FirstName,
+                      LastName = y.Character.LastName,
+                      CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
+                      Occupation = y.Character.Occupation
+                  }).ToList()
+            }).FirstOrDefault();
+
+            return user;
+        }
+
+        public MUser Update(int id, UserUpdateRequest request)
+        {
+            var user = _ctx.Users.Find(id);
+            var userToReturn = _mapper.Map<MUser>(user);
+
+            userToReturn.FavouriteEpisodes = _ctx.UserEpisodes.Where(x => x.UserId == user.Id).Select(x => new
+            MEpisode
+            {   
+                Id = x.EpisodeId,
+            }).ToList();
+
+            userToReturn.FavouriteCharacters = _ctx.UserCharacters.Where(x => x.UserId == user.Id).Select(x => new
+            MCharacter
+            {
+                Id = x.CharacterId
+            }).ToList();
+
+            if (request.NewFavouriteCharacter != null)
+            {
+                UserCharacter uc = new UserCharacter { CharacterId = request.NewFavouriteCharacter.Id, UserId = user.Id };
+
+                if (request.ToAdd)
+                {
+                    _ctx.UserCharacters.Add(uc);
+                    _ctx.SaveChanges();
+
+                    userToReturn.FavouriteCharacters.Add(new MCharacter { Id = request.NewFavouriteCharacter.Id });
+
+                }
+                else
+                {
+                    _ctx.UserCharacters.Remove(uc);
+                    _ctx.SaveChanges();
+
+                    var ch = userToReturn.FavouriteCharacters.Where(x => x.Id == request.NewFavouriteCharacter.Id).FirstOrDefault();
+                    userToReturn.FavouriteCharacters.Remove(ch);
+                }
+            }
+            
+            if(request.NewFavouriteEpisode != null)
+            {
+                UserEpisode ue = new UserEpisode { EpisodeId = request.NewFavouriteCharacter.Id, UserId = user.Id };
+
+                if (request.ToAdd)
+                {
+                    _ctx.UserEpisodes.Add(ue);
+                    _ctx.SaveChanges();
+
+                    userToReturn.FavouriteEpisodes.Add(request.NewFavouriteEpisode);
+
+                }
+                else
+                {
+                    _ctx.UserEpisodes.Remove(ue);
+                    _ctx.SaveChanges();
+
+                    userToReturn.FavouriteEpisodes.Remove(request.NewFavouriteEpisode);
+
+                }
+            }
+
+            return userToReturn;
         }
     }
 }

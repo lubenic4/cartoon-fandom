@@ -1,4 +1,5 @@
 ﻿using fandom.MobileApp.ViewModels;
+using fandom.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,12 @@ namespace fandom.MobileApp.Views
        private readonly CharacterDetailsViewModel CharacterDetailsVM = null;
 
 
-        public CharacterDetailPage(int id)
+        public CharacterDetailPage(MCharacter character)
         {
             InitializeComponent();
-           BindingContext = CharacterDetailsVM = new CharacterDetailsViewModel(id);
+           BindingContext = CharacterDetailsVM = new CharacterDetailsViewModel { Character=character };
+            CharacterDetailsVM.CheckRelation();
 
-        }
-
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-            await CharacterDetailsVM.Init();
 
         }
     }

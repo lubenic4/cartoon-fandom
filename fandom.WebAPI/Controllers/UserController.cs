@@ -27,9 +27,14 @@ namespace fandom.WebAPI.Controllers
         [HttpGet]
         public ActionResult<List<MUser>> Get() => _userService.Get();
 
+        [HttpGet("{id}")]
+        public ActionResult<MUser> GetById(int id) => _userService.GetById(id);
+
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<MUser> InsertUser(UserInsertRequest request) => _userService.InsertUser(request);
- 
+
+        [HttpPut("{id}")]
+        public ActionResult<MUser> UpdateUser(int id, UserUpdateRequest request) => _userService.Update(id, request);
     }
 }

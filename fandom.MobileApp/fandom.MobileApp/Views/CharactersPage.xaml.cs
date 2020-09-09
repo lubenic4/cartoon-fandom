@@ -32,7 +32,7 @@ namespace fandom.MobileApp.Views
         {
             var item = e.Item as MCharacter;
             // Application.Current.MainPage.DisplayAlert("Community", "Radi","OKH");
-            await Navigation.PushAsync(new CharacterDetailPage(item.Id));
+            await Navigation.PushAsync(new CharacterDetailPage(item));
 
         }
 
