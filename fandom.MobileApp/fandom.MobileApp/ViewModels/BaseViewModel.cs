@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 
 
-namespace EToolService.Mobile.ViewModels
+namespace fandom.Mobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

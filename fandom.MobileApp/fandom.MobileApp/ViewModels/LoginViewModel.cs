@@ -1,8 +1,8 @@
-﻿using EToolService.Mobile.ViewModels;
+﻿using fandom.Mobile.ViewModels;
 using fandom.Model;
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -38,8 +38,8 @@ namespace fandom.MobileApp.ViewModels
             IsBusy = true;
             APIService.Username = Username;
             APIService.Password = Password;
-
-            await _apiService.Get<dynamic>();
+            var users = await _apiService.Get<List<MUser>>();
+            APIService.LoggedUser = users.Where(x => x.Username == Username).FirstOrDefault();
             Application.Current.MainPage = new MainPage();
 
 

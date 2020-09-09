@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fandom.MobileApp.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,5 +15,25 @@ namespace fandom.MobileApp
         {
             InitializeComponent();
         }
+
+        void OnCommunityTapped(object sender, EventArgs e)
+        {
+            Application.Current.MainPage.DisplayAlert("Community", "Radi","OKH");
+            
+        }
+
+        void OnEpisodeTapped(object sender, EventArgs e)
+        {
+            Application.Current.MainPage.DisplayAlert("Episode", "Radi", "OKH");
+
+        }
+
+        void OnCharacterTapped(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new CharactersPage();
+
+        }
+
+
     }
 }

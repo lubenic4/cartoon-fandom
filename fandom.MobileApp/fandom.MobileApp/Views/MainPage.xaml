@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="fandom.MobileApp.MainPage">
+             x:Class="fandom.MobileApp.MainPage"
+             >
 
-    <Grid Margin="10,10,10,10">
+    <ScrollView>
+        <Grid BackgroundColor="#828282"  RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="160" />
-            <RowDefinition Height="90" />
-            <RowDefinition Height="180" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="245" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="120" />
         </Grid.RowDefinitions>
          <Grid.ColumnDefinitions>
@@ -18,12 +21,62 @@
              <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <BoxView Color="Black" Grid.Row="0" Grid.ColumnSpan="4" />
-        
-        <BoxView Color="Black" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
-        <BoxView Color="Red" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
+            <Frame  BackgroundColor="Black"  Grid.Row="0" Grid.ColumnSpan="4"
+       CornerRadius="0"
+       Padding="0">
+                <Image WidthRequest="200" HeightRequest="50" Source="Assets/southparklogo.png"  HorizontalOptions="CenterAndExpand"/>
+                
+            </Frame>
 
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
+            <Frame Margin="5,8,5,2" BorderColor="Black" Grid.Row="1" Grid.ColumnSpan="4"
+       CornerRadius="0"
+       Padding="0">
+                <StackLayout BackgroundColor="#262626" Spacing="3">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnEpisodeTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image Opacity="0.5" WidthRequest="200" HeightRequest="100" Aspect="Fill" Source="Assets/southpark.png"  VerticalOptions="FillAndExpand"/>
+                     <Label TextColor="#d6d6d6" Padding="10,0,0,0" Text="Episodes"
+                 VerticalOptions="End"
+                 FontSize="Title"
+                  FontAttributes="Bold" />
+                <BoxView Margin="10,0,10,0" Color="Gray"
+                    HeightRequest="2"
+                    VerticalOptions="End"
+                    HorizontalOptions="Fill" />
+                    <Label TextColor="#d6d6d6"  Padding="10,5,0,5" VerticalOptions="End" Text="Whatch your favourite episodes for free"/>
+            </StackLayout>
+        </Frame>
+
+            <Frame Margin="5,2,0,2" BackgroundColor="#262626" BorderColor="Gray" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackLayout Spacing="3" VerticalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCharacterTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label TextColor="#d6d6d6" Text="Characters"
+                 VerticalOptions="End"
+                 FontSize="Title"
+                  FontAttributes="Bold" />
+
+                    <Label TextColor="#d6d6d6" VerticalOptions="End" Text="Check out characters from South Park"/>
+            </StackLayout>
+        </Frame>
+
+            <Frame Margin="0,2,5,2" BackgroundColor="#262626" BorderColor="Gray" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+            <StackLayout Spacing="3" VerticalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCommunityTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label TextColor="#d6d6d6" Text="Community"
+                 VerticalOptions="End"
+                 FontSize="Title"
+                  FontAttributes="Bold" />
+
+                    <Label TextColor="#d6d6d6" VerticalOptions="End" Text="Post something cool about South Park"/>
+            </StackLayout>
+        </Frame>
+
+            <Grid Margin="5,2,5,2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
@@ -34,15 +87,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Recommended episodes"/>
-            <BoxView Color="Red" Grid.Row="1" Grid.Column="0"/>
-              <BoxView Color="Blue" Grid.Row="1" Grid.Column="1"/>
-            <BoxView Color="Green" Grid.Row="1" Grid.Column="2"/>
+            <BoxView Color="Red" Grid.Row="1" Grid.Column="0" CornerRadius="10"/>
+            <BoxView Color="Blue" Grid.Row="1" Grid.Column="1" CornerRadius="10"/>
+            <BoxView Color="Green" Grid.Row="1" Grid.Column="2" CornerRadius="10"/>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
+
+            <Grid Margin="5,2,5,2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -51,15 +104,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Favourite episodes"/>
-            <BoxView Color="Red" Grid.Row="1" Grid.Column="0"/>
-            <BoxView Color="Blue" Grid.Row="1" Grid.Column="1"/>
-            <BoxView Color="Green" Grid.Row="1" Grid.Column="2"/>
-            <BoxView Color="Red" Grid.Row="2" Grid.Column="0"/>
-            <BoxView Color="Blue" Grid.Row="2" Grid.Column="1"/>
-            <BoxView Color="Green" Grid.Row="2" Grid.Column="2"/>
+            <BoxView Color="Red" Grid.Row="1" Grid.Column="0" CornerRadius="10"/>
+            <BoxView Color="Blue" Grid.Row="1" Grid.Column="1" CornerRadius="10"/>
+            <BoxView Color="Green" Grid.Row="1" Grid.Column="2" CornerRadius="10"/>
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid Margin="5,2,5,2" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
@@ -80,6 +130,6 @@
 
 
     </Grid>
-
+    </ScrollView>
 
 </ContentPage>

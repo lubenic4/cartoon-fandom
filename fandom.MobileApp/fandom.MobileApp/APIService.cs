@@ -11,6 +11,7 @@ namespace fandom.MobileApp
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
+        public static MUser LoggedUser { get; set; }
 
         private readonly string _route = null;
 
