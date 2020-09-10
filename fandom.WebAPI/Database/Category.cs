@@ -12,7 +12,7 @@ namespace fandom.WebAPI.Database
 
         public string Title { get; set; }
 
-        //public byte[] Icon { get; set; }
+        public string CategoryColor { get; set; }
 
         public ICollection<Post> Posts { get; set; }
     }

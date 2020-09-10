@@ -1,12 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels"
              x:Class="fandom.MobileApp.Views.CommunityPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    
+    <ContentPage.BindingContext>
+        <viewModels:CommunityViewModel/>
+    </ContentPage.BindingContext>
+   
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image WidthRequest="160" HeightRequest="40" Source="Assets/southparklogo.png"  HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+      <ScrollView>
+        <StackLayout>
+                <ListView ItemTapped="ListView_ItemTapped" SelectionMode="None" ItemsSource="{Binding AllPosts}">
+                    <ListView.Header>
+                        <StackLayout Padding="15,15,15,15" BackgroundColor="#cccccc">
+                            <Label FontAttributes="Bold" FontSize="Title" Text="Community"/>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="5,5,5,5" Orientation="Vertical">
+                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding CreationDate}" FontSize="12" />
+                                    <Frame BackgroundColor="{Binding Category.CategoryColor}"
+                                        CornerRadius="5"
+                                         Padding="8">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding Title}"
+                                                    FontSize="Small"
+                                                    FontAttributes="Bold" />
+                                               
+                                                <Label Grid.Row="0" Grid.Column="5"  FontSize="12"
+                                                       Text="{Binding User.Username}"
+                                                       />
+                                            </Grid>
+                                            <BoxView Color="Black"
+                                                HeightRequest="2"
+                                                HorizontalOptions="Fill" />
+                                            <Label Text="{Binding Summary}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+      </ScrollView>
     </ContentPage.Content>
 </ContentPage>

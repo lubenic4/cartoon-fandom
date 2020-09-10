@@ -31,7 +31,6 @@ namespace fandom.MobileApp.Views
         async void  OnTap(object sender, ItemTappedEventArgs e)
         {
             var item = e.Item as MCharacter;
-            // Application.Current.MainPage.DisplayAlert("Community", "Radi","OKH");
             await Navigation.PushAsync(new CharacterDetailPage(item));
 
         }

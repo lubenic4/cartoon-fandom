@@ -16,10 +16,10 @@ namespace fandom.MobileApp
             InitializeComponent();
         }
 
-        void OnCommunityTapped(object sender, EventArgs e)
+       async void OnCommunityTapped(object sender, EventArgs e)
         {
-            Application.Current.MainPage.DisplayAlert("Community", "Radi","OKH");
-            
+            await Navigation.PushAsync(new CommunityPage());
+
         }
 
         void OnEpisodeTapped(object sender, EventArgs e)

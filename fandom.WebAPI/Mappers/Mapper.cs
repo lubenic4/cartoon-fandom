@@ -36,6 +36,9 @@ namespace fandom.WebAPI.Mappers
 
             CreateMap<Role, MRole>();
 
+            CreateMap<Post, MPost>();
+            CreateMap<Category, MCategory>();
+            CreateMap<Tag, MTag>();
                 
 
 
