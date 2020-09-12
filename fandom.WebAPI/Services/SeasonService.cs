@@ -23,15 +23,25 @@ namespace fandom.WebAPI.Services
 
         public  List<MSeason> Get(object search)
         {
-            var list = ctx.Set<Season>().ToList();
+            var list = ctx.Seasons.Select(x => new MSeason
+            {
+                Id = x.Id,
+                NoOfEpisodes = x.NoOfEpisodes,
+                OrdinalNumber = x.OrdinalNumber,
+                PremiereDate = x.PremiereDate,
+                Summary = x.Summary,
+                SeasonEpisodes = _mapper.Map<List<MEpisode>>(ctx.Episodes.Include(x => x.MediaFile).Where(y => y.SeasonId == x.Id).ToList())
+            }).ToList();
 
-            return _mapper.Map<List<MSeason>>(list);
+            return list;
         }
 
         public  MSeason GetById(int id)
         {
-            var result = ctx.Seasons.Where(x => x.Id == id).FirstOrDefault();
-            return _mapper.Map<MSeason>(result);
+            var query = ctx.Seasons.Where(x => x.Id == id).FirstOrDefault();
+            var result = _mapper.Map<MSeason>(query);
+            result.SeasonEpisodes = _mapper.Map<List<MEpisode>>(ctx.Episodes.Include(x => x.MediaFile).Where(y => y.SeasonId == id).ToList());
+            return result;
         }
 
         public MSeason Insert(SeasonInsertRequest request)

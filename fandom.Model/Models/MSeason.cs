@@ -16,5 +16,7 @@ namespace fandom.Model.Models
 
         public string Summary { get; set; }
 
+        public List<MEpisode> SeasonEpisodes { get; set; }
+
     }
 }

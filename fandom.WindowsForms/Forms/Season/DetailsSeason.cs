@@ -28,11 +28,10 @@ namespace fandom.WindowsForms.Forms.Season
         private async void DetailsSeason_Load(object sender, EventArgs e)
         {
             var seasonById = await _apiService.GetById<MSeason>(sId);
-            var episodesResult = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { SeasonId = sId });
-            BindData(episodesResult,seasonById);
+            BindData(seasonById);
         }
 
-        private void BindData(List<MEpisode> episodes, MSeason season = null)
+        private void BindData(MSeason season)
         {
             this.listView1.Items.Clear();
 
@@ -42,17 +41,19 @@ namespace fandom.WindowsForms.Forms.Season
                 this.sPremiereDate.Text = $"Premiere date {season.PremiereDate.ToString("dd-MM-yy")}";
                 this.sSummary.Text = season.Summary;
                 this.sNoOfEpisodes.Text = $"({season.NoOfEpisodes} episodes)";
-            }
+            
 
-            foreach(var item in episodes)
-            {
-                ListViewItem lItem = new ListViewItem(item.Id.ToString());
-                lItem.SubItems.Add(item.Title);
-                lItem.SubItems.Add(item.AirDate.ToString("dd-MM-yyyy"));
-                lItem.SubItems.Add(item.SeasonEpisodeNumber.ToString());
-                lItem.SubItems.Add(item.OverallNumberOfEpisode.ToString());
+                foreach(var item in season.SeasonEpisodes)
+                {
+                    ListViewItem lItem = new ListViewItem(item.Id.ToString());
+                    lItem.SubItems.Add(item.Title);
+                    lItem.SubItems.Add(item.AirDate.ToString("dd-MM-yyyy"));
+                    lItem.SubItems.Add(item.SeasonEpisodeNumber.ToString());
+                    lItem.SubItems.Add(item.OverallNumberOfEpisode.ToString());
 
-                this.listView1.Items.Add(lItem);
+                    this.listView1.Items.Add(lItem);
+                }
+
             }
         }
 
@@ -67,8 +68,8 @@ namespace fandom.WindowsForms.Forms.Season
 
         private async void DetailsSeason_Activated(object sender, EventArgs e)
         {
-            var episodesResult = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { SeasonId = sId });
-            BindData(episodesResult);
+            var seasonById = await _apiService.GetById<MSeason>(sId);
+            BindData(seasonById);
         }
     }
 }
