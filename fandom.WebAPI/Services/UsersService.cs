@@ -94,6 +94,8 @@ namespace fandom.WebAPI.Services
                  new MEpisode
                  {
                      Id = y.EpisodeId,
+                     MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
+                     Title = y.Episode.Title
                  }).ToList(),
                 Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
             }).ToList();
@@ -151,16 +153,24 @@ namespace fandom.WebAPI.Services
             var user = _ctx.Users.Find(id);
             var userToReturn = _mapper.Map<MUser>(user);
 
-            userToReturn.FavouriteEpisodes = _ctx.UserEpisodes.Where(x => x.UserId == user.Id).Select(x => new
+            userToReturn.FavouriteEpisodes = _ctx.UserEpisodes.Where(y => y.UserId == user.Id).Select(y => new
             MEpisode
-            {   
-                Id = x.EpisodeId,
+            {
+                Id = y.EpisodeId,
+                MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
+                Title = y.Episode.Title
             }).ToList();
 
-            userToReturn.FavouriteCharacters = _ctx.UserCharacters.Where(x => x.UserId == user.Id).Select(x => new
+            userToReturn.FavouriteCharacters = _ctx.UserCharacters.Where(y => y.UserId == user.Id).Select(y => new
             MCharacter
             {
-                Id = x.CharacterId
+                Id = y.CharacterId,
+                Biography = y.Character.Biography,
+                BirthDate = y.Character.BirthDate,
+                FirstName = y.Character.FirstName,
+                LastName = y.Character.LastName,
+                CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
+                Occupation = y.Character.Occupation
             }).ToList();
 
             if (request.NewFavouriteCharacter != null)
@@ -172,7 +182,7 @@ namespace fandom.WebAPI.Services
                     _ctx.UserCharacters.Add(uc);
                     _ctx.SaveChanges();
 
-                    userToReturn.FavouriteCharacters.Add(new MCharacter { Id = request.NewFavouriteCharacter.Id });
+                    userToReturn.FavouriteCharacters.Add(new MCharacter { Id = request.NewFavouriteCharacter.Id, FirstName = request.NewFavouriteCharacter.FirstName, CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(request.NewFavouriteCharacter.CharacterMediaFile) });
 
                 }
                 else
@@ -194,7 +204,7 @@ namespace fandom.WebAPI.Services
                     _ctx.UserEpisodes.Add(ue);
                     _ctx.SaveChanges();
 
-                    userToReturn.FavouriteEpisodes.Add(new MEpisode { Id = request.NewFavouriteEpisode.Id });
+                    userToReturn.FavouriteEpisodes.Add(new MEpisode { Id = request.NewFavouriteEpisode.Id, Title = request.NewFavouriteEpisode.Title, MediaFile = _mapper.Map<MMediaFile>(request.NewFavouriteEpisode.MediaFile) });
 
                 }
                 else

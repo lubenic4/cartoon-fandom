@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels" xmlns:converters="clr-namespace:fandom.MobileApp.Converters"
              x:Class="fandom.MobileApp.MainPage"
              >
+
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateConverter x:Key="dateConv"></converters:DateConverter>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
@@ -15,10 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="260" />
             <RowDefinition Height="120" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="120" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
             </Grid.RowDefinitions>
          <Grid.ColumnDefinitions>
              <ColumnDefinition Width="*" />
@@ -35,7 +43,7 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnEpisodeTapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Image Opacity="0.5" WidthRequest="200" HeightRequest="100" Aspect="Fill" Source="Assets/southpark.png"  VerticalOptions="FillAndExpand"/>
+                    <Image Opacity="0.6" WidthRequest="200" HeightRequest="100" Aspect="Fill" Source="Assets/southpark.jpg"  VerticalOptions="FillAndExpand"/>
                      <Label TextColor="#d6d6d6" Padding="10,0,0,0" Text="Episodes"
                  VerticalOptions="End"
                  FontSize="Title"
@@ -76,57 +84,37 @@
             </StackLayout>
         </Frame>
 
-            <Grid Margin="0,2,0,2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Recommended episodes"/>
-            <BoxView Color="Red" Grid.Row="1" Grid.Column="0" CornerRadius="10"/>
-            <BoxView Color="Blue" Grid.Row="1" Grid.Column="1" CornerRadius="10"/>
-            <BoxView Color="Green" Grid.Row="1" Grid.Column="2" CornerRadius="10"/>
-        </Grid>
+        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <Label HorizontalOptions="Center" Padding="5" FontAttributes="Bold" Text="Favourite characters"/>
+                <ListView VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteCharacters}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" Orientation="Vertical">
+                            <Image WidthRequest="180" HeightRequest="80"  Source="{Binding CharacterMediaFile.Thumbnail, Converter={StaticResource imgConv}}" />
+                            <Label  HorizontalOptions="Center" FontAttributes="Bold" Text="{Binding FirstName}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
 
-
-            <Grid Margin="0,2,0,2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Favourite episodes"/>
-            <BoxView Color="Red" Grid.Row="1" Grid.Column="0" CornerRadius="10"/>
-            <BoxView Color="Blue" Grid.Row="1" Grid.Column="1" CornerRadius="10"/>
-            <BoxView Color="Green" Grid.Row="1" Grid.Column="2" CornerRadius="10"/>
-        </Grid>
-
-            <Grid Padding="0,2,0,2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="85" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Favourite characters"/>
-                <BoxView Color="Red" Grid.Row="1" Grid.Column="0"/>
-                <BoxView Color="Blue" Grid.Row="1" Grid.Column="1"/>
-                <BoxView Color="Green" Grid.Row="1" Grid.Column="2"/>
-                <BoxView Color="Orange" Grid.Row="1" Grid.Column="3"/>
-
-            </Grid>
+            <StackLayout Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                <Label HorizontalOptions="Center" Padding="5" FontAttributes="Bold" Text="Favourite episodes"/>
+                <ListView  VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteEpisodes}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Vertical">
+                                    <Image Aspect="AspectFill" WidthRequest="180" HeightRequest="80" Source="{Binding MediaFile.Thumbnail, Converter={StaticResource imgConv}}" />
+                                    <Label  HorizontalOptions="Center" FontAttributes="Bold" Text="{Binding Title}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </Grid>
     </ScrollView>
 
