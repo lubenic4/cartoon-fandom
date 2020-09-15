@@ -20,12 +20,10 @@ namespace fandom.MobileApp.ViewModels
         public CharactersViewModel()
         {
             InitCommand = new Command(async () => await Init());
-            testCommand = new Command(() => switchPage());
         }
 
         
         public ICommand InitCommand { get; set; }
-        public ICommand testCommand { get; set; }
 
       public async Task Init()
       {
@@ -37,12 +35,6 @@ namespace fandom.MobileApp.ViewModels
             }
        }
 
-        public void switchPage()
-        {
-            // Application.Current.MainPage = new CharacterDetailPage(x);
-
-            Application.Current.MainPage.DisplayAlert("Community", "Radi", "OKH");
-        }
 
     }
 }

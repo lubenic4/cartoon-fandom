@@ -95,7 +95,13 @@ namespace fandom.WebAPI.Services
                  {
                      Id = y.EpisodeId,
                      MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
-                     Title = y.Episode.Title
+                     Title = y.Episode.Title,
+                     AirDate = (DateTime)y.Episode.AirDate,
+                     OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
+                     SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                     Summary = y.Episode.Summary,
+                     Viewcount = y.Episode.Viewcount,
+                     
                  }).ToList(),
                 Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
             }).ToList();
@@ -158,7 +164,12 @@ namespace fandom.WebAPI.Services
             {
                 Id = y.EpisodeId,
                 MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
-                Title = y.Episode.Title
+                Title = y.Episode.Title,
+                AirDate = (DateTime)y.Episode.AirDate,
+                OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
+                SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                Summary = y.Episode.Summary,
+                Viewcount = y.Episode.Viewcount
             }).ToList();
 
             userToReturn.FavouriteCharacters = _ctx.UserCharacters.Where(y => y.UserId == user.Id).Select(y => new
@@ -204,7 +215,17 @@ namespace fandom.WebAPI.Services
                     _ctx.UserEpisodes.Add(ue);
                     _ctx.SaveChanges();
 
-                    userToReturn.FavouriteEpisodes.Add(new MEpisode { Id = request.NewFavouriteEpisode.Id, Title = request.NewFavouriteEpisode.Title, MediaFile = _mapper.Map<MMediaFile>(request.NewFavouriteEpisode.MediaFile) });
+                    userToReturn.FavouriteEpisodes.Add(new MEpisode 
+                    { 
+                        Id = request.NewFavouriteEpisode.Id, 
+                        Title = request.NewFavouriteEpisode.Title, 
+                        MediaFile = _mapper.Map<MMediaFile>(request.NewFavouriteEpisode.MediaFile),
+                        AirDate = request.NewFavouriteEpisode.AirDate,
+                        OverallNumberOfEpisode = request.NewFavouriteEpisode.OverallNumberOfEpisode,
+                        SeasonEpisodeNumber = request.NewFavouriteEpisode.SeasonEpisodeNumber,
+                        Summary = request.NewFavouriteEpisode.Summary,
+                        Viewcount = request.NewFavouriteEpisode.Viewcount
+                        });
 
                 }
                 else

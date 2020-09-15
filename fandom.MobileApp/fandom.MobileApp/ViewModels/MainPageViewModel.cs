@@ -1,4 +1,5 @@
 ﻿using fandom.Mobile.ViewModels;
+using fandom.MobileApp.Views;
 using fandom.Model;
 using fandom.Model.Models;
 using System;
@@ -14,17 +15,34 @@ namespace fandom.MobileApp.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        private readonly APIService _episodeApiService = new APIService("Episode");
 
+        public INavigation NavigationProperty { get; set; }
         public ObservableCollection<MEpisode> FavouriteEpisodes { get; set; } = new ObservableCollection<MEpisode>();
         public ObservableCollection<MCharacter> FavouriteCharacters { get; set; } = new ObservableCollection<MCharacter>();
+        public ObservableCollection<MEpisode> RecommendedEpisodes { get; set; } = new ObservableCollection<MEpisode>();
 
-
-        public void Init()
+        public MainPageViewModel()
         {
+            SwitchToEpisode = new Command(() =>  PushEpisode());
+        }
+
+        public ICommand SwitchToEpisode;
+
+        public void  PushEpisode()
+        {
+            Application.Current.MainPage.DisplayAlert("HA", "HU", "HE");
+        }
+
+        public async Task Init()
+        {
+            RecommendedEpisodes.Clear();
             FavouriteCharacters.Clear();
             FavouriteEpisodes.Clear();
+            var rEp = await _episodeApiService.Get<List<MEpisode>>();
             IEnumerable<MCharacter> listCh = APIService.LoggedUser.FavouriteCharacters;
             IEnumerable<MEpisode> listEp = APIService.LoggedUser.FavouriteEpisodes;
+
             foreach (var item in listCh)
             {
                 FavouriteCharacters.Add(item);
@@ -33,6 +51,11 @@ namespace fandom.MobileApp.ViewModels
             foreach(var item in listEp)
             {
                 FavouriteEpisodes.Add(item);
+            }
+
+            foreach(var item in rEp.Take(3))
+            {
+                RecommendedEpisodes.Add(item);
             }
         }
 

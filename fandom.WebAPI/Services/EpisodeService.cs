@@ -91,6 +91,7 @@ namespace fandom.WebAPI.Services
                     Title = x.Episode.Title,
                     Viewcount = x.Episode.Viewcount,
                     SeasonId = x.Episode.SeasonId,
+                    
 
                 }).ToList();
 
@@ -99,7 +100,7 @@ namespace fandom.WebAPI.Services
 
             else
             {
-                var query5 = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).ToList();
+                var query5 = ctx.Episodes.Include(x => x.Season).Include(x => x.MediaFile).Include(x => x.EpisodesCharacters).ToList();
                 result = query5;
             }
 

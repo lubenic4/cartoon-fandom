@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels" xmlns:converters="clr-namespace:fandom.MobileApp.Converters"
              x:Class="fandom.MobileApp.MainPage"
-             >
+             x:Name="myPage">
 
     <ContentPage.BindingContext>
         <viewModels:MainPageViewModel/>
@@ -26,9 +26,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="260" />
             <RowDefinition Height="120" />
+            <RowDefinition Height="145" />
             <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-         <Grid.ColumnDefinitions>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
              <ColumnDefinition Width="*" />
              <ColumnDefinition Width="*" />
              <ColumnDefinition Width="*" />
@@ -84,9 +85,24 @@
             </StackLayout>
         </Frame>
 
-        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackLayout  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
+                <Label FontAttributes="Bold" Text="Recommended episodes"/>
+                <CollectionView x:Name="collection1" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding RecommendedEpisodes}" 
+                ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <StackLayout Padding="5" Orientation="Vertical">
+                                <Image Aspect="AspectFill" WidthRequest="180" HeightRequest="80" Source="{Binding MediaFile.Thumbnail, Converter={StaticResource imgConv}}"/>
+                                <Label  HorizontalOptions="Center" FontAttributes="Bold" Text="{Binding Title}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                 <Label HorizontalOptions="Center" Padding="5" FontAttributes="Bold" Text="Favourite characters"/>
-                <ListView VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteCharacters}">
+                <ListView ItemTapped="ListView_ItemTapped_ch" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteCharacters}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -100,9 +116,9 @@
         </ListView>
         </StackLayout>
 
-            <StackLayout Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+            <StackLayout Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
                 <Label HorizontalOptions="Center" Padding="5" FontAttributes="Bold" Text="Favourite episodes"/>
-                <ListView  VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteEpisodes}">
+                <ListView ItemTapped="ListView_ItemTapped_ep"  VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding FavouriteEpisodes}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
