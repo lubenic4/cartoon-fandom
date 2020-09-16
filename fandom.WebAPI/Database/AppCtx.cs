@@ -42,7 +42,7 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<PostTag>().HasKey(k => new { k.PostId, k.TagId });
 
             modelBuilder.Entity<EpisodeCharacter>()
-                    .HasKey(ec => new { ec.EpisodeId, ec.CharacterId });
+                      .HasKey(ec => new { ec.EpisodeId, ec.CharacterId });
             modelBuilder.Entity<EpisodeCharacter>()
                 .HasOne(ec => ec.Episode)
                 .WithMany(e => e.EpisodesCharacters)

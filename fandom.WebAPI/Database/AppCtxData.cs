@@ -10,6 +10,7 @@ namespace fandom.WebAPI.Database
     public partial class AppCtx
     {
 
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
             List<string> Salt = new List<string>();
@@ -135,34 +136,34 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<Character>()
                 .HasData
                 (
-                new Character { Id = 1, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First1", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
-                new Character { Id = 2, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First2", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
-                new Character { Id = 3, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First3", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
-                new Character { Id = 4, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First4", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
-                new Character { Id = 5, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First5", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
-                new Character { Id = 6, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First6", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
-                new Character { Id = 7, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First7", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
-                new Character { Id = 8, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First8", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
-                new Character { Id = 9, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First9", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
-                new Character { Id = 10, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First10", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
-                new Character { Id = 11, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First11", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
-                new Character { Id = 12, Biography = "Some random biography text", BirthDate = DateTime.Now, FirstName = "First12", LastName = "Last3", Occupation = "Student", FamilyId = 3 }
+                new Character { Id = 1, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First1", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
+                new Character { Id = 2, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First2", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
+                new Character { Id = 3, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First3", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
+                new Character { Id = 4, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First4", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
+                new Character { Id = 5, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First5", LastName = "Last1", Occupation = "Student", FamilyId = 1 },
+                new Character { Id = 6, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First6", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
+                new Character { Id = 7, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First7", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
+                new Character { Id = 8, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First8", LastName = "Last2", Occupation = "Student", FamilyId = 2 },
+                new Character { Id = 9, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First9", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
+                new Character { Id = 10, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First10", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
+                new Character { Id = 11, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First11", LastName = "Last3", Occupation = "Student", FamilyId = 3 },
+                new Character { Id = 12, Biography = "Some random biography text", BirthDate = DateTime.Now.Date, FirstName = "First12", LastName = "Last3", Occupation = "Student", FamilyId = 3 }
                 );
             modelBuilder.Entity<Family>()
                 .HasData
                 (
                     new Family { Id = 1, Name = "Last1" },
-                    new Family { Id = 2, Name = "Last2"},
-                    new Family { Id = 3, Name = "Last3"}
+                    new Family { Id = 2, Name = "Last2" },
+                    new Family { Id = 3, Name = "Last3" }
                 );
 
             modelBuilder.Entity<Season>()
                .HasData
                (
-                    new Season { Id = 1, NoOfEpisodes = 3, Summary = "Random summary text", OrdinalNumber = 1, PremiereDate = DateTime.Now },
-                    new Season { Id = 2, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 2, PremiereDate = DateTime.Now },
-                    new Season { Id = 3, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 3, PremiereDate = DateTime.Now },
-                    new Season { Id = 4, NoOfEpisodes = 1, Summary = "Random summary text", OrdinalNumber = 4, PremiereDate = DateTime.Now }
+                    new Season { Id = 1, NoOfEpisodes = 3, Summary = "Random summary text", OrdinalNumber = 1, PremiereDate = DateTime.Now.Date },
+                    new Season { Id = 2, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 2, PremiereDate = DateTime.Now.Date },
+                    new Season { Id = 3, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 3, PremiereDate = DateTime.Now.Date },
+                    new Season { Id = 4, NoOfEpisodes = 1, Summary = "Random summary text", OrdinalNumber = 4, PremiereDate = DateTime.Now.Date }
 
 
                );
@@ -170,15 +171,15 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<Episode>()
                 .HasData
                 (
-                    new Episode { Id = 1, AirDate = DateTime.Now, OverallNumberOfEpisode = 1, Title = "Episode title 1", Viewcount = 13, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 1 },
-                    new Episode { Id = 2, AirDate = DateTime.Now, OverallNumberOfEpisode = 2, Title = "Episode title 2", Viewcount = 23, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 1 },
-                    new Episode { Id = 3, AirDate = DateTime.Now, OverallNumberOfEpisode = 3, Title = "Episode title 3", Viewcount = 33, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 1 },
-                    new Episode { Id = 4, AirDate = DateTime.Now, OverallNumberOfEpisode = 4, Title = "Episode title 4", Viewcount = 43, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 2 },
-                    new Episode { Id = 5, AirDate = DateTime.Now, OverallNumberOfEpisode = 5, Title = "Episode title 5", Viewcount = 53, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 2 },
-                    new Episode { Id = 6, AirDate = DateTime.Now, OverallNumberOfEpisode = 6, Title = "Episode title 6", Viewcount = 63, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 3 },
-                    new Episode { Id = 7, AirDate = DateTime.Now, OverallNumberOfEpisode = 7, Title = "Episode title 7", Viewcount = 73, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 3 },
-                    new Episode { Id = 8, AirDate = DateTime.Now, OverallNumberOfEpisode = 8, Title = "Episode title 8", Viewcount = 83, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 4 },
-                    new Episode { Id = 9, AirDate = DateTime.Now, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = null }
+                    new Episode { Id = 1, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 1, Title = "Episode title 1", Viewcount = 13, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 1 },
+                    new Episode { Id = 2, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 2, Title = "Episode title 2", Viewcount = 23, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 1 },
+                    new Episode { Id = 3, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 3, Title = "Episode title 3", Viewcount = 33, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 1 },
+                    new Episode { Id = 4, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 4, Title = "Episode title 4", Viewcount = 43, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 2 },
+                    new Episode { Id = 5, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 5, Title = "Episode title 5", Viewcount = 53, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 2 },
+                    new Episode { Id = 6, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 6, Title = "Episode title 6", Viewcount = 63, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 3 },
+                    new Episode { Id = 7, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 7, Title = "Episode title 7", Viewcount = 73, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 3 },
+                    new Episode { Id = 8, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 8, Title = "Episode title 8", Viewcount = 83, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 4 },
+                    new Episode { Id = 9, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = null }
                 );
             modelBuilder.Entity<EpisodeCharacter>()
                 .HasData
@@ -216,12 +217,12 @@ namespace fandom.WebAPI.Database
             modelBuilder.Entity<Post>()
                 .HasData
                 (
-                    new Post { Id = 1, Title = "Random post title 1", CategoryId = 1, UserId = 4, CreationDate = DateTime.Now, Summary = "Just a random text summary" },
-                    new Post { Id = 2, Title = "Random post title 2", CategoryId = 1, UserId = 4, CreationDate = DateTime.Now, Summary = "Just a random text summary 2" },
-                    new Post { Id = 3, Title = "Random post title 3", CategoryId = 1, UserId = 1, CreationDate = DateTime.Now, Summary = "Just a random text summary 3" },
-                    new Post { Id = 4, Title = "Random post title 4", CategoryId = 2, UserId = 1, CreationDate = DateTime.Now, Summary = "Just a random text summary 4" },
-                    new Post { Id = 5, Title = "Random post title 5", CategoryId = 3, UserId = 2, CreationDate = DateTime.Now, Summary = "Just a random text summary 5" },
-                    new Post { Id = 6, Title = "Random post title 6", CategoryId = 3, UserId = 3, CreationDate = DateTime.Now, Summary = "Just a random text summary 6" }
+                    new Post { Id = 1, Title = "Random post title 1", CategoryId = 1, UserId = 4, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary" },
+                    new Post { Id = 2, Title = "Random post title 2", CategoryId = 1, UserId = 4, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary 2" },
+                    new Post { Id = 3, Title = "Random post title 3", CategoryId = 1, UserId = 1, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary 3" },
+                    new Post { Id = 4, Title = "Random post title 4", CategoryId = 2, UserId = 1, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary 4" },
+                    new Post { Id = 5, Title = "Random post title 5", CategoryId = 3, UserId = 2, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary 5" },
+                    new Post { Id = 6, Title = "Random post title 6", CategoryId = 3, UserId = 3, CreationDate = DateTime.Now.Date, Summary = "Just a random text summary 6" }
                 );
 
             modelBuilder.Entity<PostTag>()
