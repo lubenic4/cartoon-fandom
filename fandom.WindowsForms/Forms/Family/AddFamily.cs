@@ -1,4 +1,5 @@
 ﻿using fandom.Model;
+using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WindowsForms.Utils;
 using System;
@@ -20,7 +21,7 @@ namespace fandom.WindowsForms.Forms.Family
         private FamilyInsertRequest _request = new FamilyInsertRequest
         {
             Name = " ",
-            Thumbnail = null
+            MediaFile = new MMediaFile()
         };
 
         public AddFamily()
@@ -35,9 +36,17 @@ namespace fandom.WindowsForms.Forms.Family
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            _request.Name = this.textBox1.Text;
+            try
+            {
+                _request.Name = this.textBox1.Text;
 
-            await _familyApiService.Insert<MFamily>(_request);
+                await _familyApiService.Insert<MFamily>(_request);
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+           
         }
 
         private void UploadFamilyThumbnail()
@@ -48,7 +57,7 @@ namespace fandom.WindowsForms.Forms.Family
                 {
                     FileInfo fi = new FileInfo(ofd.FileName);
                     var imagebytes = File.ReadAllBytes(fi.FullName);
-                    _request.Thumbnail = imagebytes;
+                    _request.MediaFile.Thumbnail = imagebytes;
                     this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(imagebytes);
                 }
             }

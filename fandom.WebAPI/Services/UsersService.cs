@@ -88,7 +88,8 @@ namespace fandom.WebAPI.Services
                      FirstName = y.Character.FirstName,
                      LastName = y.Character.LastName,
                      CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
-                     Occupation = y.Character.Occupation
+                     Occupation = y.Character.Occupation,
+                     FamilyId = (int)y.Character.FamilyId
                  }).ToList(),
                 FavouriteEpisodes = x.UsersEpisodes.Where(y => y.UserId == x.Id).Select(y =>
                  new MEpisode
@@ -99,9 +100,9 @@ namespace fandom.WebAPI.Services
                      AirDate = (DateTime)y.Episode.AirDate,
                      OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
                      SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                     Season = _mapper.Map<MSeason>(y.Episode.Season),
                      Summary = y.Episode.Summary,
                      Viewcount = y.Episode.Viewcount,
-                     
                  }).ToList(),
                 Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
             }).ToList();
@@ -147,7 +148,8 @@ namespace fandom.WebAPI.Services
                       FirstName = y.Character.FirstName,
                       LastName = y.Character.LastName,
                       CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
-                      Occupation = y.Character.Occupation
+                      Occupation = y.Character.Occupation,
+                      FamilyId = (int)y.Character.FamilyId
                   }).ToList()
             }).FirstOrDefault();
 
@@ -181,7 +183,9 @@ namespace fandom.WebAPI.Services
                 FirstName = y.Character.FirstName,
                 LastName = y.Character.LastName,
                 CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(y.Character.CharacterMediaFile),
-                Occupation = y.Character.Occupation
+                Occupation = y.Character.Occupation,
+                FamilyId = (int)y.Character.FamilyId
+
             }).ToList();
 
             if (request.NewFavouriteCharacter != null)
@@ -193,7 +197,17 @@ namespace fandom.WebAPI.Services
                     _ctx.UserCharacters.Add(uc);
                     _ctx.SaveChanges();
 
-                    userToReturn.FavouriteCharacters.Add(new MCharacter { Id = request.NewFavouriteCharacter.Id, FirstName = request.NewFavouriteCharacter.FirstName, CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(request.NewFavouriteCharacter.CharacterMediaFile) });
+                    userToReturn.FavouriteCharacters.Add(new MCharacter 
+                    { 
+                        Id = request.NewFavouriteCharacter.Id, 
+                        FirstName = request.NewFavouriteCharacter.FirstName, 
+                        CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(request.NewFavouriteCharacter.CharacterMediaFile),
+                        FamilyId = request.NewFavouriteCharacter.FamilyId,
+                        Biography = request.NewFavouriteCharacter.Biography,
+                        BirthDate = request.NewFavouriteCharacter.BirthDate,
+                        LastName = request.NewFavouriteCharacter.LastName,
+                        Occupation = request.NewFavouriteCharacter.Occupation
+                    });
 
                 }
                 else

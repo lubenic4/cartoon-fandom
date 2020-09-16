@@ -9,6 +9,12 @@
     <Compile Remove="Migrations\20200816150040_160820_CharacterMedia.Designer.cs" />
     <Compile Remove="Migrations\20200816150639_160820_CharacterMedia2.cs" />
     <Compile Remove="Migrations\20200816150639_160820_CharacterMedia2.Designer.cs" />
+    <Compile Remove="Migrations\20200916002032_DataSeed.cs" />
+    <Compile Remove="Migrations\20200916002032_DataSeed.Designer.cs" />
+    <Compile Remove="Migrations\20200916003318_SeedPlz.cs" />
+    <Compile Remove="Migrations\20200916003318_SeedPlz.Designer.cs" />
+    <Compile Remove="Migrations\20200916003425_SeedPlz2.cs" />
+    <Compile Remove="Migrations\20200916003425_SeedPlz2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

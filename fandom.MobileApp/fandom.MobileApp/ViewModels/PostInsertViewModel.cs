@@ -62,27 +62,34 @@ namespace fandom.MobileApp.ViewModels
 
         public async Task InsertPost()
         {
-            var request = new PostInsertRequest 
-            { 
-                Category = selectedCategory, 
-                CreationDate = DateTime.Now, 
-                PostOwner = APIService.LoggedUser, 
-                Summary = PostSummary, 
-                Title = PostTitle,
-                Tags = new List<MTag>()
-            };
-
-            foreach(var item in Tags)
+            try
             {
-                if (item.isChecked)
+
+                var request = new PostInsertRequest
                 {
-                    request.Tags.Add(item);
+                    Category = selectedCategory,
+                    CreationDate = DateTime.Now,
+                    PostOwner = APIService.LoggedUser,
+                    Summary = PostSummary,
+                    Title = PostTitle,
+                    Tags = new List<MTag>()
+                };
+
+                foreach (var item in Tags)
+                {
+                    if (item.isChecked)
+                    {
+                        request.Tags.Add(item);
+                    }
                 }
+
+                await _postApiService.Insert<MPost>(request);
+                await Application.Current.MainPage.DisplayAlert("Post", "Created", "Ok");
             }
-
-            await _postApiService.Insert<MPost>(request);
-            await Application.Current.MainPage.DisplayAlert("Post", "Created", "Ok");
-
+            catch
+            {
+               await Application.Current.MainPage.DisplayAlert("Error", "Fill all info", "Ok");
+            }
 
         }
 

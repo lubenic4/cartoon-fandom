@@ -18,9 +18,12 @@ namespace fandom.MobileApp.ViewModels
     {
         private readonly APIService _apiService = new APIService("User");
         private readonly APIService _episodeApiService = new APIService("Episode");
+        private readonly APIService _familyApiService = new APIService("Family");
 
         public MCharacter Character { get; set; }
         public ObservableCollection<MEpisode> episodesCharacterAppearedOn { get; set; } = new ObservableCollection<MEpisode>();
+        public ObservableCollection<MCharacter> characterRelatives { get; set; } = new ObservableCollection<MCharacter>();
+
 
         public bool hasUserCharacterRelation { get; set; }
 
@@ -34,7 +37,18 @@ namespace fandom.MobileApp.ViewModels
                 OnPropertyChanged(nameof(ButtonPreferenceText));
             }
         }
-       
+
+        private string _familyString { get; set; }
+        public string familyString
+        {
+            get { return _familyString; }
+            set
+            {
+                _familyString = value;
+                OnPropertyChanged(nameof(familyString));
+            }
+        }
+
 
         public CharacterDetailsViewModel()
         {
@@ -64,14 +78,25 @@ namespace fandom.MobileApp.ViewModels
 
         public async Task LoadCharacterEpisode()
         {
+            episodesCharacterAppearedOn.Clear();
+            characterRelatives.Clear();
+
             var request = new EpisodesSeasonRequest { CharacterId = Character.Id };
             var episodes = await _episodeApiService.Get<List<MEpisode>>(request);
             if (episodes.Count > 0)
             {
                 foreach (var episode in episodes)
                 {
+                    if(episode.Season!=null)
                     episodesCharacterAppearedOn.Add(episode);
                 }
+            }
+
+            var family = await _familyApiService.GetById<MFamily>(Character.FamilyId);
+            familyString = family.Name;
+            foreach(var item in family.Members)
+            {
+                characterRelatives.Add(item);
             }
         }
 

@@ -15,5 +15,8 @@ namespace fandom.WebAPI.Database
 
         public int? EpisodeId { get; set; }
         public Episode Episode { get; set; }
+
+        public int? FamilyId { get; set; }
+        public Family Family { get; set; }
     }
 }

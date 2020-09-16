@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using fandom.WebAPI.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -8,35 +9,13 @@ using System.Threading.Tasks;
 
 namespace fandom.WebAPI.Database
 {
-    public class AppCtx : DbContext
+    public partial class AppCtx : DbContext
     {
 
         public AppCtx(DbContextOptions<AppCtx> options) : base(options) {
 
 
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserRole>().HasKey(k => new { k.UserId, k.RoleId });
-            modelBuilder.Entity<UserEpisode>().HasKey(k => new { k.UserId, k.EpisodeId });
-            modelBuilder.Entity<UserCharacter>().HasKey(k => new { k.UserId, k.CharacterId });
-            modelBuilder.Entity<PostTag>().HasKey(k => new { k.PostId, k.TagId });
-            modelBuilder.Entity<UserSeason>().HasKey(k => new { k.UserId, k.SeasonId });
-
-            modelBuilder.Entity<EpisodeCharacter>()
-                    .HasKey(ec => new { ec.EpisodeId, ec.CharacterId });
-            modelBuilder.Entity<EpisodeCharacter>()
-                .HasOne(ec => ec.Episode)
-                .WithMany(e => e.EpisodesCharacters)
-                .HasForeignKey(ec => ec.EpisodeId);
-            modelBuilder.Entity<EpisodeCharacter>()
-                .HasOne(ec => ec.Character)
-                .WithMany(c => c.EpisodesCharacters)
-                .HasForeignKey(ec => ec.CharacterId);
-
-        }
-
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Character> Characters { get; set; }
@@ -54,7 +33,31 @@ namespace fandom.WebAPI.Database
         public DbSet<UserCharacter> UserCharacters { get; set; }
         public DbSet<UserEpisode> UserEpisodes { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<UserSeason> UserSeasons { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserRole>().HasKey(k => new { k.UserId, k.RoleId });
+            modelBuilder.Entity<UserEpisode>().HasKey(k => new { k.UserId, k.EpisodeId });
+            modelBuilder.Entity<UserCharacter>().HasKey(k => new { k.UserId, k.CharacterId });
+            modelBuilder.Entity<PostTag>().HasKey(k => new { k.PostId, k.TagId });
+
+            modelBuilder.Entity<EpisodeCharacter>()
+                    .HasKey(ec => new { ec.EpisodeId, ec.CharacterId });
+            modelBuilder.Entity<EpisodeCharacter>()
+                .HasOne(ec => ec.Episode)
+                .WithMany(e => e.EpisodesCharacters)
+                .HasForeignKey(ec => ec.EpisodeId);
+            modelBuilder.Entity<EpisodeCharacter>()
+                .HasOne(ec => ec.Character)
+                .WithMany(c => c.EpisodesCharacters)
+                .HasForeignKey(ec => ec.CharacterId);
+
+            OnModelCreatingPartial(modelBuilder);
+
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
 
     }
 

@@ -15,9 +15,9 @@
 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <Entry Text="{Binding PostTitle}"/>
-            <Editor FontSize="Small" HeightRequest="150"  Text="{Binding PostSummary}"/>
-            <Picker  ItemsSource="{Binding Categories}" SelectedItem="{Binding selectedCategory}" ItemDisplayBinding="{Binding Title}" />
+            <Entry Placeholder="Post title" Text="{Binding PostTitle}"/>
+            <Editor Placeholder="Post summary" FontSize="Small" HeightRequest="150"  Text="{Binding PostSummary}"/>
+            <Picker Title="Pick category" ItemsSource="{Binding Categories}" SelectedItem="{Binding selectedCategory}" ItemDisplayBinding="{Binding Title}" />
             <ListView
             x:Name="dsfdf"
             HasUnevenRows="True"

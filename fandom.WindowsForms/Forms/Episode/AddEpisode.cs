@@ -57,14 +57,21 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private async Task InitializeCharacters()
         {
-            var characters = await _characterApiService.Get<List<MCharacter>>();
-
-            foreach (var item in characters)
+            try
             {
-                ListViewItem itemm = new ListViewItem(item.Id.ToString());
-                itemm.SubItems.Add($"{item.FirstName} {item.LastName}");
+                var characters = await _characterApiService.Get<List<MCharacter>>();
 
-                this.listView1.Items.Add(itemm);
+                foreach (var item in characters)
+                {
+                    ListViewItem itemm = new ListViewItem(item.Id.ToString());
+                    itemm.SubItems.Add($"{item.FirstName} {item.LastName}");
+
+                    this.listView1.Items.Add(itemm);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
 
         }
@@ -91,23 +98,31 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private async Task InsertEpisode()
         {
-            var selectedCharacters = this.listView1.SelectedItems;
-            var characters = new List<MCharacter>();
-
-            foreach (ListViewItem item in selectedCharacters)
+            try
             {
-                int id = Int32.Parse(item.Text);
-                var character = await _characterApiService.GetById<MCharacter>(id);
-                characters.Add(character);
 
+                var selectedCharacters = this.listView1.SelectedItems;
+                var characters = new List<MCharacter>();
+
+                foreach (ListViewItem item in selectedCharacters)
+                {
+                    int id = Int32.Parse(item.Text);
+                    var character = await _characterApiService.GetById<MCharacter>(id);
+                    characters.Add(character);
+
+                }
+
+                _request.MediaFile.Path = videoUrlTextBox.Text;
+                _request.MainCharacters = characters;
+                _request.Title = textBox1.Text;
+                _request.Summary = textBox2.Text;
+                _request.AirDate = dateTimePicker1.Value;
+                await _episodeApiService.Insert<MEpisode>(_request);
             }
-
-            _request.MediaFile.Path = videoUrlTextBox.Text;
-            _request.MainCharacters = characters;
-            _request.Title = textBox1.Text;
-            _request.Summary = textBox2.Text;
-            _request.AirDate = dateTimePicker1.Value;
-            await _episodeApiService.Insert<MEpisode>(_request);
+            catch
+            {
+                MessageBox.Show("Error insert");
+            }
         } 
     }
 }

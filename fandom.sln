@@ -17,6 +17,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fandom.MobileApp.Android", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fandom.MobileApp", "fandom.MobileApp\fandom.MobileApp\fandom.MobileApp.csproj", "{933CCBF6-4FC8-40B7-8A3C-3FEFA499AED6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{AAA0BF96-D236-44D5-8B44-3016BA0EB13B}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\b4kmrzlfy1c31.png = Assets\b4kmrzlfy1c31.png
+		Assets\Eric-cartman.png = Assets\Eric-cartman.png
+		..\..\..\Desktop\images (1).jpg = ..\..\..\Desktop\images (1).jpg
+		..\..\..\Desktop\images.jpg = ..\..\..\Desktop\images.jpg
+		Assets\KennyMcCormick.png = Assets\KennyMcCormick.png
+		Assets\Kyle-broflovski.png = Assets\Kyle-broflovski.png
+		Assets\Stan-marsh-0.png = Assets\Stan-marsh-0.png
+		Assets\thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg = Assets\thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg
+		Assets\VideoURLs.txt = Assets\VideoURLs.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

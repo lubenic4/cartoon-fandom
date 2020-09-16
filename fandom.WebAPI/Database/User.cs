@@ -27,7 +27,6 @@ namespace fandom.WebAPI.Database
 
         public ICollection<UserCharacter> UsersCharacters { get; set; }
 
-        public ICollection<UserSeason> UserSeasons { get; set; }
 
     }
 }

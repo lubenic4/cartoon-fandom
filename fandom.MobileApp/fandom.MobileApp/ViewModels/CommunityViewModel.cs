@@ -28,8 +28,8 @@ namespace fandom.MobileApp.ViewModels
 
         public async Task LoadPosts()
         {
-           var posts = await _postApiService.Get<IEnumerable<MPost>>();
             AllPosts.Clear();
+            var posts = await _postApiService.Get<IEnumerable<MPost>>();
             foreach (var item in posts)
             {
                 AllPosts.Add(item);

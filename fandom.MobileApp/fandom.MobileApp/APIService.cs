@@ -29,33 +29,95 @@ namespace fandom.MobileApp
         {
             var url = $"{_apiUrl}/{_route}";
 
-            if (search != null)
+            try
             {
-                url += "?";
-                url += await search.ToQueryString();
-            }
 
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+                if (search != null)
+                {
+                    url += "?";
+                    url += await search.ToQueryString();
+                }
+
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Greška", "Niste autentificirani", "OK");
+                }
+                return default;
+            }
         }
 
 
         public async Task<T> GetById<T>(object id)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            try
+            {
+
+
+                var url = $"{_apiUrl}/{_route}/{id}";
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                await Application.Current.MainPage.DisplayAlert("Greška", stringBuilder.ToString(), "OK");
+                return default(T);
+            }
         }
 
         public async Task<T> Insert<T>(object request)
         {
-            var url = $"{_apiUrl}/{_route}";
+            try
+            {
+                var url = $"{_apiUrl}/{_route}";
 
-            return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                await Application.Current.MainPage.DisplayAlert("Greška", stringBuilder.ToString(), "OK");
+                return default(T);
+            }
         }
 
         public async Task<T> Delete<T>(object id)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+                return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                await Application.Current.MainPage.DisplayAlert("Greška", stringBuilder.ToString(), "OK");
+                return default(T);
+            }
         }
 
         public async Task<T> Update<T>(int id, object request)

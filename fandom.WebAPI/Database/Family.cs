@@ -12,7 +12,7 @@ namespace fandom.WebAPI.Database
 
         public string Name { get; set; }
 
-        public byte[] Thumbnail { get; set; }
+        public MediaFile MediaFile { get; set; }
 
         public ICollection<Character> Members { get; set; }
     }

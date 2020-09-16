@@ -2,6 +2,9 @@
 using Flurl.Http;
 using fandom.Model;
 using Flurl;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Text;
 
 namespace fandom.WindowsForms
 {
@@ -19,35 +22,98 @@ namespace fandom.WindowsForms
 
         public async Task<T> Get<T>(object search = null)
         {
-            var url = $"{Properties.Settings.Default.API}/{_route}";
-
-            if (search != null)
+            try
             {
-                url += "?";
-                url += await search.ToQueryString();
-            }
+                var url = $"{Properties.Settings.Default.API}/{_route}";
 
-            return await url.WithBasicAuth(Username,Password).GetJsonAsync<T>();
+                if (search != null)
+                {
+                    url += "?";
+                    url += await search.ToQueryString();
+                }
+
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default;
+            }
         }
 
 
         public async Task<T> GetById<T>(object id)
         {
-            var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            try
+            {
+                var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
 
         public async Task<T> Insert<T>(object request)
         {
-            var url = $"{Properties.Settings.Default.API}/{_route}";
+            try
+            {
+                var url = $"{Properties.Settings.Default.API}/{_route}";
 
-            return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
 
         public async Task<T> Delete<T>(object id)
         {
-            var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
-            return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
+            try
+            {
+                var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+                return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
+            }catch(FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
     }
 }

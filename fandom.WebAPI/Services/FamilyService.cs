@@ -23,13 +23,14 @@ namespace fandom.WebAPI.Services
 
         public List<MFamily> GetAll()
         {
-            var family = _ctx.Families.Include(x => x.Members).ToList();
+            var family = _ctx.Families.Include(x => x.MediaFile).Include(x => x.Members).ToList();
             return _mapper.Map<List<MFamily>>(family);
         }
 
         public MFamily GetById(int id)
         {
-            var family = _ctx.Families.Include(x=> x.Members).Include("Members.CharacterMediaFile").Where(x => x.Id == id).FirstOrDefault();
+            var family = _ctx.Families.Include(x => x.Members).Include("Members.CharacterMediaFile").Include(x => x.MediaFile).Where(x => x.Id == id).FirstOrDefault();
+
             return _mapper.Map<MFamily>(family);
         }
 

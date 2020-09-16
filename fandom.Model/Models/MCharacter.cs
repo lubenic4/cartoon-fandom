@@ -21,5 +21,8 @@ namespace fandom.Model
 
         public MCharacterMediaFile CharacterMediaFile { get; set; }
 
+        public int FamilyId { get; set; }
+
+
     }
 }

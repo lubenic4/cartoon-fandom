@@ -27,48 +27,62 @@ namespace fandom.WindowsForms.Forms.User
 
         private async void AddUser_Load(object sender, EventArgs e)
         {
-            var roles = await _roleApiService.Get<List<MRole>>();
-
-            foreach(var item in roles)
+            try
             {
-                ListViewItem lvItem = new ListViewItem(item.Name.ToString());
-                lvItem.SubItems.Add(item.Id.ToString());
+                var roles = await _roleApiService.Get<List<MRole>>();
 
-                this.listView1.Items.Add(lvItem);
+                foreach (var item in roles)
+                {
+                    ListViewItem lvItem = new ListViewItem(item.Name.ToString());
+                    lvItem.SubItems.Add(item.Id.ToString());
+
+                    this.listView1.Items.Add(lvItem);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
 
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var items = this.listView1.CheckedItems;
-
-            if (items.Count != 0)
+            try
             {
-                _request.RolesId = new List<int>();
+                var items = this.listView1.CheckedItems;
 
-                foreach(ListViewItem item in items)
+                if (items.Count != 0)
                 {
-                    var stringz = item.SubItems[1].Text.ToString();
-                    int id = Int32.Parse(stringz);
+                    _request.RolesId = new List<int>();
 
-                    _request.RolesId.Add(id);
+                    foreach (ListViewItem item in items)
+                    {
+                        var stringz = item.SubItems[1].Text.ToString();
+                        int id = Int32.Parse(stringz);
+
+                        _request.RolesId.Add(id);
+                    }
+                }
+
+                _request.Username = this.textBox1.Text;
+                _request.Email = this.textBox2.Text;
+                _request.Password = this.textBox3.Text;
+                _request.PasswordConfirmation = this.textBox4.Text;
+
+                if (_request.Password == _request.PasswordConfirmation)
+                {
+                    await _userApiService.Insert<MUser>(_request);
+                    await UserForm.GetForm.PopulateListView();
+                }
+                else
+                {
+                    MessageBox.Show("Password doesn't match");
                 }
             }
-
-            _request.Username = this.textBox1.Text;
-            _request.Email = this.textBox2.Text;
-            _request.Password = this.textBox3.Text;
-            _request.PasswordConfirmation = this.textBox4.Text;
-
-            if(_request.Password == _request.PasswordConfirmation)
+            catch
             {
-                await _userApiService.Insert<MUser>(_request);
-                await UserForm.GetForm.PopulateListView();
-            }
-            else
-            {
-                MessageBox.Show("Password doesn't match");
+                MessageBox.Show("Error");
             }
         }
     }

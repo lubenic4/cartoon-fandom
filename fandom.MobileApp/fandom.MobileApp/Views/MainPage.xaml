@@ -93,7 +93,7 @@
                     <DataTemplate>
                             <StackLayout Padding="5" Orientation="Vertical">
                                 <Image Aspect="AspectFill" WidthRequest="180" HeightRequest="80" Source="{Binding MediaFile.Thumbnail, Converter={StaticResource imgConv}}"/>
-                                <Label  HorizontalOptions="Center" FontAttributes="Bold" Text="{Binding Title}"/>
+                                <Label  HorizontalOptions="Center" Text="{Binding Title}"/>
                             </StackLayout>
                         </DataTemplate>
                 </CollectionView.ItemTemplate>

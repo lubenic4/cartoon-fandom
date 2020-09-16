@@ -55,6 +55,10 @@ namespace fandom.WindowsForms.Forms.Character
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            
             var family = await _familyApiService.GetById<MFamily>(int.Parse(this.comboBox1.SelectedValue.ToString()));
             _request.FirstName = this.textBox1.Text;
             _request.LastName = this.textBox2.Text;
@@ -64,14 +68,26 @@ namespace fandom.WindowsForms.Forms.Character
             _request.Family = family;
 
             await _characterApiService.Insert<MCharacter>(_request);
+            }
+            catch
+            {
+                MessageBox.Show("Error insert");
+            }
         }
 
         private async void CreateCharacter_Load(object sender, EventArgs e)
         {
-            var data = await _familyApiService.Get<List<MFamily>>(null);
-            this.comboBox1.ValueMember = "Id";
-            this.comboBox1.DisplayMember = "Name";
-            this.comboBox1.DataSource = data;
+            try
+            {
+                var data = await _familyApiService.Get<List<MFamily>>(null);
+                this.comboBox1.ValueMember = "Id";
+                this.comboBox1.DisplayMember = "Name";
+                this.comboBox1.DataSource = data;
+            }
+            catch
+            {
+                MessageBox.Show("Error family load");
+            }
         }
     }
 }

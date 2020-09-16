@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using fandom.Model;
+using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.Model.Requests.Character;
 using fandom.WebAPI.Database;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -25,15 +27,41 @@ namespace fandom.WebAPI.Services
 
         public List<MCharacter> Get()
         {
-            var characters = _ctx.Characters.Include(x => x.CharacterMediaFile).ToList();
+            var characters = _ctx.Characters.Select(x => new MCharacter
+            {
+                Biography = x.Biography,
+                BirthDate = x.BirthDate,
+                CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(x.CharacterMediaFile),
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Id = x.Id,
+                Occupation = x.Occupation,
+                FamilyId = (int)x.FamilyId
+                
+            }).ToList();
 
-            return _mapper.Map<List<MCharacter>>(characters);
+            return characters;
         }
 
         public MCharacter GetById(int id)
         {
-            var character = _ctx.Characters.Include(x => x.CharacterMediaFile).Where(x => x.Id == id).SingleOrDefault();
-            return _mapper.Map<MCharacter>(character);
+
+            var character = _ctx.Characters.Where(x => x.Id == id).Select(x => new MCharacter
+            {
+                Biography = x.Biography,
+                BirthDate = x.BirthDate,
+                CharacterMediaFile = _mapper.Map<MCharacterMediaFile>(x.CharacterMediaFile),
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Id = x.Id,
+                Occupation = x.Occupation,
+                FamilyId = (int)x.FamilyId
+
+            }).SingleOrDefault();
+
+            var result = _mapper.Map<MCharacter>(character);
+            
+            return result;
         }
 
         public MCharacter Insert(CharacterInsert request)

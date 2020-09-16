@@ -68,8 +68,15 @@ namespace fandom.WindowsForms.Forms.Season
 
         private async void DetailsSeason_Activated(object sender, EventArgs e)
         {
-            var seasonById = await _apiService.GetById<MSeason>(sId);
-            BindData(seasonById);
+            try
+            {
+                var seasonById = await _apiService.GetById<MSeason>(sId);
+                BindData(seasonById);
+            }
+            catch
+            {
+                this.Close();
+            }
         }
     }
 }

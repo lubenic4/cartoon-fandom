@@ -19,7 +19,6 @@ namespace fandom.WebAPI.Database
 
         public ICollection<Episode> Episodes { get; set; }
 
-        public ICollection<UserSeason> UserSeasons { get; set; }
 
 
     }

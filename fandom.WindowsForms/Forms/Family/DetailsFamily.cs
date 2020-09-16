@@ -31,7 +31,7 @@ namespace fandom.WindowsForms.Forms.Family
 
         private void BindData(MFamily family)
         {
-            this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(family.Thumbnail);
+            this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(family.MediaFile.Thumbnail);
             this.label1.Text = family.Name;
 
             foreach (var item in family.Members)

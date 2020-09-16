@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fandom.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,6 @@ namespace fandom.Model.Requests
     {
         public string Name { get; set; }
 
-        public byte[] Thumbnail { get; set; }
+        public MMediaFile MediaFile { get; set; }
     }
 }

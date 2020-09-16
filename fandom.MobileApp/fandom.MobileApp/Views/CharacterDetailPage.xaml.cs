@@ -1,5 +1,6 @@
 ﻿using fandom.MobileApp.ViewModels;
 using fandom.Model;
+using fandom.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,5 +34,19 @@ namespace fandom.MobileApp.Views
 
         }
 
+
+        private async void ListView_ItemTapped_ch(object sender, ItemTappedEventArgs e)
+        {
+            var item = e.Item as MCharacter;
+            await Navigation.PushAsync(new CharacterDetailPage(item));
+        }
+
+        
+
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = e.Item as MEpisode;
+            await Navigation.PushAsync(new EpisodeDetailsPage(item));
+        }
     }
 }

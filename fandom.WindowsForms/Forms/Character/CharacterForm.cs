@@ -82,7 +82,7 @@ namespace fandom.WindowsForms.Forms
                 var family = new CharacterFamilyControl
                 {
                     Id = item.Id.ToString(),
-                    Icon = ImageWorker.ConvertFromByteArray(item.Thumbnail),
+                    Icon = ImageWorker.ConvertFromByteArray(item.MediaFile.Thumbnail),
                     CharacterLabel = $"{item.Name}",
                     isCharacter = false
                 };
