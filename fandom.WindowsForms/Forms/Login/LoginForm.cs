@@ -1,4 +1,6 @@
-﻿using System;
+﻿using fandom.Model;
+using fandom.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,7 @@ namespace fandom.WindowsForms.Forms.Login
     public partial class LoginForm : Form
     {
         APIService _service = new APIService("User");
+
         public LoginForm()
         {
             InitializeComponent();
@@ -25,16 +28,17 @@ namespace fandom.WindowsForms.Forms.Login
                 APIService.Username = textBox1.Text;
                 APIService.Password = textBox2.Text;
 
-                await _service.Get<dynamic>();
+               await _service.Get<List<MUser>>();
+
 
                 var form = new HomeMDI();
                 form.Show();
 
                 this.Hide();
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message, "Autentifikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong username or password", "Autentification", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

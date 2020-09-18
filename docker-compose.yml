@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  fandom-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - fandomnet
+
+    
+  fandom-api:
+    restart: unless-stopped
+    build: .
+    environment:
+      - ConnectionStrings:SqlString=Server=fandom-sql,1433;Database=fandomD;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+    ports:
+      - 5000:80
+    networks:
+      - fandomnet
+    links:
+      - fandom-sql
+    depends_on:
+      - fandom-sql
+      
+networks:
+  fandomnet:
+    driver: bridge

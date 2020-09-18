@@ -3,6 +3,7 @@ using fandom.Model;
 using fandom.Model.Models;
 using fandom.Model.Requests;
 using fandom.WebAPI.Database;
+using fandom.WebAPI.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,26 +25,6 @@ namespace fandom.WebAPI.Services
             _mapper = mapper;
         }
 
-        public static string GenerateSalt()
-        {
-            var buf = new byte[16];
-            (new RNGCryptoServiceProvider()).GetBytes(buf);
-            return Convert.ToBase64String(buf);
-        }
-
-        public static string GenerateHash(string salt, string password)
-        {
-            byte[] src = Convert.FromBase64String(salt);
-            byte[] bytes = Encoding.Unicode.GetBytes(password);
-            byte[] dst = new byte[src.Length + bytes.Length];
-
-            System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-            System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
-
-            HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
-            byte[] inArray = algorithm.ComputeHash(dst);
-            return Convert.ToBase64String(inArray);
-        }
 
         public MUser Authenticiraj(string username, string pass)
         {
@@ -51,7 +32,7 @@ namespace fandom.WebAPI.Services
 
             if (user != null)
             {
-                var hashedPass = GenerateHash(user.PasswordSalt, pass);
+                var hashedPass = HashHelper.GenerateHash(user.PasswordSalt, pass);
 
                 if (hashedPass == user.PasswordHash)
                 {
@@ -65,8 +46,6 @@ namespace fandom.WebAPI.Services
                     };
 
                     return muser;
-
-                  //  return _mapper.Map<MUser>(user);
                 }
             }
 
@@ -114,8 +93,8 @@ namespace fandom.WebAPI.Services
         {
             var user = _mapper.Map<User>(request);
 
-            user.PasswordSalt = GenerateSalt();
-            user.PasswordHash = GenerateHash(user.PasswordSalt, request.Password);
+            user.PasswordSalt = HashHelper.GenerateSalt();
+            user.PasswordHash = HashHelper.GenerateHash(user.PasswordSalt, request.Password);
 
             _ctx.Users.Add(user);
 

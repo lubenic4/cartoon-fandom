@@ -36,7 +36,7 @@ namespace fandom.WebAPI.Database
                          Id = 2,
                          Username = "mobile",
                          Email = "mobile@gmail.com",
-                         PasswordSalt = Salt[0],
+                         PasswordSalt = Salt[1],
                          PasswordHash = HashHelper.GenerateHash(Salt[1], "test")
 
                      },
@@ -45,7 +45,7 @@ namespace fandom.WebAPI.Database
                           Id = 3,
                           Username = "mobile1",
                           Email = "desktop@gmail.com",
-                          PasswordSalt = Salt[0],
+                          PasswordSalt = Salt[2],
                           PasswordHash = HashHelper.GenerateHash(Salt[2], "test")
 
                       },
@@ -54,7 +54,7 @@ namespace fandom.WebAPI.Database
                            Id = 4,
                            Username = "mobile2",
                            Email = "desktop@gmail.com",
-                           PasswordSalt = Salt[0],
+                           PasswordSalt = Salt[3],
                            PasswordHash = HashHelper.GenerateHash(Salt[3], "test")
 
                        },
@@ -63,7 +63,7 @@ namespace fandom.WebAPI.Database
                             Id = 5,
                             Username = "mobile3",
                             Email = "desktop@gmail.com",
-                            PasswordSalt = Salt[0],
+                            PasswordSalt = Salt[4],
                             PasswordHash = HashHelper.GenerateHash(Salt[4], "test")
 
                         }
@@ -96,42 +96,6 @@ namespace fandom.WebAPI.Database
                 );
 
 
-            modelBuilder.Entity<MediaFile>()
-               .HasData
-               (
-                    new MediaFile { MediaFileId = 1, EpisodeId = 1, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 2, EpisodeId = 2, Thumbnail = FileHelper.ReadFile("../Assets/thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg") },
-                    new MediaFile { MediaFileId = 3, EpisodeId = 3, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 4, EpisodeId = 4, Thumbnail = FileHelper.ReadFile("../Assets/thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg") },
-                    new MediaFile { MediaFileId = 5, EpisodeId = 5, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 6, EpisodeId = 6, Thumbnail = FileHelper.ReadFile("../Assets/thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg") },
-                    new MediaFile { MediaFileId = 7, EpisodeId = 7, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 8, EpisodeId = 8, Thumbnail = FileHelper.ReadFile("../Assets/thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg") },
-                    new MediaFile { MediaFileId = 9, EpisodeId = 9, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 13, FamilyId = 1, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") },
-                    new MediaFile { MediaFileId = 14, FamilyId = 2, Thumbnail = FileHelper.ReadFile("../Assets/thumbnail-effect-background-yellow-115638807218qcoutxsfd.jpg") },
-                    new MediaFile { MediaFileId = 15, FamilyId = 3, Thumbnail = FileHelper.ReadFile("../Assets/b4kmrzlfy1c31.png") }
-
-               );
-
-            modelBuilder.Entity<CharacterMediaFile>()
-               .HasData
-               (
-                    new CharacterMediaFile { Id = 1, CharacterId = 1, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 2, CharacterId = 2, Thumbnail = FileHelper.ReadFile("../Assets/KennyMcCormick.png") },
-                    new CharacterMediaFile { Id = 3, CharacterId = 3, Thumbnail = FileHelper.ReadFile("../Assets/Kyle-broflovski.png") },
-                    new CharacterMediaFile { Id = 4, CharacterId = 4, Thumbnail = FileHelper.ReadFile("../Assets/Stan-marsh-0.png") },
-                     new CharacterMediaFile { Id = 5, CharacterId = 5, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 6, CharacterId = 6, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 7, CharacterId = 7, Thumbnail = FileHelper.ReadFile("../Assets/Kyle-broflovski.png") },
-                     new CharacterMediaFile { Id = 8, CharacterId = 8, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 9, CharacterId = 9, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 10, CharacterId = 10, Thumbnail = FileHelper.ReadFile("../Assets/KennyMcCormick.png") },
-                     new CharacterMediaFile { Id = 11, CharacterId = 11, Thumbnail = FileHelper.ReadFile("../Assets/Eric-cartman.png") },
-                    new CharacterMediaFile { Id = 12, CharacterId = 12, Thumbnail = FileHelper.ReadFile("../Assets/KennyMcCormick.png") }
-
-
-               );
 
             modelBuilder.Entity<Character>()
                 .HasData
@@ -179,8 +143,47 @@ namespace fandom.WebAPI.Database
                     new Episode { Id = 6, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 6, Title = "Episode title 6", Viewcount = 63, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 3 },
                     new Episode { Id = 7, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 7, Title = "Episode title 7", Viewcount = 73, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 3 },
                     new Episode { Id = 8, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 8, Title = "Episode title 8", Viewcount = 83, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 4 },
-                    new Episode { Id = 9, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = null }
+                    new Episode { Id = 9, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 4 }
                 );
+
+
+
+            modelBuilder.Entity<MediaFile>()
+               .HasData
+               (
+                    new MediaFile { MediaFileId = 1, EpisodeId = 1, Thumbnail = FileHelper.ReadFile("Assets/thumbnail1.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    new MediaFile { MediaFileId = 2, EpisodeId = 2, Thumbnail = FileHelper.ReadFile("Assets/thumbnail2.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+                    new MediaFile { MediaFileId = 3, EpisodeId = 3, Thumbnail = FileHelper.ReadFile("Assets/thumbnail3.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+                    new MediaFile { MediaFileId = 4, EpisodeId = 4, Thumbnail = FileHelper.ReadFile("Assets/thumbnail1.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    new MediaFile { MediaFileId = 5, EpisodeId = 5, Thumbnail = FileHelper.ReadFile("Assets/thumbnail2.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" },
+                    new MediaFile { MediaFileId = 6, EpisodeId = 6, Thumbnail = FileHelper.ReadFile("Assets/thumbnail3.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    new MediaFile { MediaFileId = 7, EpisodeId = 7, Thumbnail = FileHelper.ReadFile("Assets/thumbnail1.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"},
+                    new MediaFile { MediaFileId = 8, EpisodeId = 8, Thumbnail = FileHelper.ReadFile("Assets/thumbnail2.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    new MediaFile { MediaFileId = 9, EpisodeId = 9, Thumbnail = FileHelper.ReadFile("Assets/thumbnail3.jpg"), Path = @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    new MediaFile { MediaFileId = 13, FamilyId = 1, Thumbnail = FileHelper.ReadFile("Assets/thumbnail1.jpg") },
+                    new MediaFile { MediaFileId = 14, FamilyId = 2, Thumbnail = FileHelper.ReadFile("Assets/thumbnail2.jpg") },
+                    new MediaFile { MediaFileId = 15, FamilyId = 3, Thumbnail = FileHelper.ReadFile("Assets/thumbnail3.jpg") }
+
+               );
+
+            modelBuilder.Entity<CharacterMediaFile>()
+               .HasData
+               (
+                    new CharacterMediaFile { Id = 1, CharacterId = 1, Thumbnail = FileHelper.ReadFile("Assets/eric.png") },
+                    new CharacterMediaFile { Id = 2, CharacterId = 2, Thumbnail = FileHelper.ReadFile("Assets/stan.png") },
+                    new CharacterMediaFile { Id = 3, CharacterId = 3, Thumbnail = FileHelper.ReadFile("Assets/kenny.png") },
+                    new CharacterMediaFile { Id = 4, CharacterId = 4, Thumbnail = FileHelper.ReadFile("Assets/kyle.png") },
+                     new CharacterMediaFile { Id = 5, CharacterId = 5, Thumbnail = FileHelper.ReadFile("Assets/eric.png") },
+                    new CharacterMediaFile { Id = 6, CharacterId = 6, Thumbnail = FileHelper.ReadFile("Assets/stan.png") },
+                    new CharacterMediaFile { Id = 7, CharacterId = 7, Thumbnail = FileHelper.ReadFile("Assets/kenny.png") },
+                     new CharacterMediaFile { Id = 8, CharacterId = 8, Thumbnail = FileHelper.ReadFile("Assets/kyle.png") },
+                    new CharacterMediaFile { Id = 9, CharacterId = 9, Thumbnail = FileHelper.ReadFile("Assets/eric.png") },
+                    new CharacterMediaFile { Id = 10, CharacterId = 10, Thumbnail = FileHelper.ReadFile("Assets/stan.png") },
+                     new CharacterMediaFile { Id = 11, CharacterId = 11, Thumbnail = FileHelper.ReadFile("Assets/kenny.png") },
+                    new CharacterMediaFile { Id = 12, CharacterId = 12, Thumbnail = FileHelper.ReadFile("Assets/kyle.png") }
+
+
+               );
             modelBuilder.Entity<EpisodeCharacter>()
                 .HasData
                 (
@@ -204,6 +207,7 @@ namespace fandom.WebAPI.Database
                     new EpisodeCharacter { CharacterId = 11, EpisodeId = 9 }
 
                 );
+
 
             modelBuilder.Entity<Tag>()
                 .HasData

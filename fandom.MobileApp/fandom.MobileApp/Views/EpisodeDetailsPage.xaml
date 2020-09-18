@@ -25,6 +25,7 @@
         <StackLayout Orientation="Vertical">
                 <MediaElement   VerticalOptions="FillAndExpand" Source="{Binding Episode.MediaFile.Path}"
                         ShowsPlaybackControls="True" />
+                <Label Text="Viewcount"/>
                 <Label Text="{Binding Episode.Viewcount}"/>
                 <Label  Padding="10,0,0,10" Text="{Binding Episode.Title}" FontSize="Small"/>
                 <ImageButton Source="Assets/heart2.png" HeightRequest="15"  WidthRequest="15"  Command="{Binding UpdateUserPreference}" />

@@ -25,15 +25,10 @@ namespace fandom.MobileApp.ViewModels
 
         public MainPageViewModel()
         {
-            SwitchToEpisode = new Command(() =>  PushEpisode());
         }
 
-        public ICommand SwitchToEpisode;
 
-        public void  PushEpisode()
-        {
-            Application.Current.MainPage.DisplayAlert("HA", "HU", "HE");
-        }
+      
 
         public async Task Init()
         {

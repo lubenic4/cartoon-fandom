@@ -22,7 +22,7 @@ namespace fandom.MobileApp
         }
 
 #if DEBUG
-        private string _apiUrl = $"http://localhost:44346/api";
+        private string _apiUrl = $"http://localhost:5000/api";
 #endif
 
         public async Task<T> Get<T>(object search = null)
