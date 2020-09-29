@@ -23,12 +23,9 @@ namespace fandom.MobileApp.ViewModels
         public ObservableCollection<MCharacter> FavouriteCharacters { get; set; } = new ObservableCollection<MCharacter>();
         public ObservableCollection<MEpisode> RecommendedEpisodes { get; set; } = new ObservableCollection<MEpisode>();
 
-        public MainPageViewModel()
-        {
-        }
+     
 
-
-      
+   
 
         public async Task Init()
         {

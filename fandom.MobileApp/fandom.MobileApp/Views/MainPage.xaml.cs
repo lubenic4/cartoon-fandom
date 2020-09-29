@@ -54,5 +54,17 @@ namespace fandom.MobileApp
             var item = e.Item as MEpisode;
             await Navigation.PushAsync(new EpisodeDetailsPage(item));
         }
+
+        async void collection1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.Count != 0)
+            {
+                var episode = e.CurrentSelection.FirstOrDefault() as MEpisode;
+                await Navigation.PushAsync(new EpisodeDetailsPage(episode));
+
+                ((CollectionView)sender).SelectedItem = null;
+            }
+            
+        }
     }
 }

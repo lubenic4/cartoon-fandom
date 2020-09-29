@@ -88,6 +88,8 @@
             <StackLayout  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
                 <Label FontAttributes="Bold" Text="Recommended episodes"/>
                 <CollectionView x:Name="collection1" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding RecommendedEpisodes}" 
+                              SelectionMode="Single"
+                              SelectionChanged="collection1_SelectionChanged"
                 ItemsLayout="HorizontalList">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
