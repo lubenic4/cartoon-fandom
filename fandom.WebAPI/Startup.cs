@@ -91,7 +91,7 @@ namespace fandom.WebAPI
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ITagService, TagService>();
 
-           
+
 
         }
 

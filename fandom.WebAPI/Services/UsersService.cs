@@ -81,8 +81,20 @@ namespace fandom.WebAPI.Services
                      SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
                      Season = _mapper.Map<MSeason>(y.Episode.Season),
                      Summary = y.Episode.Summary,
-                     Viewcount = y.Episode.Viewcount,
+                     Viewcount = y.Episode.Viewcount
                  }).ToList(),
+                WatchedEpisodes = x.UserEpisodeActivities.Where(y => y.UserId==x.Id).Select(y => new MEpisode
+                {
+                    Id = y.EpisodeId,
+                    MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
+                    Title = y.Episode.Title,
+                    AirDate = (DateTime)y.Episode.AirDate,
+                    OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
+                    SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                    Season = _mapper.Map<MSeason>(y.Episode.Season),
+                    Summary = y.Episode.Summary,
+                    Viewcount = y.Episode.Viewcount
+                }).ToList(),
                 Roles = x.UsersRoles.Where(y => y.UserId==x.Id).Select(y => new MRole { Id = y.Role.Id, Name = y.Role.Name }).ToList()
             }).ToList();
 

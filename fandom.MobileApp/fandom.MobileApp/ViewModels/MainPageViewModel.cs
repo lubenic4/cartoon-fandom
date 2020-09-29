@@ -35,10 +35,13 @@ namespace fandom.MobileApp.ViewModels
             RecommendedEpisodes.Clear();
             FavouriteCharacters.Clear();
             FavouriteEpisodes.Clear();
-            var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>();
+
+
             IEnumerable<MCharacter> listCh = APIService.LoggedUser.FavouriteCharacters;
             IEnumerable<MEpisode> listEp = APIService.LoggedUser.FavouriteEpisodes;
-            List<MEpisode> rEpList = rEp.OrderByDescending(x => x.Viewcount).ToList();
+
+            var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>();
+            var RecommendedEpisodesList = rEp.Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id).Contains(x.Id)).OrderByDescending(x => x.Viewcount).ToList();
 
             foreach (var item in listCh)
             {
@@ -50,7 +53,7 @@ namespace fandom.MobileApp.ViewModels
                 FavouriteEpisodes.Add(item);
             }
 
-            foreach(var item in rEpList.Take(3))
+            foreach(var item in RecommendedEpisodesList.Take(5))
             {
                 if(item.Season != null)
                 RecommendedEpisodes.Add(item);

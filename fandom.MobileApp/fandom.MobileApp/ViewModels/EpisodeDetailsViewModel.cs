@@ -60,7 +60,11 @@ namespace fandom.MobileApp.ViewModels
         public async Task UpdateViewCount()
         {
             var request = new EpisodeUserActivityRequest { EpisodeId = Episode.Id, UserId = APIService.LoggedUser.Id };
-           var episode = await _episodeApiService.Update<MEpisode>(Episode.Id, request);
+            var episode = await _episodeApiService.Update<MEpisode>(Episode.Id, request);
+            if(!APIService.LoggedUser.WatchedEpisodes.Select(x => x.Id).Contains(Episode.Id))
+            {
+                APIService.LoggedUser.WatchedEpisodes.Add(episode);
+            }
         }
 
         public void CheckRelation()
@@ -70,14 +74,12 @@ namespace fandom.MobileApp.ViewModels
             {
                 this.ButtonPreferenceText = "Add to favourites";
                 hasUserEpisodeRelation = false;
-
             }
             else
             {
                 this.ButtonPreferenceText = "Remove from favourites";
                 hasUserEpisodeRelation = true;
             }
-
         }
     }
 }

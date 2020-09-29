@@ -17,5 +17,7 @@ namespace fandom.Model
         public List<MCharacter> FavouriteCharacters { get; set; }
 
         public List<MEpisode> FavouriteEpisodes { get; set; }
+
+        public List<MEpisode> WatchedEpisodes { get; set; }
     }
 }
