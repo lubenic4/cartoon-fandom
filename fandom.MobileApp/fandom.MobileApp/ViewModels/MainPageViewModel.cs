@@ -38,7 +38,13 @@ namespace fandom.MobileApp.ViewModels
             IEnumerable<MEpisode> listEp = APIService.LoggedUser.FavouriteEpisodes;
 
             var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>();
-            var RecommendedEpisodesList = rEp.Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id).Contains(x.Id)).OrderByDescending(x => x.Viewcount).ToList();
+            List<MEpisode> RecommendedEpisodesList = null;
+            if (APIService.LoggedUser.WatchedEpisodes.Count > 0)
+             RecommendedEpisodesList = rEp.Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id).Contains(x.Id)).OrderByDescending(x => x.Viewcount).ToList();
+            else
+            {
+                RecommendedEpisodesList = rEp.ToList();
+            }
 
             foreach (var item in listCh)
             {
