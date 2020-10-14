@@ -8,4 +8,5 @@ Password : **test**
 Username : **mobile**
 Password : **test**
 
-Video URLs za testiranje se nalaze na sljedecoj putanji : **fandom.WebAPI / Assets / VideoURLs.txt**
+## Napomene
+Video URL-ovi za testiranje se nalaze na sljedecoj putanji : **fandom.WebAPI / Assets / VideoURLs.txt**
