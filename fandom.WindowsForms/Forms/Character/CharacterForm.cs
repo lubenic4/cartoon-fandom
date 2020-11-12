@@ -38,6 +38,16 @@ namespace fandom.WindowsForms.Forms
             }
         }
 
+        public Label chLabel
+        {
+            get { return this.label1; }
+        }
+
+        public Label faLabel
+        {
+            get { return this.label2; }
+        }
+
         private async void CharacterForm_Load(object sender, EventArgs e)
         {
             var data = await _characterApiService.Get<List<MCharacter>>(null);
@@ -74,6 +84,7 @@ namespace fandom.WindowsForms.Forms
 
         private async void button4_Click(object sender, EventArgs e)
         {
+            label2.Visible = false;
             this.flowLayoutPanel1.Controls.Clear();
             var data = await _familyApiService.Get<List<MFamily>>(null);
 
@@ -94,6 +105,7 @@ namespace fandom.WindowsForms.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            label1.Visible = false;
             this.flowLayoutPanel1.Controls.Clear();
 
             var data = await _characterApiService.Get<List<MCharacter>>(null);
