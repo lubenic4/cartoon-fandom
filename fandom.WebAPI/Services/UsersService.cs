@@ -161,6 +161,7 @@ namespace fandom.WebAPI.Services
                 AirDate = (DateTime)y.Episode.AirDate,
                 OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
                 SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                Season = _mapper.Map<MSeason>(y.Episode.Season),
                 Summary = y.Episode.Summary,
                 Viewcount = y.Episode.Viewcount
             }).ToList();
@@ -177,6 +178,19 @@ namespace fandom.WebAPI.Services
                 Occupation = y.Character.Occupation,
                 FamilyId = (int)y.Character.FamilyId
 
+            }).ToList();
+
+            userToReturn.WatchedEpisodes = _ctx.UserEpisodeActivities.Where(y => y.UserId == id).Select(y => new MEpisode
+            {
+                Id = y.EpisodeId,
+                MediaFile = _mapper.Map<MMediaFile>(y.Episode.MediaFile),
+                Title = y.Episode.Title,
+                AirDate = (DateTime)y.Episode.AirDate,
+                OverallNumberOfEpisode = (int)y.Episode.OverallNumberOfEpisode,
+                SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
+                Season = _mapper.Map<MSeason>(y.Episode.Season),
+                Summary = y.Episode.Summary,
+                Viewcount = y.Episode.Viewcount
             }).ToList();
 
             if (request.NewFavouriteCharacter != null)
@@ -230,7 +244,7 @@ namespace fandom.WebAPI.Services
                         SeasonEpisodeNumber = request.NewFavouriteEpisode.SeasonEpisodeNumber,
                         Summary = request.NewFavouriteEpisode.Summary,
                         Viewcount = request.NewFavouriteEpisode.Viewcount
-                        });
+                    });
 
                 }
                 else
