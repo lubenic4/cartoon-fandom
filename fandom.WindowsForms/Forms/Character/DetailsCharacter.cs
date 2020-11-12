@@ -17,6 +17,28 @@ namespace fandom.WindowsForms.Forms.Character
         private readonly int _characterId;
         private readonly APIService _characterApiService = new APIService("Character");
 
+        private class ValueHolder
+        {
+            public Image initialImage { get; set; }
+            public string firstName { get; set; }
+            public string biography { get; set; }
+            public string lastName { get; set; }
+            public string birthDate { get; set; }
+            public string occupation { get; set; }
+
+            public ValueHolder(Image img, string first, string last, string birth, string occupation,string bio)
+            {
+                this.initialImage = img;
+                this.firstName = first;
+                this.lastName = last;
+                this.biography = bio;
+                this.birthDate = birth;
+                this.occupation = occupation;
+            }
+        }
+
+        private  ValueHolder characterInitialData;
+
         public DetailsCharacter(int id)
         {
             InitializeComponent();
@@ -25,7 +47,6 @@ namespace fandom.WindowsForms.Forms.Character
 
         private async void DetailsCharacter_Load(object sender, EventArgs e)
         {
-            ClearData();
             var data = await _characterApiService.GetById<MCharacter>(_characterId);
 
             BindData(data);
@@ -34,20 +55,83 @@ namespace fandom.WindowsForms.Forms.Character
 
         private void BindData(MCharacter character)
         {
+            characterInitialData = new ValueHolder(ImageWorker.ConvertFromByteArray(character.CharacterMediaFile.Thumbnail),
+                character.FirstName,
+                character.LastName,
+                character.BirthDate.ToString("dd-MM-yyyy"),
+                character.Occupation,
+                character.Biography
+                );
+
             this.pictureBox1.Image = ImageWorker.ConvertFromByteArray(character.CharacterMediaFile.Thumbnail);
-            this.label1.Text = $"{character.FirstName} {character.LastName}";
-            this.label2.Text = character.Biography;
-            this.label5.Text = character.BirthDate.ToString("dd-MM-yyyy");
-            this.label6.Text = character.Occupation;
+            this.textBox1.Text = $"{character.FirstName} {character.LastName}";
+            this.textBox2.Text = character.Biography;
+            this.textBox3.Text = character.BirthDate.ToString("dd-MM-yyyy");
+            this.textBox4.Text = character.Occupation;
         }
 
-        private void ClearData()
+ 
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.label1.Text = "";
-            this.label2.Text = "";
-            this.label5.Text = "";
-            this.label6.Text = "";
+            EditButtonClickedActions();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CancelButtonClickedActions();
+        }
+
+        private void EditButtonClickedActions()
+        {
+            this.button1.Visible = false;
+            this.button2.Visible = true;
+            this.button3.Visible = true;
+            this.button4.Visible = true;
+
+            this.textBox1.ReadOnly = false;
+            this.textBox1.BackColor = Color.White;
+
+            this.textBox2.ReadOnly = false;
+            this.textBox2.BackColor = Color.White;
+
+            this.textBox3.ReadOnly = false;
+            this.textBox3.BackColor = Color.White;
+
+            this.textBox4.ReadOnly = false;
+            this.textBox4.BackColor = Color.White;
+
+            this.dateTimePicker1.Visible = true;
+            this.dateTimePicker1.Value = DateTime.Parse(characterInitialData.birthDate);
+
+        }
+
+        private void CancelButtonClickedActions()
+        {
+            this.pictureBox1.Image = characterInitialData.initialImage;
+            this.textBox1.Text = $"{characterInitialData.firstName} {characterInitialData.lastName}";
+            this.textBox2.Text = characterInitialData.biography;
+            this.textBox3.Text = characterInitialData.birthDate;
+            this.textBox4.Text = characterInitialData.occupation;
+
+            this.button1.Visible = true;
+            this.button2.Visible = false;
+            this.button3.Visible = false;
+            this.button4.Visible = false;
+
+            this.textBox1.ReadOnly = true;
+            this.textBox1.BackColor = Color.WhiteSmoke;
+
+            this.textBox2.ReadOnly = true;
+            this.textBox2.BackColor = Color.WhiteSmoke;
+
+            this.textBox3.ReadOnly = true;
+            this.textBox3.BackColor = Color.WhiteSmoke;
+
+            this.textBox4.ReadOnly = true;
+            this.textBox4.BackColor = Color.WhiteSmoke;
+
+            this.dateTimePicker1.Visible = false;
+        }
     }
 }
