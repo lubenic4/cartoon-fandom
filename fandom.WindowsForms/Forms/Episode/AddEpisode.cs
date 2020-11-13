@@ -33,9 +33,6 @@ namespace fandom.WindowsForms.Forms.Episode
             InitializeComponent();
         }
 
-
-
-
         private async void AddEpisode_Load(object sender, EventArgs e)
         {
             await InitializeCharacters();
@@ -48,12 +45,86 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            await InsertEpisode();
+            if (validateForm())
+            {
+                await InsertEpisode();
+                MessageBox.Show("Success");
+                AddEpisode.ActiveForm.Close();
+            }
         }
 
+        private bool validateTitle()
+        {
+            bool status = true;
+            if (textBox1.Text == "")
+            {
+                errorProvider1.SetError(textBox1, "Title required");
+                status = false;
+            }
+            else
+                errorProvider1.SetError(textBox1, "");
+            return status;
+        }
 
+        private bool validateSummary()
+        {
+            bool status = true;
+            if (textBox2.Text == "")
+            {
+                errorProvider1.SetError(textBox2, "Summary required");
+                status = false;
+            }
+            else
+                errorProvider1.SetError(textBox2, "");
+            return status;
+        }
 
+        private bool validateUrl()
+        {
+            bool status = true;
+            if (videoUrlTextBox.Text == "")
+            {
+                errorProvider1.SetError(videoUrlTextBox, "VideoURL required");
+                status = false;
+            }
+            else
+                errorProvider1.SetError(videoUrlTextBox, "");
+            return status;
+        }
 
+        private bool validateSelectedCharacters()
+        {
+            bool status = true;
+            if(this.listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Atleast one character has to be selected");
+                status = false;
+            }
+            return status;
+        }
+
+        private bool validateImage()
+        {
+            bool status = true;
+            if (_request.MediaFile.Thumbnail == null)
+            {
+                MessageBox.Show("Image required");
+                status = false;
+            }
+            return status;
+        }
+
+        private bool validateForm()
+        {
+            bool finalStatus = false;
+
+            if (validateTitle() && validateSummary() && validateUrl() && validateSelectedCharacters() && validateImage())
+            {
+                finalStatus = true;
+            }
+
+            return finalStatus;
+        }
 
         private async Task InitializeCharacters()
         {
@@ -93,8 +164,6 @@ namespace fandom.WindowsForms.Forms.Episode
                 }
             }
         }
-
-
 
         private async Task InsertEpisode()
         {
