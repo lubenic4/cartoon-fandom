@@ -180,5 +180,12 @@ namespace fandom.WindowsForms.Forms.Character
                 }
             }
         }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+            await _characterApiService.Delete<MCharacter>(_characterId);
+            MessageBox.Show("Deleted");
+            DetailsCharacter.ActiveForm.Close();
+        }
     }
 }

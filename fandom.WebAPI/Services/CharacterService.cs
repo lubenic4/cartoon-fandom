@@ -123,5 +123,14 @@ namespace fandom.WebAPI.Services
             return _mapper.Map<MCharacter>(character);
         }
 
+        public MCharacter Delete(int id)
+        {
+            var result = _ctx.Characters.Where(x => x.Id == id).FirstOrDefault();
+
+            _ctx.Characters.Remove(result);
+            _ctx.SaveChanges();
+
+            return _mapper.Map<MCharacter>(result);
+        }
     }
 }

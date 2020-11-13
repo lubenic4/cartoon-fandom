@@ -33,5 +33,8 @@ namespace fandom.WebAPI.Controllers
 
         [HttpPut("{id}")]
         public MCharacter UpdateCharacter(int id, CharacterUpdateRequest request) => _service.Update(id, request);
+
+        [HttpDelete("{id}")]
+        public MCharacter Delete(int id) => _service.Delete(id);
     }
 }
