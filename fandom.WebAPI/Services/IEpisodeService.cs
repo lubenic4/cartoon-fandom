@@ -19,5 +19,7 @@ namespace fandom.WebAPI.Services
 
         MEpisode Update(int id, EpisodeUserActivityRequest request);
 
+        MEpisode Update(int id, EpisodeUpdateRequest request);
+
     }
 }

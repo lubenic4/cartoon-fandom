@@ -20,12 +20,29 @@ namespace fandom.WindowsForms.Forms.Episode
         private readonly APIService _episodeService = new APIService("Episode");
         private readonly APIService _characterApiService = new APIService("Character");
 
+        private EpisodeUpdateRequest request = new EpisodeUpdateRequest
+        {
+            Summary = "",
+            AirDate = DateTime.Now,
+            MainCharacters = new List<MCharacter>(),
+            Title = "",
+            VideoUrl = ""
+        };
+
 
         public DetailsEpisode(int id)
         {
             _eId = id;
             InitializeComponent();
         }
+
+        private class DataHolder
+        {
+            public string Title { get; set; }
+            public string Summary { get; set; }
+        }
+
+        private DataHolder Holder { get; set; }
 
         private async void DetailsEpisode_Load(object sender, EventArgs e)
         {
@@ -44,6 +61,12 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private void BindData(MEpisode episode, List<MCharacter> characters)
         {
+            Holder = new DataHolder
+            {
+                Title = episode.Title,
+                Summary = episode.Summary
+            };
+
             foreach (var item in episode.Characters)
             {
                 ListViewItem itemm = new ListViewItem(item.Id.ToString());
@@ -100,6 +123,9 @@ namespace fandom.WindowsForms.Forms.Episode
             changeVisibilty(false);
             this.textBox1.BackColor = Color.WhiteSmoke;
             this.textBox2.BackColor = Color.WhiteSmoke;
+
+            this.textBox1.Text = Holder.Title;
+            this.textBox2.Text = Holder.Summary;
         }
 
         private void changeVisibilty(bool flag)
@@ -120,6 +146,34 @@ namespace fandom.WindowsForms.Forms.Episode
             this.dateTimePicker1.Visible = flag;
             this.button2.Visible = flag;
             this.button3.Visible = flag;
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                request.Title = textBox1.Text;
+                request.Summary = textBox2.Text;
+                request.AirDate = dateTimePicker1.Value;
+                request.VideoUrl = videoUrlTextBox.Text;
+
+                var selectedCharacters = this.listView2.SelectedItems;
+                foreach (ListViewItem item in selectedCharacters)
+                {
+                    int id = Int32.Parse(item.Text);
+                    var character = new MCharacter { Id = id };
+                    request.MainCharacters.Add(character);
+                }
+
+                await _episodeService.Update<MEpisode>(_eId, request);
+                MessageBox.Show("Updated");
+                DetailsEpisode.ActiveForm.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

@@ -165,5 +165,48 @@ namespace fandom.WebAPI.Services
             }
             return _mapper.Map<MEpisode>(episode);
         }
+
+        public MEpisode Update(int id, EpisodeUpdateRequest request)
+        {
+            var episode = ctx.Episodes.Include(x => x.MediaFile).Include(x => x.EpisodesCharacters).Where(x => x.Id == id).FirstOrDefault();
+
+            if(request.MainCharacters.Count > 0)
+            {
+                episode.EpisodesCharacters.Clear();
+                foreach(var character in request.MainCharacters)
+                {
+                    episode.EpisodesCharacters.Add(new EpisodeCharacter
+                    {
+                        CharacterId = character.Id,
+                        EpisodeId = episode.Id
+                    });
+                }
+                ctx.SaveChanges();
+            }
+
+            if (request.AirDate != null)
+            {
+                episode.AirDate = request.AirDate;
+            }
+
+            if(request.Summary != "")
+            {
+                episode.Summary = request.Summary;
+            }
+
+            if (request.Title != "")
+            {
+                episode.Title = request.Title;
+            }
+
+            if(request.VideoUrl != "")
+            {
+                episode.MediaFile.Path = request.VideoUrl;
+            }
+
+            ctx.SaveChanges();
+
+            return _mapper.Map<MEpisode>(episode);
+        }
     }
 }

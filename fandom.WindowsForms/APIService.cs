@@ -5,6 +5,7 @@ using Flurl;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text;
+using fandom.Model.Requests;
 
 namespace fandom.WindowsForms
 {
@@ -76,7 +77,15 @@ namespace fandom.WindowsForms
         {
             try
             {
-                var url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+                var url = "";
+                if(request is EpisodeUpdateRequest)
+                {
+                    url = $"{Properties.Settings.Default.API}/{_route}/Update/{id}";
+                }
+                else
+                {
+                    url = $"{Properties.Settings.Default.API}/{_route}/{id}";
+                }
 
                 return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
             }
