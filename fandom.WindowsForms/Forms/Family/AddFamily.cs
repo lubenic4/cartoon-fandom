@@ -38,9 +38,15 @@ namespace fandom.WindowsForms.Forms.Family
         {
             try
             {
-                _request.Name = this.textBox1.Text;
-
-                await _familyApiService.Insert<MFamily>(_request);
+                if (!string.IsNullOrWhiteSpace(this.textBox1.Text) && _request.MediaFile.Thumbnail != null)
+                {
+                    _request.Name = this.textBox1.Text;
+                    await _familyApiService.Insert<MFamily>(_request);
+                }
+                else
+                {
+                    MessageBox.Show("Fill form entirely");
+                }
             }
             catch
             {

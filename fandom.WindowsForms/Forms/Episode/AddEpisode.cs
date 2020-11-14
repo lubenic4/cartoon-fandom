@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -81,8 +82,10 @@ namespace fandom.WindowsForms.Forms.Episode
 
         private bool validateUrl()
         {
+            Regex rx = new Regex(@"(http|https)://\S+\.mp4");
             bool status = true;
-            if (videoUrlTextBox.Text == "")
+            var match = rx.Match(videoUrlTextBox.Text);
+            if (!match.Success)
             {
                 errorProvider1.SetError(videoUrlTextBox, "VideoURL required");
                 status = false;

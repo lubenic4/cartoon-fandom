@@ -46,38 +46,49 @@ namespace fandom.WindowsForms.Forms.User
 
         }
 
+        private bool checkTextBoxesEmpty()
+        {
+            bool flag = false;
+            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox4.Text) &&
+                !string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox3.Text)) flag = true;
+            return flag;
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
             try
             {
                 var items = this.listView1.CheckedItems;
 
-                if (items.Count != 0)
-                {
-                    _request.RolesId = new List<int>();
+                if (checkTextBoxesEmpty() && items.Count != 0)
+                {  
+                        _request.RolesId = new List<int>();
 
-                    foreach (ListViewItem item in items)
+                        foreach (ListViewItem item in items)
+                        {
+                            var stringz = item.SubItems[1].Text.ToString();
+                            int id = Int32.Parse(stringz);
+
+                            _request.RolesId.Add(id);
+                        }
+                    _request.Username = this.textBox1.Text;
+                    _request.Email = this.textBox2.Text;
+                    _request.Password = this.textBox3.Text;
+                    _request.PasswordConfirmation = this.textBox4.Text;
+
+                    if (_request.Password == _request.PasswordConfirmation)
                     {
-                        var stringz = item.SubItems[1].Text.ToString();
-                        int id = Int32.Parse(stringz);
-
-                        _request.RolesId.Add(id);
+                        await _userApiService.Insert<MUser>(_request);
+                        await UserForm.GetForm.PopulateListView();
                     }
-                }
-
-                _request.Username = this.textBox1.Text;
-                _request.Email = this.textBox2.Text;
-                _request.Password = this.textBox3.Text;
-                _request.PasswordConfirmation = this.textBox4.Text;
-
-                if (_request.Password == _request.PasswordConfirmation)
-                {
-                    await _userApiService.Insert<MUser>(_request);
-                    await UserForm.GetForm.PopulateListView();
+                    else
+                    {
+                        MessageBox.Show("Password doesn't match");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Password doesn't match");
+                    MessageBox.Show("Fill entire form");
                 }
             }
             catch

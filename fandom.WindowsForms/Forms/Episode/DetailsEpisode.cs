@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -152,10 +153,15 @@ namespace fandom.WindowsForms.Forms.Episode
         {
             try
             {
+                Regex rx = new Regex(@"(http|https)://\S+\.mp4");
+                var match = rx.Match(videoUrlTextBox.Text);
+                if (match.Success)
+                {
+                    request.VideoUrl = videoUrlTextBox.Text;
+                }
                 request.Title = textBox1.Text;
                 request.Summary = textBox2.Text;
                 request.AirDate = dateTimePicker1.Value;
-                request.VideoUrl = videoUrlTextBox.Text;
 
                 var selectedCharacters = this.listView2.SelectedItems;
                 foreach (ListViewItem item in selectedCharacters)
