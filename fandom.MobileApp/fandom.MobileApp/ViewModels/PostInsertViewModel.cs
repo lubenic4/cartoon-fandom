@@ -64,27 +64,33 @@ namespace fandom.MobileApp.ViewModels
         {
             try
             {
-
-                var request = new PostInsertRequest
+                if (selectedCategory != null && !string.IsNullOrWhiteSpace(PostSummary) && !string.IsNullOrWhiteSpace(PostTitle))
                 {
-                    Category = selectedCategory,
-                    CreationDate = DateTime.Now,
-                    PostOwner = APIService.LoggedUser,
-                    Summary = PostSummary,
-                    Title = PostTitle,
-                    Tags = new List<MTag>()
-                };
-
-                foreach (var item in Tags)
-                {
-                    if (item.isChecked)
+                    var request = new PostInsertRequest
                     {
-                        request.Tags.Add(item);
-                    }
-                }
+                        Category = selectedCategory,
+                        CreationDate = DateTime.Now,
+                        PostOwner = APIService.LoggedUser,
+                        Summary = PostSummary,
+                        Title = PostTitle,
+                        Tags = new List<MTag>()
+                    };
 
-                await _postApiService.Insert<MPost>(request);
-                await Application.Current.MainPage.DisplayAlert("Post", "Created", "Ok");
+                    foreach (var item in Tags)
+                    {
+                        if (item.isChecked)
+                        {
+                            request.Tags.Add(item);
+                        }
+                    }
+
+                    await _postApiService.Insert<MPost>(request);
+                    await Application.Current.MainPage.DisplayAlert("Post", "Created", "Ok");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Info", "Fill all info", "Ok");
+                }
             }
             catch
             {
