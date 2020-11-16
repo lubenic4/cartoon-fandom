@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels"
+             x:Class="fandom.MobileApp.Views.PostEditPage">
+    <ContentPage.BindingContext>
+        <viewModels:PostInsertViewModel/>
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image WidthRequest="160" HeightRequest="40" Source="Assets/southparklogo.png"  HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Entry Placeholder="Post title" Text="{Binding PostTitle}"/>
+            <Editor Placeholder="Post summary" FontSize="Small" HeightRequest="150"  Text="{Binding PostSummary}"/>
+            <Picker Title="Pick category" ItemsSource="{Binding Categories}" SelectedItem="{Binding selectedCategory}" ItemDisplayBinding="{Binding Title}" />
+            <ListView
+            x:Name="dsfdf"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Tags}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding isChecked}" />
+                                <Label Text="{Binding Title}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Update" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

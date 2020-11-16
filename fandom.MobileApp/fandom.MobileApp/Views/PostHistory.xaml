@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:fandom.MobileApp.ViewModels"
+             x:Class="fandom.MobileApp.Views.PostHistory">
+
+    <ContentPage.BindingContext>
+        <viewModels:PostHistoryViewModel/>
+    </ContentPage.BindingContext>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image WidthRequest="160" HeightRequest="40" Source="Assets/southparklogo.png"  HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="15,15,15,15" BackgroundColor="#cccccc">
+                <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="Title" Text="Posts history"/>
+            </StackLayout>
+            <ListView VerticalScrollBarVisibility="Never" ItemTapped="ListView_ItemTapped" SelectionMode="None" ItemsSource="{Binding AllPosts}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="5,5,5,5"  Orientation="Vertical">
+                                <Label HorizontalOptions="EndAndExpand" Text="{Binding CreationDate}" FontSize="12" />
+                                <Frame BackgroundColor="{Binding Category.CategoryColor}"
+                                        CornerRadius="5"
+                                         Padding="8">
+                                    <StackLayout>
+
+                                        <Label  Text="{Binding Title}"
+                                                    FontSize="Small"
+                                                    FontAttributes="Bold" />
+
+                                        <BoxView Color="Black"
+                                                HeightRequest="2"
+                                                HorizontalOptions="Fill" />
+                                        <Label Text="{Binding Summary}"/>
+
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

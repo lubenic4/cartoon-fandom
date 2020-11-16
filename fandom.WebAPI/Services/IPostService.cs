@@ -12,6 +12,7 @@ namespace fandom.WebAPI.Services
         List<MPost> GetAll();
         MPost GetById(int id);
         MPost Insert(PostInsertRequest request);
+        MPost Update(int id, PostUpdateRequest request);
         
     }
 }

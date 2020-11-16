@@ -24,6 +24,9 @@ namespace fandom.MobileApp.ViewModels
             InitCommand = new Command(async () => await LoadPosts());
         }
 
+        public ICommand InitCommand { get; set; }
+
+
         string _selectedOption = null;
 
         public string SelectedOption
@@ -39,10 +42,6 @@ namespace fandom.MobileApp.ViewModels
 
             }
         }
-
-        public ICommand InitCommand { get; set; }
-
-
 
         public async Task LoadPosts()
         {
@@ -86,8 +85,6 @@ namespace fandom.MobileApp.ViewModels
                 }
             }
         }
-
-       
 
     }
 }

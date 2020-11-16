@@ -77,5 +77,38 @@ namespace fandom.WebAPI.Services
 
             return _mapper.Map<MPost>(newPost);
         }
+
+        public MPost Update(int id, PostUpdateRequest request)
+        {
+            var post = ctx.Posts.Include(x => x.Category).Include(x => x.PostsTags).Where(x => x.Id == id).FirstOrDefault();
+            if(request.Tags.Count > 0)
+            {
+                var tags = ctx.PostTags.Where(x => x.PostId == id).ToList();
+                ctx.PostTags.RemoveRange(tags);
+                ctx.SaveChanges();
+
+                foreach(var tag in request.Tags)
+                {
+                    ctx.PostTags.Add(new PostTag
+                    {
+                        PostId = id,
+                        TagId = tag.Id
+                    });
+                }
+
+                ctx.SaveChanges();
+            }
+
+
+            post.Title = request.Title;
+            post.Summary = request.Summary;
+            post.CreationDate = request.UpdatedDate;
+            post.CategoryId = request.Category.Id;
+
+            ctx.SaveChanges();
+
+            return _mapper.Map<MPost>(post);
+
+        }
     }
 }

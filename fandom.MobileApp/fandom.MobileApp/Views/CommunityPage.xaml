@@ -19,6 +19,7 @@
                 <StackLayout Orientation="Horizontal" Padding="15,15,15,15" BackgroundColor="#cccccc">
                     <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="Title" Text="Community"/>
                     <Button Clicked="Button_Clicked" HorizontalOptions="End" Text="New Post"/>
+                    <Button Clicked="Button_Clicked_1" HorizontalOptions="End" Text="Post history"/>
                 <Picker SelectedItem="{Binding SelectedOption}"  WidthRequest="130" HorizontalOptions="End">
                     <Picker.Items>
                         <x:String>AtoZ</x:String>

@@ -12,38 +12,29 @@ using Xamarin.Forms.Xaml;
 namespace fandom.MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CommunityPage : ContentPage
+    public partial class PostHistory : ContentPage
     {
-        public CommunityViewModel CommunityVM = null;
+        public PostHistoryViewModel PostHistoryVM = null;
 
-        public CommunityPage()
+        public PostHistory()
         {
             InitializeComponent();
 
-            BindingContext = CommunityVM = new CommunityViewModel();
+            BindingContext = PostHistoryVM = new PostHistoryViewModel();
+
         }
+
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await CommunityVM.LoadPosts();
+            await PostHistoryVM.LoadPosts();
         }
 
         private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var item = e.Item as MPost;
-            await Navigation.PushAsync(new PostPage(item));
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PostInsertFormPage());
-
-        }
-
-        private async void Button_Clicked_1(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PostHistory());
+            await Navigation.PushAsync(new PostEditPage(item));
         }
     }
 }

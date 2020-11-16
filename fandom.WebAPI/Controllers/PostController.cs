@@ -29,5 +29,9 @@ namespace fandom.WebAPI.Controllers
         [HttpPost]
         public MPost Insert(PostInsertRequest request) => _service.Insert(request);
 
+        [HttpPut("{id}")]
+        public MPost Update(int id, PostUpdateRequest request) => _service.Update(id, request);
+
+
     }
 }
