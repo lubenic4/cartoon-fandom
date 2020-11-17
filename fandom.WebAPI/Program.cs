@@ -17,11 +17,11 @@ namespace fandom.WebAPI
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    var service = scope.ServiceProvider.GetRequiredService<AppCtx>();
-            //    Data.Seed(service);
-            //}
+            using (var scope = host.Services.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<AppCtx>();
+                Data.Seed(service);
+            }
 
             host.Run();
         }

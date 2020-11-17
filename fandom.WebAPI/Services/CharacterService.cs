@@ -125,10 +125,22 @@ namespace fandom.WebAPI.Services
 
         public MCharacter Delete(int id)
         {
-            var result = _ctx.Characters.Where(x => x.Id == id).FirstOrDefault();
-
+            var result = _ctx.Characters.Include(x => x.Family).Include(x => x.Family.Members).Where(x => x.Id == id).FirstOrDefault();
+            var characterFamily = result.Family;
+          
             _ctx.Characters.Remove(result);
             _ctx.SaveChanges();
+
+            if(characterFamily.Members.Count == 0)
+            {
+                var mediaFile = _ctx.MediaFiles.Where(x => x.FamilyId == characterFamily.Id).FirstOrDefault();
+                _ctx.MediaFiles.Remove(mediaFile);
+                _ctx.SaveChanges();
+
+                _ctx.Families.Remove(characterFamily);
+                _ctx.SaveChanges();
+
+            }
 
             return _mapper.Map<MCharacter>(result);
         }

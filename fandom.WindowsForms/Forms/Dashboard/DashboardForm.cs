@@ -36,6 +36,19 @@ namespace fandom.WindowsForms.Forms.Dashboard
         {
             var episodes = await _episodeApiService.Get<List<MEpisode>>();
 
+             LoadData(episodes);
+        }
+
+        private async void label4_Click(object sender, EventArgs e)
+        {
+            var episodes = await _episodeApiService.Get<List<MEpisode>>();
+            LoadData(episodes);
+        }
+
+        private  void LoadData(List<MEpisode> episodes)
+        {
+            this.chart1.Series["Viewcount"].Points.Clear();
+
             var totalViewCount = episodes.Sum(x => x.Viewcount);
             label3.Text = totalViewCount.ToString();
 

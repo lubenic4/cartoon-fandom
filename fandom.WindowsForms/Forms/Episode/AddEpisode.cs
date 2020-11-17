@@ -22,6 +22,9 @@ namespace fandom.WindowsForms.Forms.Episode
         private readonly APIService _episodeApiService = new APIService("Episode");
         private readonly APIService _characterApiService = new APIService("Character");
 
+        private readonly EpisodeForm eForm = EpisodeForm.GetForm;
+
+
         private EpisodeInsertRequest _request = new EpisodeInsertRequest {
             Title = "",
             OverallNumberOfEpisode = 0,
@@ -49,6 +52,7 @@ namespace fandom.WindowsForms.Forms.Episode
             if (validateForm())
             {
                 await InsertEpisode();
+                await RefreshEpisodeList();
                 MessageBox.Show("Success");
                 AddEpisode.ActiveForm.Close();
             }
@@ -195,6 +199,13 @@ namespace fandom.WindowsForms.Forms.Episode
             {
                 MessageBox.Show("Error insert");
             }
-        } 
+        }
+
+        private async Task RefreshEpisodeList()
+        {
+            var episodeListView = eForm.episodesListView;
+            episodeListView.Items.Clear();
+            await eForm.LoadEpisodes();
+        }
     }
 }

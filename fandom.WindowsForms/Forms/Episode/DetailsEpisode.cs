@@ -21,6 +21,9 @@ namespace fandom.WindowsForms.Forms.Episode
         private readonly APIService _episodeService = new APIService("Episode");
         private readonly APIService _characterApiService = new APIService("Character");
 
+        private readonly EpisodeForm eForm = EpisodeForm.GetForm;
+
+
         private EpisodeUpdateRequest request = new EpisodeUpdateRequest
         {
             Summary = "",
@@ -105,7 +108,7 @@ namespace fandom.WindowsForms.Forms.Episode
             this.Close();
 
             var episodeInfo = await _episodeService.Delete<MEpisode>(_eId);
-
+            await RefreshEpisodeList();
             var seasonForm = SeasonForm.GetForm;
             await seasonForm.LoadSeasons();
 
@@ -172,6 +175,7 @@ namespace fandom.WindowsForms.Forms.Episode
                 }
 
                 await _episodeService.Update<MEpisode>(_eId, request);
+                await RefreshEpisodeList();
                 MessageBox.Show("Updated");
                 DetailsEpisode.ActiveForm.Close();
             }
@@ -180,6 +184,13 @@ namespace fandom.WindowsForms.Forms.Episode
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private async Task RefreshEpisodeList()
+        {
+            var episodeListView = eForm.episodesListView;
+            episodeListView.Items.Clear();
+            await eForm.LoadEpisodes();
         }
     }
 }

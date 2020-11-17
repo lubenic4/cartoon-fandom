@@ -29,6 +29,11 @@ namespace fandom.WindowsForms.Forms
             }
         }
 
+        public ListView episodesListView
+        {
+            get { return this.listView1; }
+        }
+
         private void addEpisodeButton_Click(object sender, EventArgs e)
         {
             var form = new AddEpisode();
@@ -37,15 +42,20 @@ namespace fandom.WindowsForms.Forms
 
         private async void EpisodeForm_Load(object sender, EventArgs e)
         {
-
-            var result = await _apiService.Get<List<MEpisode>>(null);
-
-            AddItems(result);
+            await LoadEpisodes();
 
             this.button1.Enabled = true;
             this.button2.Enabled = true;
             this.button3.Enabled = true;
+        }
 
+        public async Task LoadEpisodes()
+        {
+            this.listView1.Items.Clear();
+
+            var result = await _apiService.Get<List<MEpisode>>(null);
+
+            AddItems(result);
         }
 
         private async void button2_Click(object sender, EventArgs e)

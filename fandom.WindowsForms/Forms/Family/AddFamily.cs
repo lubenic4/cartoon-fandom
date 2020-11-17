@@ -24,6 +24,9 @@ namespace fandom.WindowsForms.Forms.Family
             MediaFile = new MMediaFile()
         };
 
+
+        private readonly CharacterForm CharacterFamilyForm = CharacterForm.GetForm;
+
         public AddFamily()
         {
             InitializeComponent();
@@ -42,6 +45,9 @@ namespace fandom.WindowsForms.Forms.Family
                 {
                     _request.Name = this.textBox1.Text;
                     await _familyApiService.Insert<MFamily>(_request);
+                    await CharacterFamilyForm.LoadFamilies();
+                    MessageBox.Show("Success");
+                    AddFamily.ActiveForm.Close();
                 }
                 else
                 {

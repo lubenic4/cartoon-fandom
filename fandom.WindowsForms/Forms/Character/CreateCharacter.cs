@@ -31,6 +31,7 @@ namespace fandom.WindowsForms.Forms.Character
         private readonly APIService _characterApiService = new APIService("Character");
         private readonly APIService _familyApiService = new APIService("Family");
 
+        private readonly CharacterForm CharacterFamilyForm = CharacterForm.GetForm;
 
         public CreateCharacter()
         {
@@ -68,10 +69,8 @@ namespace fandom.WindowsForms.Forms.Character
                     _request.Family = family;
 
                     await _characterApiService.Insert<MCharacter>(_request);
-
-                    CharacterForm form = CharacterForm.GetForm;
-                    form.chLabel.Visible = true;
-
+                    await CharacterFamilyForm.LoadCharacters();
+                    
                     MessageBox.Show("Success");
 
                     CreateCharacter.ActiveForm.Close();

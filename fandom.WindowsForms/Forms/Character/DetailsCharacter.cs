@@ -29,6 +29,8 @@ namespace fandom.WindowsForms.Forms.Character
             MediaFile = new MCharacterMediaFile()
         };
 
+        private readonly CharacterForm CharacterFamilyForm = CharacterForm.GetForm;
+
         private class ValueHolder
         {
             public Image initialImage { get; set; }
@@ -161,6 +163,7 @@ namespace fandom.WindowsForms.Forms.Character
             request.Occupation = textBox4.Text;
 
            await _characterApiService.Update<MCharacter>(_characterId, request);
+            await CharacterFamilyForm.LoadCharacters();
             MessageBox.Show("Character updated");
             DetailsCharacter.ActiveForm.Close();
         }
@@ -184,6 +187,7 @@ namespace fandom.WindowsForms.Forms.Character
         private async void button5_Click(object sender, EventArgs e)
         {
             await _characterApiService.Delete<MCharacter>(_characterId);
+            await CharacterFamilyForm.LoadCharacters();
             MessageBox.Show("Deleted");
             DetailsCharacter.ActiveForm.Close();
         }
