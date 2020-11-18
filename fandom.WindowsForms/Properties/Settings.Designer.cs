@@ -25,7 +25,7 @@ namespace fandom.WindowsForms.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:44346/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5000/api")]
         public string API {
             get {
                 return ((string)(this["API"]));

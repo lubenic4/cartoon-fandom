@@ -2,6 +2,7 @@
 using fandom.MobileApp.Views;
 using fandom.Model;
 using fandom.Model.Models;
+using fandom.Model.Requests;
 using Flurl.Util;
 using System;
 using System.Collections.Generic;
@@ -39,11 +40,27 @@ namespace fandom.MobileApp.ViewModels
 
             var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>();
             List<MEpisode> RecommendedEpisodesList = null;
+
             if (APIService.LoggedUser.WatchedEpisodes.Count > 0)
-             RecommendedEpisodesList = rEp.Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id).Contains(x.Id)).OrderByDescending(x => x.Viewcount).ToList();
+            {
+                RecommendedEpisodesList = rEp
+                       .Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id)
+                       .Contains(x.Id))
+                       .OrderByDescending(x => x.Viewcount).ToList();
+
+                if(RecommendedEpisodesList.Count == 0)
+                {
+                   foreach(var character in APIService.LoggedUser.FavouriteCharacters)
+                    {
+                        var episode = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { CharacterId = character.Id });
+
+                        RecommendedEpisodesList.AddRange(episode);
+                    }
+                }
+            }
             else
             {
-                RecommendedEpisodesList = rEp.ToList();
+                RecommendedEpisodesList = rEp.OrderByDescending(x => x.Viewcount).ToList();
             }
 
             foreach (var item in listCh)

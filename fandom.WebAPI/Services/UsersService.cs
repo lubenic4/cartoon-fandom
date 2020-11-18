@@ -81,7 +81,8 @@ namespace fandom.WebAPI.Services
                      SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
                      Season = _mapper.Map<MSeason>(y.Episode.Season),
                      Summary = y.Episode.Summary,
-                     Viewcount = y.Episode.Viewcount
+                     Viewcount = y.Episode.Viewcount,
+                     Characters =_mapper.Map<List<MCharacter>>(_ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == y.EpisodeId).Select(x => x.Character).ToList())
                  }).ToList(),
                 WatchedEpisodes = x.UserEpisodeActivities.Where(y => y.UserId==x.Id).Select(y => new MEpisode
                 {
@@ -163,7 +164,8 @@ namespace fandom.WebAPI.Services
                 SeasonEpisodeNumber = y.Episode.SeasonEpisodeNumber,
                 Season = _mapper.Map<MSeason>(y.Episode.Season),
                 Summary = y.Episode.Summary,
-                Viewcount = y.Episode.Viewcount
+                Viewcount = y.Episode.Viewcount,
+                Characters = _mapper.Map<List<MCharacter>>(_ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == y.EpisodeId).Select(x => x.Character).ToList())
             }).ToList();
 
             userToReturn.FavouriteCharacters = _ctx.UserCharacters.Where(y => y.UserId == user.Id).Select(y => new
@@ -243,7 +245,9 @@ namespace fandom.WebAPI.Services
                         OverallNumberOfEpisode = request.NewFavouriteEpisode.OverallNumberOfEpisode,
                         SeasonEpisodeNumber = request.NewFavouriteEpisode.SeasonEpisodeNumber,
                         Summary = request.NewFavouriteEpisode.Summary,
-                        Viewcount = request.NewFavouriteEpisode.Viewcount
+                        Viewcount = request.NewFavouriteEpisode.Viewcount,
+                        Season = request.NewFavouriteEpisode.Season,
+                        Characters = _mapper.Map<List<MCharacter>>(_ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == request.NewFavouriteEpisode.Id).Select(x => x.Character).ToList())
                     });
 
                 }

@@ -23,7 +23,7 @@ namespace fandom.MobileApp
         }
 
 #if DEBUG
-        private string _apiUrl = $"http://localhost:44346/api";
+        private string _apiUrl = $"http://localhost:5000/api";
 #endif
 
         public async Task<T> Get<T>(object search = null)
@@ -51,13 +51,10 @@ namespace fandom.MobileApp
             }
         }
 
-
         public async Task<T> GetById<T>(object id)
         {
             try
             {
-
-
                 var url = $"{_apiUrl}/{_route}/{id}";
                 return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             }
