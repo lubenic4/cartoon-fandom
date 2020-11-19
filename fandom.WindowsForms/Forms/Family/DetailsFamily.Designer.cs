@@ -70,6 +70,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Enabled = false;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(16, 166);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
