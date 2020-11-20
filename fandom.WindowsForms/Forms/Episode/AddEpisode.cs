@@ -91,7 +91,7 @@ namespace fandom.WindowsForms.Forms.Episode
             var match = rx.Match(videoUrlTextBox.Text);
             if (!match.Success)
             {
-                errorProvider1.SetError(videoUrlTextBox, "VideoURL required");
+                errorProvider1.SetError(videoUrlTextBox, "VideoURL required or wrong format");
                 status = false;
             }
             else
