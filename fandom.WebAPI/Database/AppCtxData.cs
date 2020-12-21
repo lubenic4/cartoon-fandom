@@ -139,11 +139,11 @@ namespace fandom.WebAPI.Database
                     new Episode { Id = 2, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 2, Title = "Episode title 2", Viewcount = 23, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 1 },
                     new Episode { Id = 3, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 3, Title = "Episode title 3", Viewcount = 33, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 1 },
                     new Episode { Id = 4, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 4, Title = "Episode title 4", Viewcount = 43, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 2 },
-                    new Episode { Id = 5, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 5, Title = "Episode title 5", Viewcount = 53, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 2 },
+                    new Episode { Id = 5, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 5, Title = "Episode title 5", Viewcount = 120, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 2 },
                     new Episode { Id = 6, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 6, Title = "Episode title 6", Viewcount = 63, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 3 },
                     new Episode { Id = 7, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 7, Title = "Episode title 7", Viewcount = 73, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 3 },
-                    new Episode { Id = 8, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 8, Title = "Episode title 8", Viewcount = 83, Summary = "Summary random text", SeasonEpisodeNumber = 3, SeasonId = 4 },
-                    new Episode { Id = 9, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 4 }
+                    new Episode { Id = 8, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 8, Title = "Episode title 8", Viewcount = 83, Summary = "Summary random text", SeasonEpisodeNumber = 1, SeasonId = 4 },
+                    new Episode { Id = 9, AirDate = DateTime.Now.Date, OverallNumberOfEpisode = 9, Title = "Episode title 9", Viewcount = 93, Summary = "Summary random text", SeasonEpisodeNumber = 2, SeasonId = 4 }
                 );
 
 

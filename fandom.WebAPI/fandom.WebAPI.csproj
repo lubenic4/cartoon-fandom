@@ -33,9 +33,5 @@
     <ProjectReference Include="..\fandom.Model\fandom.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 
 </Project>
