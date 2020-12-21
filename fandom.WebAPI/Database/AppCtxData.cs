@@ -127,7 +127,7 @@ namespace fandom.WebAPI.Database
                     new Season { Id = 1, NoOfEpisodes = 3, Summary = "Random summary text", OrdinalNumber = 1, PremiereDate = DateTime.Now.Date },
                     new Season { Id = 2, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 2, PremiereDate = DateTime.Now.Date },
                     new Season { Id = 3, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 3, PremiereDate = DateTime.Now.Date },
-                    new Season { Id = 4, NoOfEpisodes = 1, Summary = "Random summary text", OrdinalNumber = 4, PremiereDate = DateTime.Now.Date }
+                    new Season { Id = 4, NoOfEpisodes = 2, Summary = "Random summary text", OrdinalNumber = 4, PremiereDate = DateTime.Now.Date }
 
 
                );
