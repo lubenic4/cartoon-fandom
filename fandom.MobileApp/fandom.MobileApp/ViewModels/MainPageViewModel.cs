@@ -45,7 +45,7 @@ namespace fandom.MobileApp.ViewModels
             {
                 RecommendedEpisodesList = rEp
                        .Where(x => !APIService.LoggedUser.WatchedEpisodes.Select(y => y.Id)
-                       .Contains(x.Id) && x.SeasonId != 0)
+                       .Contains(x.Id) && x.Season != null)
                        .OrderByDescending(x => x.Viewcount).ToList();
 
                 if(RecommendedEpisodesList.Count == 0)
