@@ -57,7 +57,7 @@ namespace fandom.WebAPI.Services
                 result = query;
             }
 
-            else if(request.isAssigned != null)
+            else if(request.isAssigned != null && request.CharacterId == null)
             {
                 if (request.isAssigned == true)
                 {
@@ -79,22 +79,45 @@ namespace fandom.WebAPI.Services
             }
             else if(request.CharacterId != null)
             {
-                var query5 = ctx.EpisodeCharacters.Where(x => x.CharacterId == request.CharacterId).Select(x => new MEpisode
+                if(request.isAssigned == true)
                 {
-                    AirDate = x.Episode.AirDate,
-                    Id = x.Episode.Id,
-                    MediaFile = _mapper.Map<MMediaFile>(x.Episode.MediaFile),
-                    OverallNumberOfEpisode = (int)x.Episode.OverallNumberOfEpisode,
-                    Season = _mapper.Map<MSeason>(x.Episode.Season),
-                    SeasonEpisodeNumber = x.Episode.SeasonEpisodeNumber,
-                    Summary = x.Episode.Summary,
-                    Title = x.Episode.Title,
-                    Viewcount = x.Episode.Viewcount,
-                    SeasonId = (int)x.Episode.SeasonId,
-                    Characters = _mapper.Map<List<MCharacter>>(ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == x.Episode.Id).Select(x => x.Character).ToList())
-                }).ToList();
+                    var query5a = ctx.EpisodeCharacters.Where(x => x.CharacterId == request.CharacterId && x.Episode.Season != null).Select(x => new MEpisode
+                    {
+                        AirDate = x.Episode.AirDate,
+                        Id = x.Episode.Id,
+                        MediaFile = _mapper.Map<MMediaFile>(x.Episode.MediaFile),
+                        OverallNumberOfEpisode = (int)x.Episode.OverallNumberOfEpisode,
+                        Season = _mapper.Map<MSeason>(x.Episode.Season),
+                        SeasonEpisodeNumber = x.Episode.SeasonEpisodeNumber,
+                        Summary = x.Episode.Summary,
+                        Title = x.Episode.Title,
+                        Viewcount = x.Episode.Viewcount,
+                        SeasonId = (int)x.Episode.SeasonId,
+                        Characters = _mapper.Map<List<MCharacter>>(ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == x.Episode.Id).Select(x => x.Character).ToList())
+                    }).ToList();
 
-                return query5;
+                    return query5a;
+                }
+                else
+                {
+                    var query5b = ctx.EpisodeCharacters.Where(x => x.CharacterId == request.CharacterId).Select(x => new MEpisode
+                    {
+                        AirDate = x.Episode.AirDate,
+                        Id = x.Episode.Id,
+                        MediaFile = _mapper.Map<MMediaFile>(x.Episode.MediaFile),
+                        OverallNumberOfEpisode = (int)x.Episode.OverallNumberOfEpisode,
+                        Season = _mapper.Map<MSeason>(x.Episode.Season),
+                        SeasonEpisodeNumber = x.Episode.SeasonEpisodeNumber,
+                        Summary = x.Episode.Summary,
+                        Title = x.Episode.Title,
+                        Viewcount = x.Episode.Viewcount,
+                        SeasonId = (int)x.Episode.SeasonId,
+                        Characters = _mapper.Map<List<MCharacter>>(ctx.EpisodeCharacters.Include(z => z.Character.CharacterMediaFile).Where(z => z.EpisodeId == x.Episode.Id).Select(x => x.Character).ToList())
+                    }).ToList();
+
+                    return query5b;
+                }
+               
             }
 
             else

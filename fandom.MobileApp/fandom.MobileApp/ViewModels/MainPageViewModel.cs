@@ -38,7 +38,7 @@ namespace fandom.MobileApp.ViewModels
             IEnumerable<MCharacter> listCh = APIService.LoggedUser.FavouriteCharacters;
             IEnumerable<MEpisode> listEp = APIService.LoggedUser.FavouriteEpisodes;
 
-            var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>();
+            var rEp = await _episodeApiService.Get<IEnumerable<MEpisode>>(new EpisodesSeasonRequest { isAssigned = true });
             List<MEpisode> RecommendedEpisodesList = null;
 
             if (APIService.LoggedUser.WatchedEpisodes.Count > 0)
@@ -52,7 +52,7 @@ namespace fandom.MobileApp.ViewModels
                 {
                    foreach(var character in APIService.LoggedUser.FavouriteCharacters)
                     {
-                        var episode = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { CharacterId = character.Id });
+                        var episode = await _episodeApiService.Get<List<MEpisode>>(new EpisodesSeasonRequest { CharacterId = character.Id, isAssigned = true });
 
                         RecommendedEpisodesList.AddRange(episode);
                     }
@@ -75,7 +75,6 @@ namespace fandom.MobileApp.ViewModels
 
             foreach(var item in RecommendedEpisodesList.Take(5))
             {
-                if(item.Season != null)
                 RecommendedEpisodes.Add(item);
             }
         }
